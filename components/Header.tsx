@@ -1,12 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 import { clinic } from "@/lib/site-data";
 
 export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-porcelain/95 backdrop-blur border-b border-ink/10">
       <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
-        <Link href="/" className="font-display text-xl md:text-2xl text-ink tracking-tight">
-          Dental<span className="text-brass italic">Nisaa</span>
+        <Link href="/" className="flex items-center h-full py-2.5">
+          <Image
+            src="/logo.png"
+            alt="DentalNisaa Oral Care"
+            width={160}
+            height={160}
+            className="h-full w-auto object-contain"
+            priority
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8 text-[15px] font-medium text-ink/80">

@@ -9,21 +9,21 @@ const config: Config = {
     extend: {
       colors: {
         porcelain: {
-          DEFAULT: "#FBF8F3",
-          dim: "#F3EEE5",
+          DEFAULT: "#FAF9F7",
+          dim: "#F2F0EC",
         },
         ink: {
-          DEFAULT: "#16302E",
-          soft: "#2A4744",
+          DEFAULT: "#141414",
+          soft: "#2B2B2B",
         },
-        brass: {
-          DEFAULT: "#A8794F",
-          light: "#C79F73",
-          dark: "#7D5A38",
+        crimson: {
+          DEFAULT: "#E51F3B",
+          light: "#EC5468",
+          dark: "#B8172F",
         },
         blush: {
-          DEFAULT: "#E7B7A3",
-          soft: "#F1D6C9",
+          DEFAULT: "#F4C6CD",
+          soft: "#FBE8EC",
         },
         sage: {
           DEFAULT: "#4B7C6F",

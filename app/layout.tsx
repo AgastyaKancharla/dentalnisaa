@@ -21,7 +21,7 @@ const publicSans = Public_Sans({
 export const metadata: Metadata = {
   title: "DentalNisaa Oral Care | Family Dental Clinic in Kumaraswamy Layout, Bengaluru",
   description:
-    "Trusted family dental care in Kumaraswamy Layout, Bengaluru for 19 years. 4.8★ rated. General, cosmetic, orthodontic & implant dentistry. Book your appointment today.",
+    "Trusted family dental care in Kumaraswamy Layout, Bengaluru since 1995. 4.8★ rated. General, cosmetic, orthodontic & implant dentistry. Book your appointment today.",
 };
 
 export default function RootLayout({

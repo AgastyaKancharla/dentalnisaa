@@ -16,7 +16,7 @@ export default function Hero() {
           <h1 className="font-display text-[2.6rem] leading-[1.08] md:text-6xl md:leading-[1.05] text-ink">
             The dentist your family
             <br />
-            <span className="italic text-brass-dark">grows up with.</span>
+            <span className="italic text-crimson-dark">grows up with.</span>
           </h1>
 
           <p className="mt-6 text-lg text-ink/70 max-w-lg">
@@ -44,7 +44,7 @@ export default function Hero() {
           </div>
         </div>
       </div>
-      <ArchDivider to="#16302E" />
+      <ArchDivider to="#141414" />
     </section>
   );
 }

@@ -155,8 +155,8 @@ export default function BookingWidget() {
                   booked
                     ? "bg-ink/5 text-ink/25 border-ink/5 cursor-not-allowed line-through"
                     : selected
-                    ? "bg-brass text-ink border-brass"
-                    : "bg-white/60 text-ink/70 border-ink/10 hover:border-brass/50"
+                    ? "bg-crimson text-ink border-crimson"
+                    : "bg-white/60 text-ink/70 border-ink/10 hover:border-crimson/50"
                 }`}
               >
                 {slot}

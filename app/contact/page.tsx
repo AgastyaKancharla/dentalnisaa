@@ -4,12 +4,12 @@ export default function ContactPage() {
   return (
     <section className="bg-porcelain min-h-[70vh]">
       <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-24 md:pt-24">
-        <p className="text-sm font-semibold text-brass-dark uppercase tracking-wide mb-3">
+        <p className="text-sm font-semibold text-crimson-dark uppercase tracking-wide mb-3">
           Contact
         </p>
         <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight mb-10">
           Find us,{" "}
-          <span className="italic text-brass-dark">reach us.</span>
+          <span className="italic text-crimson-dark">reach us.</span>
         </h1>
 
         <div className="grid md:grid-cols-2 gap-10">
@@ -21,7 +21,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Phone</p>
-              <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="text-ink/80 hover:text-brass-dark">
+              <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="text-ink/80 hover:text-crimson-dark">
                 {clinic.phone}
               </a>
             </div>

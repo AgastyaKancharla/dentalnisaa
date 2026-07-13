@@ -8,7 +8,8 @@
 
 export const clinic = {
   name: "DentalNisaa Oral Care",
-  tagline: "Bengaluru's family dental clinic, trusted for 19 years",
+  tagline: "Bengaluru's family dental clinic, trusted since 1995",
+  brandLine: "Discover Back The Joy Of Smiling", // verbatim from client logo
   phone: "+91 97312 14949", // confirmed from Google Business listing
   whatsapp: "919731214949",
   email: "hello@dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm real inbox
@@ -19,7 +20,8 @@ export const clinic = {
   },
   rating: 4.8,
   reviewCount: 195,
-  yearsActive: 19,
+  foundedYear: 1995, // confirmed from logo ("SINCE 1995")
+  yearsActive: new Date().getFullYear() - 1995,
   hours: [
     { day: "Monday", slots: "10 am–2 pm, 4–8 pm" },
     { day: "Tuesday", slots: "10 am–2 pm, 4–8 pm" },
@@ -115,7 +117,7 @@ export const testimonials = [
 
 export const trustPoints = [
   {
-    label: "19 years",
+    label: `${new Date().getFullYear() - 1995}+ years`,
     detail: "Serving families in Kumaraswamy Layout",
   },
   {

@@ -7,7 +7,7 @@ export default function FinalCTA() {
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-24 text-center">
         <h2 className="font-display text-3xl md:text-4xl text-ink max-w-2xl mx-auto leading-tight">
           Your next appointment could be the start of{" "}
-          <span className="italic text-brass-dark">19 more years</span> of
+          <span className="italic text-crimson-dark">30 more years</span> of
           trusted care.
         </h2>
         <p className="mt-4 text-ink/60">

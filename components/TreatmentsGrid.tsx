@@ -16,12 +16,12 @@ export default function TreatmentsGrid() {
     <section id="treatments" className="bg-porcelain">
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28">
         <div className="max-w-xl mb-14">
-          <p className="text-sm font-semibold text-brass-dark uppercase tracking-wide mb-3">
+          <p className="text-sm font-semibold text-crimson-dark uppercase tracking-wide mb-3">
             Care, by need
           </p>
           <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
             Everything a family's teeth ask for,
-            <span className="italic text-brass-dark"> under one roof.</span>
+            <span className="italic text-crimson-dark"> under one roof.</span>
           </h2>
         </div>
 
@@ -29,7 +29,7 @@ export default function TreatmentsGrid() {
           {treatments.map((t) => (
             <div
               key={t.id}
-              className="group rounded-2xl border border-ink/10 bg-white/60 p-6 hover:border-brass/40 hover:shadow-[0_8px_30px_-15px_rgba(22,48,46,0.3)] transition-all"
+              className="group rounded-2xl border border-ink/10 bg-white/60 p-6 hover:border-crimson/40 hover:shadow-[0_8px_30px_-15px_rgba(22,48,46,0.3)] transition-all"
             >
               <span className="text-3xl" aria-hidden>
                 {icons[t.icon] ?? "🦷"}
