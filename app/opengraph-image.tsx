@@ -17,8 +17,8 @@ export default async function OGImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          backgroundColor: "#141414",
-          color: "#FAF9F7",
+          backgroundColor: "#2A2723",
+          color: "#FDFCF9",
           fontFamily: "sans-serif",
         }}
       >
@@ -27,7 +27,7 @@ export default async function OGImage() {
             display: "flex",
             fontSize: 28,
             fontWeight: 600,
-            color: "#EC5468",
+            color: "#D4B483",
             letterSpacing: 2,
             textTransform: "uppercase",
             marginBottom: 24,
@@ -62,7 +62,7 @@ export default async function OGImage() {
             display: "flex",
             fontSize: 26,
             marginTop: 48,
-            color: "#EC5468",
+            color: "#D4B483",
           }}
         >
           ★ {clinic.rating} · {clinic.reviewCount}+ Google reviews

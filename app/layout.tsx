@@ -19,9 +19,9 @@ const publicSans = Public_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const title = "DentalNisaa Oral Care | Family Dental Clinic in Kumaraswamy Layout, Bengaluru";
+const title = "DentalNisaa Oral Care | Family Dental Clinic in Kadarenahalli, Bengaluru";
 const description =
-  "Trusted family dental care in Kumaraswamy Layout, Bengaluru since 1995. 4.8★ rated. General, cosmetic, orthodontic & implant dentistry. Book your appointment today.";
+  "Trusted family dental care in Kadarenahalli, Bengaluru since 1995. 4.8★ rated. General, cosmetic, orthodontic & implant dentistry. Book your appointment today.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(clinic.website),
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#141414",
+  themeColor: "#2A2723",
 };
 
 // JSON-LD structured data — helps Google understand this as a real dental
@@ -67,6 +67,7 @@ function DentistSchema() {
       streetAddress: clinic.address.line1 || undefined,
       addressLocality: "Bengaluru",
       addressRegion: "Karnataka",
+      postalCode: "560078",
       addressCountry: "IN",
     },
     aggregateRating: {

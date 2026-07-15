@@ -8,8 +8,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: clinic.tagline,
     start_url: "/",
     display: "standalone",
-    background_color: "#FAF9F7",
-    theme_color: "#141414",
+    background_color: "#FDFCF9",
+    theme_color: "#2A2723",
     icons: [
       { src: "/icon.png", sizes: "512x512", type: "image/png" },
       { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },

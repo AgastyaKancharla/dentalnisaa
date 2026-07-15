@@ -1,5 +1,4 @@
 import { trustPoints } from "@/lib/site-data";
-import ArchDivider from "./ArchDivider";
 
 export default function TrustBar() {
   return (
@@ -8,7 +7,7 @@ export default function TrustBar() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           {trustPoints.map((point) => (
             <div key={point.label} className="text-center md:text-left">
-              <p className="font-display text-3xl md:text-4xl text-crimson-light italic">
+              <p className="font-display text-3xl md:text-4xl text-gold-light italic">
                 {point.label}
               </p>
               <p className="mt-2 text-sm text-porcelain/60 leading-snug">
@@ -18,7 +17,6 @@ export default function TrustBar() {
           ))}
         </div>
       </div>
-      <ArchDivider from="#141414" to="#FAF9F7" flip />
     </section>
   );
 }

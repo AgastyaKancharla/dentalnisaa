@@ -3,7 +3,7 @@ import { clinic } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "Contact Us",
-  description: `Find address, phone, and opening hours for ${clinic.name} in Kumaraswamy Layout, Bengaluru.`,
+  description: `Find address, phone, and opening hours for ${clinic.name} in Kadarenahalli, Bengaluru.`,
   alternates: { canonical: "/contact" },
 };
 
@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 // once available for pinpoint accuracy.
 function getMapEmbedSrc() {
   if (clinic.address.mapsUrl) return clinic.address.mapsUrl;
-  const query = encodeURIComponent(`${clinic.name}, ${clinic.address.line2}`);
+  const query = encodeURIComponent(
+    `${clinic.name}, ${clinic.address.line1}, ${clinic.address.line2}`
+  );
   return `https://www.google.com/maps?q=${query}&output=embed`;
 }
 
@@ -21,12 +23,12 @@ export default function ContactPage() {
   return (
     <section className="bg-porcelain min-h-[70vh]">
       <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-24 md:pt-24">
-        <p className="text-sm font-semibold text-crimson-dark uppercase tracking-wide mb-3">
+        <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
           Contact
         </p>
         <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight mb-10">
           Find us,{" "}
-          <span className="italic text-crimson-dark">reach us.</span>
+          <span className="italic text-gold-dark">reach us.</span>
         </h1>
 
         <div className="grid md:grid-cols-2 gap-10">
@@ -40,7 +42,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Phone</p>
-              <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="text-ink/80 hover:text-crimson-dark">
+              <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="text-ink/80 hover:text-gold-dark">
                 {clinic.phone}
               </a>
             </div>
@@ -59,7 +61,7 @@ export default function ContactPage() {
               href={`https://wa.me/${clinic.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-sage-dark transition-colors"
+              className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
             >
               Chat on WhatsApp
             </a>

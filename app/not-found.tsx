@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <section className="bg-porcelain min-h-[70vh] flex items-center">
       <div className="max-w-2xl mx-auto px-5 md:px-8 py-24 text-center">
-        <p className="text-sm font-semibold text-crimson-dark uppercase tracking-wide mb-3">
+        <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
           404
         </p>
         <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight mb-4">
@@ -18,7 +18,7 @@ export default function NotFound() {
         <div className="flex flex-wrap justify-center gap-4">
           <Link
             href="/"
-            className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-sage-dark transition-colors"
+            className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
           >
             Back to homepage
           </Link>

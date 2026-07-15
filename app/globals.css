@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  background-color: #FAF9F7;
-  color: #141414;
+  background-color: #FDFCF9;
+  color: #2A2723;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -21,11 +21,27 @@ body {
 }
 
 ::selection {
-  background-color: #F4C6CD;
-  color: #141414;
+  background-color: #D9E6E2;
+  color: #2A2723;
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid #E51F3B;
+  outline: 2px solid #B8935A;
   outline-offset: 3px;
+}
+
+/* Frosted-glass panel — used to echo the clinic's real glass treatment-room
+   walls across cards, dividers, and callouts. */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.glass-panel-dark {
+  background: rgba(42, 39, 35, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

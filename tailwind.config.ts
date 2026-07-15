@@ -9,25 +9,25 @@ const config: Config = {
     extend: {
       colors: {
         porcelain: {
-          DEFAULT: "#FAF9F7",
-          dim: "#F2F0EC",
+          DEFAULT: "#FDFCF9",
+          dim: "#EFE7D8",
         },
         ink: {
-          DEFAULT: "#141414",
-          soft: "#2B2B2B",
+          DEFAULT: "#2A2723",
+          soft: "#3E3A34",
         },
-        crimson: {
-          DEFAULT: "#E51F3B",
-          light: "#EC5468",
-          dark: "#B8172F",
+        gold: {
+          DEFAULT: "#B8935A",
+          light: "#D4B483",
+          dark: "#8F6F3F",
         },
-        blush: {
-          DEFAULT: "#F4C6CD",
-          soft: "#FBE8EC",
+        glass: {
+          DEFAULT: "#D9E6E2",
+          soft: "#EDF3F1",
         },
-        sage: {
-          DEFAULT: "#4B7C6F",
-          dark: "#345650",
+        teal: {
+          DEFAULT: "#6E8F87",
+          dark: "#4C6961",
         },
       },
       fontFamily: {

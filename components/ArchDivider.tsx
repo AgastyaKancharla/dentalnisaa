@@ -10,8 +10,8 @@ type ArchDividerProps = {
 // instead of a hard straight edge.
 export default function ArchDivider({
   flip = false,
-  from = "#FAF9F7",
-  to = "#141414",
+  from = "#FDFCF9",
+  to = "#2A2723",
   className = "",
 }: ArchDividerProps) {
   return (

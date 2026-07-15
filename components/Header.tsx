@@ -33,7 +33,7 @@ export default function Header() {
           </a>
           <Link
             href="/booking"
-            className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-sage-dark transition-colors"
+            className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-teal-dark transition-colors"
           >
             Book a visit
           </Link>

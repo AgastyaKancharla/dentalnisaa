@@ -22,7 +22,7 @@ export default function StickyCTA() {
         </a>
         <a
           href="/booking"
-          className="focus-ring flex flex-col items-center justify-center py-3 gap-0.5 bg-crimson text-ink active:bg-crimson-light"
+          className="focus-ring flex flex-col items-center justify-center py-3 gap-0.5 bg-gold text-ink active:bg-gold-light"
         >
           <span>📅</span>
           Book

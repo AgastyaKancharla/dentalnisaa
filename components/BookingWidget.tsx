@@ -115,7 +115,7 @@ export default function BookingWidget() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl bg-sage/10 border border-sage/30 p-10 text-center">
+      <div className="rounded-2xl bg-teal/10 border border-teal/30 p-10 text-center">
         <p className="text-3xl mb-3">✅</p>
         <h3 className="font-display text-2xl text-ink mb-2">
           Request received
@@ -176,8 +176,8 @@ export default function BookingWidget() {
                   booked
                     ? "bg-ink/5 text-ink/25 border-ink/5 cursor-not-allowed line-through"
                     : selected
-                    ? "bg-crimson text-ink border-crimson"
-                    : "bg-white/60 text-ink/70 border-ink/10 hover:border-crimson/50"
+                    ? "bg-gold text-ink border-gold"
+                    : "bg-white/60 text-ink/70 border-ink/10 hover:border-gold/50"
                 }`}
               >
                 {slot}
@@ -240,7 +240,7 @@ export default function BookingWidget() {
       </div>
 
       {errorMsg && (
-        <p className="text-sm text-crimson-dark bg-crimson/5 border border-crimson/20 rounded-lg px-4 py-3">
+        <p className="text-sm text-gold-dark bg-gold/5 border border-gold/20 rounded-lg px-4 py-3">
           {errorMsg}
         </p>
       )}
@@ -248,7 +248,7 @@ export default function BookingWidget() {
       <button
         type="submit"
         disabled={!selectedSlot || submitting}
-        className="focus-ring w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-sage-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="focus-ring w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-teal-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
         {submitting ? "Sending…" : "Request this slot"}
       </button>
