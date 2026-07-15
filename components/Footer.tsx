@@ -16,7 +16,7 @@ export default function Footer() {
 
         <div className="text-sm space-y-2">
           <p className="uppercase tracking-wide text-porcelain/40 text-xs mb-3">Visit</p>
-          <p>{clinic.address.line1}</p>
+          {clinic.address.line1 && <p>{clinic.address.line1}</p>}
           <p>{clinic.address.line2}</p>
           <p className="pt-2">
             <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="hover:text-crimson-light">

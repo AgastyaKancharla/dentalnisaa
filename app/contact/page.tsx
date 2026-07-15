@@ -1,4 +1,21 @@
+import type { Metadata } from "next";
 import { clinic } from "@/lib/site-data";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: `Find address, phone, and opening hours for ${clinic.name} in Kumaraswamy Layout, Bengaluru.`,
+  alternates: { canonical: "/contact" },
+};
+
+// Until the client confirms an exact Google Maps pin (clinic.address.mapsUrl),
+// fall back to a search-based embed using the clinic name + known area. This
+// is still a working, functional map today — swap for the confirmed pin
+// once available for pinpoint accuracy.
+function getMapEmbedSrc() {
+  if (clinic.address.mapsUrl) return clinic.address.mapsUrl;
+  const query = encodeURIComponent(`${clinic.name}, ${clinic.address.line2}`);
+  return `https://www.google.com/maps?q=${query}&output=embed`;
+}
 
 export default function ContactPage() {
   return (
@@ -16,7 +33,9 @@ export default function ContactPage() {
           <div className="space-y-6">
             <div>
               <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Address</p>
-              <p className="text-ink/80">{clinic.address.line1}</p>
+              {clinic.address.line1 && (
+                <p className="text-ink/80">{clinic.address.line1}</p>
+              )}
               <p className="text-ink/80">{clinic.address.line2}</p>
             </div>
             <div>
@@ -46,8 +65,14 @@ export default function ContactPage() {
             </a>
           </div>
 
-          <div className="rounded-2xl bg-ink/5 border border-ink/10 aspect-[4/3] flex items-center justify-center text-ink/40 text-sm text-center px-6">
-            Map embed — pending confirmed address
+          <div className="rounded-2xl overflow-hidden border border-ink/10 aspect-[4/3]">
+            <iframe
+              src={getMapEmbedSrc()}
+              title={`Map to ${clinic.name}`}
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </div>

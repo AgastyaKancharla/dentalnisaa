@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import BookingWidget from "@/components/BookingWidget";
+import { clinic } from "@/lib/site-data";
+
+export const metadata: Metadata = {
+  title: "Book an Appointment",
+  description: `Book your appointment at ${clinic.name} in Kumaraswamy Layout, Bengaluru. Pick a day and time, confirmed by call or WhatsApp.`,
+  alternates: { canonical: "/booking" },
+};
 
 export default function BookingPage() {
   return (

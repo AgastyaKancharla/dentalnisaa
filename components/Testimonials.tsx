@@ -15,24 +15,46 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <figure
-              key={i}
-              className="rounded-2xl bg-white/70 border border-ink/10 p-7"
+        {testimonials.length > 0 ? (
+          <div className="grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, i) => (
+              <figure
+                key={i}
+                className="rounded-2xl bg-white/70 border border-ink/10 p-7"
+              >
+                <span className="text-crimson text-2xl leading-none" aria-hidden>
+                  “
+                </span>
+                <blockquote className="text-ink/80 leading-relaxed mt-2">
+                  {t.quote}
+                </blockquote>
+                <figcaption className="mt-5 text-sm font-semibold text-ink/50">
+                  {t.context}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl bg-white/70 border border-ink/10 p-8 text-center">
+            <p className="text-ink/70">
+              Read {clinic.reviewCount}+ real reviews from our patients on
+              Google.
+            </p>
+            <a
+              href={
+                clinic.address.mapsUrl ||
+                `https://www.google.com/search?q=${encodeURIComponent(
+                  clinic.name + " " + clinic.address.line2
+                )}+reviews`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring inline-flex items-center mt-4 rounded-full bg-ink text-porcelain px-6 py-3 text-sm font-semibold hover:bg-sage-dark transition-colors"
             >
-              <span className="text-crimson text-2xl leading-none" aria-hidden>
-                “
-              </span>
-              <blockquote className="text-ink/80 leading-relaxed mt-2">
-                {t.quote}
-              </blockquote>
-              <figcaption className="mt-5 text-sm font-semibold text-ink/50">
-                {t.context}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+              See our Google reviews
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

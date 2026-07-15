@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
 import { clinic } from "@/lib/site-data";
+
+export const metadata: Metadata = {
+  title: "About Us",
+  description: `${clinic.yearsActive} years of family dental care in Kumaraswamy Layout, Bengaluru. Meet the team behind ${clinic.name}.`,
+  alternates: { canonical: "/about" },
+};
 
 export default function AboutPage() {
   return (

@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import TreatmentsGrid from "@/components/TreatmentsGrid";
 import FinalCTA from "@/components/FinalCTA";
+import { clinic } from "@/lib/site-data";
+
+export const metadata: Metadata = {
+  title: "Treatments",
+  description: `General, cosmetic, orthodontic, implant, and family dentistry at ${clinic.name} in Kumaraswamy Layout, Bengaluru.`,
+  alternates: { canonical: "/treatments" },
+};
 
 export default function TreatmentsPage() {
   return (

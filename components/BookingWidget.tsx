@@ -69,6 +69,8 @@ export default function BookingWidget() {
   const [selectedDayIdx, setSelectedDayIdx] = useState(0);
   const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -79,13 +81,36 @@ export default function BookingWidget() {
 
   const selectedDay = days[selectedDayIdx];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!selectedSlot) return;
-    // NOTE: not yet wired to a real backend. Once the Sheets + Apps Script
-    // (or other) booking backend is set up, this is where the request gets
-    // sent, and slot availability gets checked/locked server-side.
-    setSubmitted(true);
+    if (!selectedSlot || submitting) return;
+    setErrorMsg(null);
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/book", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          phone: form.phone,
+          email: form.email || undefined,
+          treatment: treatments.find((t) => t.id === form.treatment)?.name ?? form.treatment,
+          day: selectedDay.label,
+          slot: selectedSlot,
+          notes: form.notes || undefined,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Request failed");
+      setSubmitted(true);
+    } catch {
+      setErrorMsg(
+        "We couldn't send that automatically. Please call or WhatsApp us directly to confirm your slot."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -100,10 +125,6 @@ export default function BookingWidget() {
           <strong>{selectedDay.label}</strong> at{" "}
           <strong>{selectedSlot}</strong>. The clinic will confirm shortly by
           call or WhatsApp.
-        </p>
-        <p className="text-xs text-ink/40 mt-6">
-          Demo mode — this request is not yet saved anywhere. It will submit
-          to the clinic's real booking system once that's connected.
         </p>
       </div>
     );
@@ -218,15 +239,24 @@ export default function BookingWidget() {
         </div>
       </div>
 
+      {errorMsg && (
+        <p className="text-sm text-crimson-dark bg-crimson/5 border border-crimson/20 rounded-lg px-4 py-3">
+          {errorMsg}
+        </p>
+      )}
+
       <button
         type="submit"
-        disabled={!selectedSlot}
+        disabled={!selectedSlot || submitting}
         className="focus-ring w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-sage-dark transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
       >
-        Request this slot
+        {submitting ? "Sending…" : "Request this slot"}
       </button>
       <p className="text-xs text-ink/40 -mt-4">
         Clinic: {clinic.phone} · You can also book by calling or WhatsApp directly.
+      </p>
+      <p className="text-xs text-ink/30">
+        Your details are shared only with the clinic to confirm this appointment.
       </p>
     </form>
   );

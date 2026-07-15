@@ -8,15 +8,16 @@
 
 export const clinic = {
   name: "DentalNisaa Oral Care",
+  website: "https://dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm live domain before launch
   tagline: "Bengaluru's family dental clinic, trusted since 1995",
   brandLine: "Discover Back The Joy Of Smiling", // verbatim from client logo
   phone: "+91 97312 14949", // confirmed from Google Business listing
   whatsapp: "919731214949",
   email: "hello@dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm real inbox
   address: {
-    line1: "⟦PLACEHOLDER — new relocated address⟧",
+    line1: "", // ⟦PLACEHOLDER⟧ new relocated address — leave "" until confirmed, pages fall back gracefully
     line2: "Kumaraswamy Layout, Bengaluru, Karnataka",
-    mapsUrl: "", // ⟦PLACEHOLDER⟧ Google Maps pin for new location
+    mapsUrl: "", // ⟦PLACEHOLDER⟧ Google Maps pin (share link) for new location, once confirmed
   },
   rating: 4.8,
   reviewCount: 195,
@@ -33,14 +34,26 @@ export const clinic = {
   ],
 };
 
-export const doctors = [
-  {
-    name: "⟦PLACEHOLDER — Doctor's full name⟧",
-    title: "⟦PLACEHOLDER — e.g. BDS, MDS (Prosthodontics)⟧",
-    experience: "⟦PLACEHOLDER — years of experience⟧",
-    bio: "A warm, detail-first approach to dentistry built over years of caring for families across generations in Kumaraswamy Layout. ⟦PLACEHOLDER — replace with the doctor's own words once shared⟧",
-    photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
-  },
+// Set to a real object once the client shares the doctor's details — the
+// DoctorSpotlight component renders a graceful "coming soon" state while
+// this is empty, instead of publishing placeholder text to real visitors.
+export type Doctor = {
+  name: string;
+  title: string;
+  experience: string;
+  bio: string;
+  photo: string | null;
+};
+
+export const doctors: Doctor[] = [
+  // ⟦PLACEHOLDER⟧ — uncomment and fill in once confirmed by the client:
+  // {
+  //   name: "Dr. Full Name",
+  //   title: "BDS, MDS (Prosthodontics)",
+  //   experience: "XX years",
+  //   bio: "In the doctor's own words.",
+  //   photo: "/doctor.jpg",
+  // },
 ];
 
 export const treatments = [
@@ -95,25 +108,11 @@ export const treatments = [
 ];
 // ⟦PLACEHOLDER⟧ confirm final treatment list matches what's offered at the new location
 
-export const testimonials = [
-  {
-    quote:
-      "Been coming here since childhood — the doctor feels like our family dentist, not just a clinic we visit.",
-    context: "Long-time patient",
-  },
-  {
-    quote:
-      "Painless treatment and a very clear explanation of what was being done at every step.",
-    context: "Root canal patient",
-  },
-  {
-    quote:
-      "Very friendly staff and doctor, my daughter felt comfortable through the whole visit.",
-    context: "Parent of a young patient",
-  },
-];
-// ⟦PLACEHOLDER⟧ swap in exact-quote testimonials once the client shares ones she's
-// comfortable publishing (these are paraphrased composites, not verbatim reviews)
+// ⟦PLACEHOLDER⟧ empty until the client shares real, verbatim reviews she's
+// comfortable publishing (with permission). Do not fill this with invented
+// or paraphrased quotes attributed to "patients" — the Testimonials
+// component shows a Google-reviews link instead while this stays empty.
+export const testimonials: { quote: string; context: string }[] = [];
 
 export const trustPoints = [
   {
