@@ -105,8 +105,9 @@ export default function TreatmentPage({ params }: Props) {
               <span className="text-ink/70">{treatment.name}</span>
             </nav>
 
-            <span className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-teal/10 text-teal-dark mb-6">
-              <Icon name={treatment.icon} className="w-7 h-7" />
+            <span className="inline-flex items-center gap-3 text-teal-dark mb-6">
+              <Icon name={treatment.icon} className="w-8 h-8" />
+              <span className="h-px w-8 bg-ink/15" />
             </span>
 
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
@@ -168,14 +169,20 @@ export default function TreatmentPage({ params }: Props) {
               What to expect
             </h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2 gap-6">
+          <div className="grid sm:grid-cols-2">
             {treatment.process.map((step, i) => (
-              <Reveal key={step.title} delay={i * 80} className="glass-panel-dark rounded-2xl p-6">
+              <Reveal
+                key={step.title}
+                delay={i * 80}
+                className={`py-7 ${i % 2 === 0 ? "sm:pr-10" : "sm:pl-10"} ${
+                  i < 2 ? "border-b border-porcelain/10" : ""
+                } ${i % 2 === 0 ? "sm:border-r border-porcelain/10" : ""}`}
+              >
                 <span className="text-sm font-semibold text-gold-light">
-                  Step {i + 1}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="font-display text-lg mt-2">{step.title}</h3>
-                <p className="mt-2 text-porcelain/65 text-sm leading-relaxed">
+                <p className="mt-2 text-porcelain/65 text-sm leading-relaxed max-w-xs">
                   {step.detail}
                 </p>
               </Reveal>
@@ -192,11 +199,11 @@ export default function TreatmentPage({ params }: Props) {
               Common questions
             </h2>
           </Reveal>
-          <div className="space-y-4">
+          <div className="border-t border-ink/10">
             {treatment.faqs.map((f) => (
-              <Reveal key={f.q} className="rounded-2xl border border-ink/10 bg-white/60 p-6">
+              <Reveal key={f.q} className="py-6 border-b border-ink/10">
                 <h3 className="font-semibold text-ink">{f.q}</h3>
-                <p className="mt-2 text-ink/65 text-sm leading-relaxed">{f.a}</p>
+                <p className="mt-2 text-ink/65 text-sm leading-relaxed max-w-xl">{f.a}</p>
               </Reveal>
             ))}
           </div>
@@ -212,15 +219,19 @@ export default function TreatmentPage({ params }: Props) {
                 Related treatments
               </h2>
             </Reveal>
-            <div className="grid sm:grid-cols-3 gap-5">
-              {related.map((r) => (
+            <div className="grid sm:grid-cols-3 border-t border-ink/10">
+              {related.map((r, i) => (
                 <Link
                   key={r.id}
                   href={`/treatments/${r.id}`}
-                  className="group rounded-2xl border border-ink/10 bg-white/60 p-6 hover:border-gold/40 hover:-translate-y-1 transition-all"
+                  className={`group flex items-center gap-3 py-6 hover:pl-2 transition-[padding] duration-300 ${
+                    i > 0 ? "sm:border-l border-ink/10 sm:pl-6" : ""
+                  }`}
                 >
-                  <Icon name={r.icon} className="w-6 h-6 text-teal-dark group-hover:text-gold-dark transition-colors" />
-                  <h3 className="mt-3 font-display text-base text-ink">{r.name}</h3>
+                  <Icon name={r.icon} className="w-5 h-5 text-teal-dark group-hover:text-gold-dark transition-colors shrink-0" />
+                  <span className="font-display text-base text-ink group-hover:text-gold-dark transition-colors">
+                    {r.name}
+                  </span>
                 </Link>
               ))}
             </div>
@@ -229,23 +240,21 @@ export default function TreatmentPage({ params }: Props) {
       )}
 
       {/* Final CTA */}
-      <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
-          <Reveal className="glass-panel rounded-3xl p-10 md:p-14 text-center">
-            <h2 className="font-display text-2xl md:text-3xl text-ink">
-              Ready to talk about {treatment.name.toLowerCase()}?
-            </h2>
-            <p className="mt-3 text-ink/60 max-w-md mx-auto">
-              Book a consultation and we'll walk you through exactly what's
-              right for your situation.
-            </p>
-            <Link
-              href={`/booking?treatment=${treatment.id}`}
-              className="focus-ring inline-flex items-center mt-6 rounded-full bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
-            >
-              Book your visit
-            </Link>
-          </Reveal>
+      <section className="bg-gold text-ink">
+        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20 text-center">
+          <h2 className="font-display text-3xl md:text-4xl">
+            Ready to talk about {treatment.name.toLowerCase()}?
+          </h2>
+          <p className="mt-3 text-ink/70 max-w-md mx-auto">
+            Book a consultation and we'll walk you through exactly what's
+            right for your situation.
+          </p>
+          <Link
+            href={`/booking?treatment=${treatment.id}`}
+            className="focus-ring inline-flex items-center mt-7 bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-ink/85 transition-colors"
+          >
+            Book your visit
+          </Link>
         </div>
       </section>
     </>

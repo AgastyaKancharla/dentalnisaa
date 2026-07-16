@@ -1,11 +1,11 @@
 import { doctors, clinic } from "@/lib/site-data";
-import ArchDivider from "./ArchDivider";
+import SectionSeam from "./SectionSeam";
 
 export default function DoctorSpotlight({ topDivider = true }: { topDivider?: boolean }) {
   return (
     <section className="bg-ink text-porcelain relative">
-      {topDivider && <ArchDivider to="#2A2723" />}
-      <div className={`max-w-[1320px] mx-auto px-5 md:px-8 pb-20 md:pb-28 ${topDivider ? "pt-2 md:pt-4" : "pt-16 md:pt-20"}`}>
+      {topDivider && <SectionSeam tone="dark" />}
+      <div className={`max-w-[1320px] mx-auto px-5 md:px-8 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
         <div className="max-w-2xl mb-12">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
             Meet our doctors
@@ -20,13 +20,13 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8">
             {doctors.map((doctor) => (
               <div key={doctor.name}>
-                <div className="w-full aspect-square rounded-2xl bg-porcelain/10 border border-porcelain/15 flex items-center justify-center text-porcelain/40 text-sm text-center px-6 mb-5">
+                <div className="w-full aspect-square border border-porcelain/15 flex items-center justify-center text-porcelain/40 text-sm text-center px-6 mb-5">
                   {doctor.photo ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={doctor.photo}
                       alt={doctor.name}
-                      className="w-full h-full object-cover rounded-2xl"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
                     "Photo coming soon"
@@ -56,7 +56,7 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
           </div>
         )}
       </div>
-      <ArchDivider from="#2A2723" to="#FDFCF9" flip />
+      <SectionSeam tone="dark" />
     </section>
   );
 }

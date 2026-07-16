@@ -1,4 +1,5 @@
-import ArchDivider from "./ArchDivider";
+import SectionSeam from "./SectionSeam";
+import GlassPanes from "./GlassPanes";
 
 const points = [
   {
@@ -21,37 +22,47 @@ const points = [
 export default function Transparency({ topDivider = false }: { topDivider?: boolean }) {
   return (
     <section className="bg-ink text-porcelain relative">
-      {topDivider && <ArchDivider to="#2A2723" />}
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
-        <div className="max-w-2xl mb-14">
+      {topDivider && <SectionSeam tone="dark" />}
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-20">
+        <div className="relative">
+          <GlassPanes className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
             Our clinic, by design
           </p>
-          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight">
-            Glass walls. No surprises.
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.05]">
+            Glass walls.
+            <br />
+            No surprises.
           </h2>
-          <p className="mt-5 text-porcelain/70 text-lg leading-relaxed">
+          <p className="mt-6 text-porcelain/60 leading-relaxed max-w-sm">
             Our treatment rooms are visible from the waiting area through
             floor-to-ceiling glass — a deliberate choice, not an aesthetic
             one.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {points.map((p) => (
+        <div>
+          {points.map((p, i) => (
             <div
               key={p.title}
-              className="glass-panel-dark rounded-2xl p-7"
+              className={`flex gap-6 md:gap-10 py-7 ${
+                i !== 0 ? "border-t border-porcelain/10" : ""
+              }`}
             >
-              <h3 className="font-display text-xl mb-3">{p.title}</h3>
-              <p className="text-porcelain/65 leading-relaxed text-sm">
-                {p.detail}
-              </p>
+              <span className="font-display text-lg text-gold-light/70 shrink-0 w-8">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <div>
+                <h3 className="font-display text-xl mb-2">{p.title}</h3>
+                <p className="text-porcelain/60 leading-relaxed text-sm max-w-md">
+                  {p.detail}
+                </p>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <ArchDivider from="#2A2723" to="#FDFCF9" flip />
+      <SectionSeam tone="dark" />
     </section>
   );
 }
