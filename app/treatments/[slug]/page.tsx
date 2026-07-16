@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { treatments, clinic } from "@/lib/site-data";
+import { buildTitle, buildDescription } from "@/lib/seo";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 
@@ -19,11 +20,18 @@ export function generateMetadata({ params }: Props): Metadata {
   const treatment = getTreatment(params.slug);
   if (!treatment) return {};
 
-  const title = `${treatment.name} in Kadarenahalli, Bengaluru`;
-  const description = `${treatment.overview.slice(0, 140)}… Book your ${treatment.name.toLowerCase()} consultation at ${clinic.name}, Kadarenahalli, Bengaluru.`;
+  // `absolute` bypasses the root layout's "%s | DentalNisaa" template —
+  // these titles already carry their own location branding within a
+  // search-safe length budget, so stacking the site name on top would
+  // push them well past 60 characters and get truncated in results.
+  const title = buildTitle(treatment.name);
+  const description = buildDescription(
+    treatment.overview,
+    `Book at ${clinic.name}, Kadarenahalli.`
+  );
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: `/treatments/${treatment.id}` },
     openGraph: { title, description },
@@ -60,6 +68,16 @@ export default function TreatmentPage({ params }: Props) {
     })),
   };
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: clinic.website },
+      { "@type": "ListItem", position: 2, name: "Treatments", item: `${clinic.website}/treatments` },
+      { "@type": "ListItem", position: 3, name: treatment.name, item: `${clinic.website}/treatments/${treatment.id}` },
+    ],
+  };
+
   return (
     <>
       <script
@@ -69,6 +87,10 @@ export default function TreatmentPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       {/* Hero */}

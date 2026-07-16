@@ -19,14 +19,15 @@ const publicSans = Public_Sans({
   weight: ["400", "500", "600", "700"],
 });
 
-const title = "DentalNisaa Oral Care | Family Dental Clinic in Kadarenahalli, Bengaluru";
+const title = "DentalNisaa Oral Care | Dentist in Kadarenahalli, Bengaluru";
 const description =
-  "Trusted family dental care in Kadarenahalli, Bengaluru since 1995. 4.8★ rated. General, cosmetic, orthodontic & implant dentistry. Book your appointment today.";
+  "Family dental clinic in Kadarenahalli, Bengaluru since 1995. 4.8★ from 195+ reviews. Root canal, implants, braces & more. Book online or on WhatsApp.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(clinic.website),
   title: { default: title, template: `%s | ${clinic.name}` },
   description,
+  alternates: { canonical: "/" },
   openGraph: {
     title,
     description,
@@ -104,8 +105,14 @@ export default function RootLayout({
         <DentistSchema />
       </head>
       <body className="font-body antialiased">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:bg-ink focus:text-porcelain focus:px-4 focus:py-2 focus:rounded-full focus:text-sm focus:font-semibold"
+        >
+          Skip to content
+        </a>
         <Header />
-        <main>{children}</main>
+        <main id="main-content">{children}</main>
         <Footer />
         <StickyCTA />
       </body>

@@ -3,7 +3,7 @@ import { clinic, gallerySpaces } from "@/lib/site-data";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Gallery — Clinic Tour",
+  title: "Clinic Gallery — Kadarenahalli, Bengaluru",
   description: `Take a look inside ${clinic.name} in Kadarenahalli, Bengaluru — including our glass-walled treatment rooms, visible from the waiting lounge.`,
   alternates: { canonical: "/gallery" },
 };
@@ -15,7 +15,7 @@ export default function GalleryPage() {
         <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-6">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-              Gallery
+              Gallery — Kadarenahalli, Bengaluru
             </p>
             <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight">
               A look inside,
@@ -30,7 +30,7 @@ export default function GalleryPage() {
       </section>
 
       <section className="bg-porcelain">
-        <div className="max-w-6xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
+        <div className="max-w-[1320px] mx-auto px-5 md:px-8 pb-20 md:pb-28">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallerySpaces.map((space, i) => (
               <Reveal key={space.name} delay={i * 60}>

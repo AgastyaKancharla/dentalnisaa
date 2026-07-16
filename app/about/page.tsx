@@ -7,7 +7,7 @@ import Reveal from "@/components/Reveal";
 import { clinic } from "@/lib/site-data";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "About Us — Kadarenahalli, Bengaluru",
   description: `${clinic.yearsActive} years of family dental care in Kadarenahalli, Bengaluru. Meet the team behind ${clinic.name}.`,
   alternates: { canonical: "/about" },
 };
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-14 md:pt-24 md:pb-20">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-              About us
+              About Us — Kadarenahalli, Bengaluru
             </p>
             <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight">
               {clinic.yearsActive} years of{" "}

@@ -1,4 +1,6 @@
+import Link from "next/link";
 import { clinic } from "@/lib/site-data";
+import Icon from "./Icon";
 
 export default function StickyCTA() {
   return (
@@ -6,27 +8,27 @@ export default function StickyCTA() {
       <div className="grid grid-cols-3 text-porcelain text-sm font-semibold">
         <a
           href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-          className="focus-ring flex flex-col items-center justify-center py-3 gap-0.5 active:bg-porcelain/10"
+          className="focus-ring flex flex-col items-center justify-center py-3 gap-1 active:bg-porcelain/10"
         >
-          <span>📞</span>
+          <Icon name="phone" className="w-5 h-5" />
           Call
         </a>
         <a
           href={`https://wa.me/${clinic.whatsapp}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="focus-ring flex flex-col items-center justify-center py-3 gap-0.5 border-x border-porcelain/10 active:bg-porcelain/10"
+          className="focus-ring flex flex-col items-center justify-center py-3 gap-1 border-x border-porcelain/10 active:bg-porcelain/10"
         >
-          <span>💬</span>
+          <Icon name="chat" className="w-5 h-5" />
           WhatsApp
         </a>
-        <a
+        <Link
           href="/booking"
-          className="focus-ring flex flex-col items-center justify-center py-3 gap-0.5 bg-gold text-ink active:bg-gold-light"
+          className="focus-ring flex flex-col items-center justify-center py-3 gap-1 bg-gold text-ink active:bg-gold-light"
         >
-          <span>📅</span>
+          <Icon name="calendar" className="w-5 h-5" />
           Book
-        </a>
+        </Link>
       </div>
     </div>
   );

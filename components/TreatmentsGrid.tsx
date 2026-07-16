@@ -6,10 +6,10 @@ import Reveal from "./Reveal";
 export default function TreatmentsGrid() {
   return (
     <section id="treatments" className="bg-porcelain">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
         <Reveal className="max-w-xl mb-14">
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-            Care, by need
+            Dental Treatments in Kadarenahalli, Bengaluru
           </p>
           <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
             Everything a family's teeth ask for,

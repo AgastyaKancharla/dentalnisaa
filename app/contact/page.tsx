@@ -5,7 +5,7 @@ import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact Us — Kadarenahalli, Bengaluru",
   description: `Find address, phone, and opening hours for ${clinic.name} in Kadarenahalli, Bengaluru.`,
   alternates: { canonical: "/contact" },
 };
@@ -28,7 +28,7 @@ export default function ContactPage() {
       <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-24 md:pt-24">
         <Reveal>
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-            Contact
+            Contact — Kadarenahalli, Bengaluru
           </p>
           <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight mb-10">
             Find us,{" "}

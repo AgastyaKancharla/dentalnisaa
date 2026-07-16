@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { clinic } from "@/lib/site-data";
@@ -16,10 +17,14 @@ const navLinks = [
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-40 bg-porcelain/95 backdrop-blur border-b border-ink/10">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center h-full py-2.5" onClick={() => setOpen(false)}>
           <Image
             src="/logo.png"
@@ -31,9 +36,18 @@ export default function Header() {
           />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-7 text-[15px] font-medium text-ink/80">
+        <nav className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-ink transition-colors">
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`transition-colors ${
+                isActive(link.href)
+                  ? "text-gold-dark font-semibold"
+                  : "text-ink/80 hover:text-ink"
+              }`}
+              aria-current={isActive(link.href) ? "page" : undefined}
+            >
               {link.label}
             </Link>
           ))}
@@ -42,13 +56,13 @@ export default function Header() {
         <div className="flex items-center gap-3">
           <a
             href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-            className="hidden sm:inline-flex items-center text-sm font-semibold text-ink/80 hover:text-ink"
+            className="hidden md:inline-flex items-center text-sm font-semibold text-ink/80 hover:text-ink"
           >
             {clinic.phone}
           </a>
           <Link
             href="/booking"
-            className="focus-ring hidden sm:inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-teal-dark transition-colors"
+            className="focus-ring hidden md:inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-teal-dark transition-colors"
           >
             Book a visit
           </Link>
@@ -76,13 +90,16 @@ export default function Header() {
 
       {open && (
         <div className="lg:hidden border-t border-ink/10 bg-porcelain">
-          <nav className="max-w-6xl mx-auto px-5 py-4 flex flex-col gap-1">
+          <nav className="max-w-[1320px] mx-auto px-5 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="py-2.5 text-ink/80 font-medium hover:text-ink transition-colors"
+                className={`py-2.5 font-medium transition-colors ${
+                  isActive(link.href) ? "text-gold-dark font-semibold" : "text-ink/80 hover:text-ink"
+                }`}
+                aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}
               </Link>

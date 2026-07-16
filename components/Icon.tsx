@@ -65,6 +65,15 @@ const paths: Record<string, JSX.Element> = {
   chat: (
     <path d="M4 5h16v11H8l-4 4V5z" />
   ),
+  phone: (
+    <path d="M6.5 3.5c.6 0 1.1.4 1.3.9l1.1 2.7c.2.5 0 1-.3 1.4L7.2 10c1 2.3 2.8 4.1 5.1 5.1l1.5-1.4c.4-.3.9-.4 1.4-.3l2.7 1.1c.5.2.9.7.9 1.3v2.3c0 1-.8 1.7-1.8 1.6-9-1-14-6.1-15-15C1 3.8 1.7 3 2.7 3h2.3z" />
+  ),
+  calendar: (
+    <>
+      <rect x="4" y="5" width="16" height="15" rx="2" />
+      <path d="M4 10h16M8 3v4M16 3v4" strokeLinecap="round" />
+    </>
+  ),
   glass: (
     <>
       <rect x="4" y="4" width="16" height="16" rx="2" />

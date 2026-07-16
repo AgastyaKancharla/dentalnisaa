@@ -5,7 +5,7 @@ import ArchDivider from "./ArchDivider";
 export default function Hero() {
   return (
     <section className="relative bg-porcelain">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 grid md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-center">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-20 md:pb-28 grid md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-center">
         <div className="animate-fadeUp">
           <p className="inline-flex items-center gap-2 text-sm font-semibold text-teal-dark bg-teal/10 rounded-full px-4 py-1.5 mb-6">
             <span aria-hidden>★ {clinic.rating}</span>
@@ -14,9 +14,9 @@ export default function Hero() {
           </p>
 
           <h1 className="font-display text-[2.6rem] leading-[1.08] md:text-6xl md:leading-[1.05] text-ink">
-            The dentist your family
+            The Bengaluru dentist
             <br />
-            <span className="italic text-gold-dark">grows up with.</span>
+            your family <span className="italic text-gold-dark">grows up with.</span>
           </h1>
 
           <p className="mt-6 text-lg text-ink/70 max-w-lg">

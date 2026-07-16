@@ -11,7 +11,7 @@ export default function Testimonials() {
 
   return (
     <section id="reviews" className="bg-porcelain-dim/40">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-14">
           <div className="max-w-xl">
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">

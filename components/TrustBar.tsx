@@ -3,7 +3,7 @@ import { trustPoints } from "@/lib/site-data";
 export default function TrustBar() {
   return (
     <section className="bg-ink text-porcelain">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-14 md:py-16">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-14 md:py-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-6">
           {trustPoints.map((point) => (
             <div key={point.label} className="text-center md:text-left">

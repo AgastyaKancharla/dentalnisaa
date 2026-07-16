@@ -36,6 +36,7 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
               className={`grid transition-all duration-300 ease-out ${
                 isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
               }`}
+              aria-hidden={!isOpen}
             >
               <div className="overflow-hidden">
                 <p className="px-6 pb-5 text-ink/65 text-sm leading-relaxed">

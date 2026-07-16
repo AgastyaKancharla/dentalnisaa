@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { blogPosts, clinic } from "@/lib/site-data";
+import { buildTitle, buildDescription } from "@/lib/seo";
 import Reveal from "@/components/Reveal";
 
 type Props = { params: { slug: string } };
@@ -25,13 +26,19 @@ function formatDate(iso: string) {
 export function generateMetadata({ params }: Props): Metadata {
   const post = getPost(params.slug);
   if (!post) return {};
+
+  // The on-page H1 keeps the full, editorial-style title; the <title> tag
+  // uses a shorter version so it doesn't get truncated in search results.
+  const title = buildTitle(post.title, [], 60);
+  const description = buildDescription(post.excerpt, `— ${clinic.name}.`);
+
   return {
-    title: post.title,
-    description: post.excerpt,
+    title: { absolute: title },
+    description,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title,
+      description,
       type: "article",
       publishedTime: post.date,
     },

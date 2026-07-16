@@ -4,7 +4,7 @@ import { clinic, blogPosts } from "@/lib/site-data";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
-  title: "Blog — Dental Health & Advice",
+  title: "Dental Health Blog — Bengaluru",
   description: `Straightforward, honest advice on dental health topics from ${clinic.name}, Kadarenahalli, Bengaluru.`,
   alternates: { canonical: "/blog" },
 };

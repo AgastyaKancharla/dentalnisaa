@@ -22,7 +22,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
   return (
     <section className="bg-ink text-porcelain relative">
       {topDivider && <ArchDivider to="#2A2723" />}
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
             Our clinic, by design
