@@ -46,11 +46,19 @@ export default function Hero() {
         </div>
 
         <div className="relative animate-fadeUp">
-          <div className="aspect-[4/5] rounded-[2rem] bg-gradient-to-br from-glass/60 via-porcelain-dim to-glass/30 border border-white/60 overflow-hidden flex items-center justify-center">
-            <p className="text-ink/35 text-sm text-center px-10">
-              Clinic photo coming soon — our glass-walled treatment rooms,
-              as seen from the waiting lounge.
-            </p>
+          <div className="aspect-[4/5] rounded-[2rem] overflow-hidden border border-white/60 relative">
+            {/* TEMPORARY stock photo (free Unsplash license, no attribution
+                required) standing in for a real clinic photo — swap the src
+                below for an actual photo of the glass treatment rooms as
+                soon as one is available. */}
+            <img
+              src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1200&auto=format&fit=crop"
+              alt="Bright, glass-walled dental treatment room"
+              className="w-full h-full object-cover"
+            />
+            <span className="absolute top-4 right-4 bg-ink/60 text-porcelain text-[11px] font-medium tracking-wide px-3 py-1 rounded-full backdrop-blur">
+              Representative photo
+            </span>
           </div>
           <div className="glass-panel absolute -bottom-6 -left-6 rounded-2xl px-5 py-4 hidden sm:block">
             <p className="text-xs uppercase tracking-wide text-ink/50 font-semibold">

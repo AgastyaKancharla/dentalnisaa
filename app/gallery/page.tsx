@@ -35,14 +35,19 @@ export default function GalleryPage() {
             {gallerySpaces.map((space, i) => (
               <Reveal key={space.name} delay={i * 60}>
                 <div className="rounded-2xl overflow-hidden border border-ink/10 bg-white/60 h-full">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20 flex items-center justify-center">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20 flex items-center justify-center relative">
                     {space.image ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={space.image}
-                        alt={space.name}
-                        className="w-full h-full object-cover"
-                      />
+                      <>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={space.image}
+                          alt={space.name}
+                          className="w-full h-full object-cover"
+                        />
+                        <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
+                          Representative photo
+                        </span>
+                      </>
                     ) : (
                       <p className="text-ink/30 text-xs text-center px-6">
                         Photo coming soon

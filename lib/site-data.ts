@@ -595,6 +595,14 @@ export type GallerySpace = {
 // Descriptions of real clinic spaces — swap `image` from null to a real
 // photo path once available. Kept factual and non-superlative so nothing
 // here overstates what a photo would actually show.
+//
+// Two entries below use temporary stock photos (free Unsplash license, no
+// attribution required) as honest stand-ins for spaces they genuinely
+// resemble — general dental treatment rooms. The rest are left as
+// "coming soon" rather than mismatched to a stock photo that doesn't
+// actually depict that specific space (e.g. no photo of children was used
+// for the Kids' Corner, since a stock photo can't honestly represent a
+// specific real child at this clinic).
 export const gallerySpaces: GallerySpace[] = [
   {
     name: "Waiting Lounge",
@@ -606,13 +614,15 @@ export const gallerySpaces: GallerySpace[] = [
     name: "Glass Treatment Rooms",
     description:
       "Fully visible from the waiting lounge through floor-to-ceiling glass — see the care happening, not just wait for it.",
-    image: null,
+    image:
+      "https://images.unsplash.com/photo-1722586663955-2f96a4c1f255?fm=jpg&q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Consultation Room",
     description:
       "Where every treatment plan starts — a private space for an honest conversation about what you need and why.",
-    image: null,
+    image:
+      "https://images.unsplash.com/photo-1704455306251-b4634215d98f?fm=jpg&q=80&w=1200&auto=format&fit=crop",
   },
   {
     name: "Sterilization & Safety",
