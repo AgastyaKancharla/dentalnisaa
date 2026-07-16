@@ -4,7 +4,7 @@ import { clinic } from "@/lib/site-data";
 export default function Footer() {
   return (
     <footer className="bg-ink text-porcelain/90">
-      <div className="max-w-6xl mx-auto px-5 md:px-8 py-14 grid gap-10 md:grid-cols-3">
+      <div className="max-w-6xl mx-auto px-5 md:px-8 py-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="font-display text-2xl mb-3">
             Dental<span className="text-gold-light italic">Nisaa</span>
@@ -12,6 +12,14 @@ export default function Footer() {
           <p className="text-sm text-porcelain/60 max-w-xs">
             {clinic.tagline}.
           </p>
+        </div>
+
+        <div className="text-sm space-y-2">
+          <p className="uppercase tracking-wide text-porcelain/40 text-xs mb-3">Explore</p>
+          <Link href="/treatments" className="block text-porcelain/70 hover:text-gold-light transition-colors">Treatments</Link>
+          <Link href="/gallery" className="block text-porcelain/70 hover:text-gold-light transition-colors">Gallery</Link>
+          <Link href="/blog" className="block text-porcelain/70 hover:text-gold-light transition-colors">Blog</Link>
+          <Link href="/faq" className="block text-porcelain/70 hover:text-gold-light transition-colors">FAQ</Link>
         </div>
 
         <div className="text-sm space-y-2">
