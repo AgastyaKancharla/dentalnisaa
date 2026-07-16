@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { clinic } from "@/lib/site-data";
+import Icon from "./Icon";
 
 const navLinks = [
   { href: "/treatments", label: "Treatments" },
@@ -25,15 +25,17 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-porcelain/95 backdrop-blur border-b border-ink/10">
       <div className="max-w-[1320px] mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center h-full py-2.5" onClick={() => setOpen(false)}>
-          <Image
-            src="/logo.png"
-            alt="DentalNisaa Oral Care"
-            width={160}
-            height={160}
-            className="h-full w-auto object-contain"
-            priority
-          />
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 group"
+          onClick={() => setOpen(false)}
+        >
+          <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gold/15 text-gold-dark group-hover:bg-gold/25 transition-colors">
+            <Icon name="tooth" className="w-[18px] h-[18px]" />
+          </span>
+          <span className="font-display text-2xl leading-none text-ink">
+            Dental<span className="italic text-gold-dark">Nisaa</span>
+          </span>
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
