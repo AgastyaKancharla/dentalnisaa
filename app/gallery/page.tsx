@@ -12,7 +12,7 @@ export default function GalleryPage() {
   return (
     <>
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-6">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-6">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
               Gallery — Kadarenahalli, Bengaluru
@@ -30,7 +30,7 @@ export default function GalleryPage() {
       </section>
 
       <section className="bg-porcelain">
-        <div className="max-w-[1320px] mx-auto px-5 md:px-8 pb-20 md:pb-28">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallerySpaces.map((space, i) => (
               <Reveal key={space.name} delay={i * 60}>

@@ -23,7 +23,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
   return (
     <section className="bg-ink text-porcelain relative">
       {topDivider && <SectionSeam tone="dark" />}
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-20">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-20">
         <div className="relative">
           <GlassPanes className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">

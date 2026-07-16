@@ -13,7 +13,7 @@ export default function TreatmentsPage() {
   return (
     <>
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-6 md:pt-24">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 pb-6 md:pt-24">
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
             Dental Treatments in Kadarenahalli, Bengaluru
           </p>

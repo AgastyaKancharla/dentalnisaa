@@ -25,7 +25,7 @@ export default function BlogIndexPage() {
   return (
     <>
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-10">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-10">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
               Blog
@@ -39,8 +39,8 @@ export default function BlogIndexPage() {
       </section>
 
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
-          <div className="space-y-6">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28">
+          <div className="space-y-6 max-w-3xl">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={i * 60}>
                 <Link

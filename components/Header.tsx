@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-40 bg-porcelain/95 backdrop-blur border-b border-ink/10">
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 h-16 md:h-20 flex items-center justify-between">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 h-16 md:h-20 flex items-center justify-between">
         <Link
           href="/"
           className="flex items-center gap-2.5 group"
@@ -92,7 +92,7 @@ export default function Header() {
 
       {open && (
         <div className="lg:hidden border-t border-ink/10 bg-porcelain">
-          <nav className="max-w-[1320px] mx-auto px-5 py-4 flex flex-col gap-1">
+          <nav className="px-5 md:px-10 lg:px-16 xl:px-24 py-4 flex flex-col gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}

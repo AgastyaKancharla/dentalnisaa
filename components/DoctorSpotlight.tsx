@@ -5,7 +5,7 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
   return (
     <section className="bg-ink text-porcelain relative">
       {topDivider && <SectionSeam tone="dark" />}
-      <div className={`max-w-[1320px] mx-auto px-5 md:px-8 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
+      <div className={`px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
         <div className="max-w-2xl mb-12">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
             Meet our doctors

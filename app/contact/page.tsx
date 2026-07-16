@@ -25,7 +25,7 @@ function getMapEmbedSrc() {
 export default function ContactPage() {
   return (
     <section className="bg-porcelain min-h-[70vh]">
-      <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-24 md:pt-24">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 pb-24 md:pt-24">
         <Reveal>
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
             Contact — Kadarenahalli, Bengaluru

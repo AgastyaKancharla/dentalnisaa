@@ -6,7 +6,7 @@ import Reveal from "./Reveal";
 export default function TreatmentsGrid() {
   return (
     <section id="treatments" className="bg-porcelain">
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-20 md:py-28">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-14">
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
             Dental Treatments in Kadarenahalli, Bengaluru

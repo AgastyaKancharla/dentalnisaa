@@ -95,7 +95,7 @@ export default function TreatmentPage({ params }: Props) {
 
       {/* Hero */}
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-16 md:pb-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-16 md:pb-20">
           <Reveal>
             <nav className="text-sm text-ink/50 mb-8">
               <Link href="/treatments" className="hover:text-ink transition-colors">
@@ -142,12 +142,12 @@ export default function TreatmentPage({ params }: Props) {
 
       {/* Who it's for */}
       <section className="bg-porcelain-dim/50">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
               Is this right for you?
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-4 max-w-xl">
               {treatment.forWhom.map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <span className="mt-1 text-gold-dark" aria-hidden>
@@ -163,7 +163,7 @@ export default function TreatmentPage({ params }: Props) {
 
       {/* Process */}
       <section className="bg-ink text-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-2xl md:text-3xl mb-10">
               What to expect
@@ -193,7 +193,7 @@ export default function TreatmentPage({ params }: Props) {
 
       {/* FAQ */}
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
               Common questions
@@ -213,7 +213,7 @@ export default function TreatmentPage({ params }: Props) {
       {/* Related treatments */}
       {related.length > 0 && (
         <section className="bg-porcelain-dim/50">
-          <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20">
+          <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
             <Reveal>
               <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
                 Related treatments
@@ -241,7 +241,7 @@ export default function TreatmentPage({ params }: Props) {
 
       {/* Final CTA */}
       <section className="bg-gold text-ink">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20 text-center">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20 text-center">
           <h2 className="font-display text-3xl md:text-4xl">
             Ready to talk about {treatment.name.toLowerCase()}?
           </h2>

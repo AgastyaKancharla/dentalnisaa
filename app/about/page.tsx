@@ -37,7 +37,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-porcelain">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 pt-16 pb-14 md:pt-24 md:pb-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 pb-14 md:pt-24 md:pb-20">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
               About Us — Kadarenahalli, Bengaluru
@@ -58,13 +58,13 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-porcelain-dim/50">
-        <div className="max-w-4xl mx-auto px-5 md:px-8 py-16 md:py-20">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
               Our story
             </h2>
           </Reveal>
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-3xl">
             {milestones.map((m, i) => (
               <Reveal
                 key={m.title}
@@ -76,7 +76,7 @@ export default function AboutPage() {
                 </span>
                 <div>
                   <h3 className="font-semibold text-ink">{m.title}</h3>
-                  <p className="mt-1.5 text-sm text-ink/60 leading-relaxed">
+                  <p className="mt-1.5 text-sm text-ink/60 leading-relaxed max-w-md">
                     {m.detail}
                   </p>
                 </div>

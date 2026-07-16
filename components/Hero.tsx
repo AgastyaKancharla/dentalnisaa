@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="relative bg-porcelain overflow-hidden">
       <div className="grid md:grid-cols-2 md:min-h-[640px]">
-        <div className="flex items-center px-5 md:pl-8 lg:pl-[max(2rem,calc((100vw-1320px)/2+2rem))] md:pr-10 py-16 md:py-20 animate-fadeUp">
+        <div className="flex items-center px-5 md:pl-10 lg:pl-16 xl:pl-24 md:pr-10 py-16 md:py-20 animate-fadeUp">
           <div className="max-w-lg">
             <p className="text-xs font-semibold text-gold-dark uppercase tracking-[0.2em] mb-5">
               Dentist in Kadarenahalli, Bengaluru — since {clinic.foundedYear}

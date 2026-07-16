@@ -29,7 +29,7 @@ export default function FaqPage() {
       />
 
       <section className="bg-porcelain">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-10">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-10">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
               Patient Resources
@@ -46,12 +46,12 @@ export default function FaqPage() {
       </section>
 
       <section className="bg-porcelain">
-        <div className="max-w-3xl mx-auto px-5 md:px-8 pb-20 md:pb-28">
-          <Reveal>
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28">
+          <Reveal className="max-w-3xl">
             <FaqAccordion items={siteFaqs} />
           </Reveal>
 
-          <Reveal className="mt-12 rounded-2xl bg-porcelain-dim/60 p-8 text-center">
+          <Reveal className="mt-12 max-w-3xl rounded-2xl bg-porcelain-dim/60 p-8 text-center">
             <p className="text-ink/70">
               Still have a question? We're happy to answer it directly.
             </p>

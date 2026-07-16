@@ -4,7 +4,7 @@ import { clinic } from "@/lib/site-data";
 export default function Footer() {
   return (
     <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0">
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 py-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
         <div>
           <div className="font-display text-2xl mb-3">
             Dental<span className="text-gold-light italic">Nisaa</span>

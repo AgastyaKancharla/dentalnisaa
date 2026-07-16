@@ -9,7 +9,7 @@ export default function SectionSeam({ tone = "light" }: { tone?: "light" | "dark
   return (
     <div className="relative h-px w-full">
       <div className={tone === "light" ? "absolute inset-0 bg-ink/10" : "absolute inset-0 bg-porcelain/10"} />
-      <div className="max-w-[1320px] mx-auto px-5 md:px-8 relative">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 relative">
         <GlassPanes className={`w-8 h-8 -translate-y-1/2 ${markColor}`} />
       </div>
     </div>
