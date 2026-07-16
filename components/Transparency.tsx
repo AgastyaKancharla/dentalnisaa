@@ -18,9 +18,10 @@ const points = [
   },
 ];
 
-export default function Transparency() {
+export default function Transparency({ topDivider = false }: { topDivider?: boolean }) {
   return (
-    <section className="bg-ink text-porcelain">
+    <section className="bg-ink text-porcelain relative">
+      {topDivider && <ArchDivider to="#2A2723" />}
       <div className="max-w-6xl mx-auto px-5 md:px-8 py-20 md:py-28">
         <div className="max-w-2xl mb-14">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">

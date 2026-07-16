@@ -62,7 +62,7 @@ function isMockBooked(dateLabel: string, slot: string): boolean {
   return hash % 5 === 0;
 }
 
-export default function BookingWidget() {
+export default function BookingWidget({ initialTreatment }: { initialTreatment?: string }) {
   const days = useMemo(() => getUpcomingDays(10).filter((d) => !d.closed), []);
   const slots = useMemo(() => getSlotsForDay(), []);
 
@@ -74,7 +74,10 @@ export default function BookingWidget() {
   const [form, setForm] = useState({
     name: "",
     phone: "",
-    treatment: treatments[0].id,
+    treatment:
+      initialTreatment && treatments.some((t) => t.id === initialTreatment)
+        ? initialTreatment
+        : treatments[0].id,
     email: "",
     notes: "",
   });

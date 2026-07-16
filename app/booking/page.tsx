@@ -8,7 +8,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/booking" },
 };
 
-export default function BookingPage() {
+export default function BookingPage({
+  searchParams,
+}: {
+  searchParams: { treatment?: string };
+}) {
   return (
     <section className="bg-porcelain min-h-[80vh]">
       <div className="max-w-2xl mx-auto px-5 md:px-8 pt-16 pb-24 md:pt-24">
@@ -23,7 +27,7 @@ export default function BookingPage() {
           Choose a day and time below. The clinic will confirm your slot by
           phone or WhatsApp shortly after.
         </p>
-        <BookingWidget />
+        <BookingWidget initialTreatment={searchParams.treatment} />
       </div>
     </section>
   );

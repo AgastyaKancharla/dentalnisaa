@@ -99,7 +99,7 @@ export default function TreatmentPage({ params }: Props) {
 
             <div className="mt-9 flex flex-wrap items-center gap-4">
               <Link
-                href="/booking"
+                href={`/booking?treatment=${treatment.id}`}
                 className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
               >
                 Book a consultation
@@ -218,7 +218,7 @@ export default function TreatmentPage({ params }: Props) {
               right for your situation.
             </p>
             <Link
-              href="/booking"
+              href={`/booking?treatment=${treatment.id}`}
               className="focus-ring inline-flex items-center mt-6 rounded-full bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
             >
               Book your visit
