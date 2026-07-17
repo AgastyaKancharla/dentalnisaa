@@ -7,8 +7,8 @@ html {
 }
 
 body {
-  background-color: #FDFCF9;
-  color: #2A2723;
+  background-color: #FAF6EE;
+  color: #211E1A;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -21,12 +21,12 @@ body {
 }
 
 ::selection {
-  background-color: #D9E6E2;
-  color: #2A2723;
+  background-color: #E1DCC8;
+  color: #211E1A;
 }
 
 .focus-ring:focus-visible {
-  outline: 2px solid #B8935A;
+  outline: 2px solid #7C9483;
   outline-offset: 3px;
 }
 

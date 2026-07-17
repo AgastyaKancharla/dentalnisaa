@@ -11,25 +11,26 @@ export const clinic = {
   website: "https://dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm live domain before launch
   tagline: "Bengaluru's family dental clinic, trusted since 1995",
   brandLine: "Discover Back The Joy Of Smiling", // verbatim from client logo
-  phone: "+91 97312 14949", // confirmed from Google Business listing
+  phone: "+91 97312 14949", // confirmed via onboarding form
   whatsapp: "919731214949",
-  email: "hello@dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm real inbox
+  email: "info.dentalnisaa@gmail.com", // confirmed via onboarding form
+  instagram: "https://www.instagram.com/dentalnisaa", // confirmed via onboarding form
   address: {
-    line1: "47, 2nd Main Road, Subhash Chandra Bose Rd, Kadarenahalli, JHBCS Layout, Bendre Nagar",
-    line2: "Bengaluru, Karnataka 560078",
-    mapsUrl: "", // ⟦PLACEHOLDER⟧ paste the exact Google Maps share link once you have it — falls back to a name+address search embed until then
+    line1: "No. 47, 2nd Main Road, J.H.B.C.S Layout, Subhash Chandra Bose Road, Kadarenahalli, Bendre Nagar",
+    line2: "Bengaluru, Karnataka 560070",
+    mapsUrl: "https://maps.app.goo.gl/jKjAwve7WWSpyM8X8?g_st=aw", // confirmed via onboarding form
   },
   rating: 4.8,
   reviewCount: 195,
-  foundedYear: 1995, // confirmed from logo ("SINCE 1995")
+  foundedYear: 1995, // confirmed via onboarding form
   yearsActive: new Date().getFullYear() - 1995,
   hours: [
-    { day: "Monday", slots: "10 am–2 pm, 4–8 pm" },
-    { day: "Tuesday", slots: "10 am–2 pm, 4–8 pm" },
-    { day: "Wednesday", slots: "10 am–2 pm, 4–8 pm" },
-    { day: "Thursday", slots: "10 am–2 pm, 4–8 pm" },
-    { day: "Friday", slots: "10 am–2 pm, 4–8 pm" },
-    { day: "Saturday", slots: "10 am–2 pm, 4–8 pm" },
+    { day: "Monday", slots: "10:30 am–2 pm, 4:30–8 pm" },
+    { day: "Tuesday", slots: "10:30 am–2 pm, 4:30–8 pm" },
+    { day: "Wednesday", slots: "10:30 am–2 pm, 4:30–8 pm" },
+    { day: "Thursday", slots: "10:30 am–2 pm, 4:30–8 pm" },
+    { day: "Friday", slots: "10:30 am–2 pm, 4:30–8 pm" },
+    { day: "Saturday", slots: "10:30 am–2 pm, 4:30–8 pm" },
     { day: "Sunday", slots: "Closed" },
   ],
 };
@@ -54,8 +55,15 @@ export const doctors: Doctor[] = [
     bio: "", // ⟦PLACEHOLDER⟧ in the doctor's own words
     photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
   },
-  // ⟦PLACEHOLDER⟧ — add once confirmed as currently active (reviews mention
-  // Dr. Shyama, Dr. Madhu, and Dr. Tasneem, but this needs the client's
+  {
+    name: "Dr. Madhu",
+    title: "", // ⟦PLACEHOLDER⟧ e.g. BDS, MDS (specialization)
+    experience: "", // ⟦PLACEHOLDER⟧ years of experience
+    bio: "", // ⟦PLACEHOLDER⟧ in the doctor's own words
+    photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
+  },
+  // ⟦PLACEHOLDER⟧ — add once confirmed as currently active (reviews also
+  // mention Dr. Shyama and Dr. Tasneem, but this needs the client's
   // confirmation before publishing):
   // {
   //   name: "Dr. Full Name",
@@ -64,6 +72,11 @@ export const doctors: Doctor[] = [
   //   bio: "In the doctor's own words.",
   //   photo: "/doctor.jpg",
   // },
+];
+
+// Support staff — confirmed via onboarding form.
+export const staff = [
+  { name: "Ms. Aira Fathima", role: "Front Desk & Hygienist / Assistant" },
 ];
 
 export type Treatment = {

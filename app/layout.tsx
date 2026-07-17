@@ -48,7 +48,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2A2723",
+  themeColor: "#211E1A",
 };
 
 // JSON-LD structured data — helps Google understand this as a real dental
@@ -68,7 +68,7 @@ function DentistSchema() {
       streetAddress: clinic.address.line1 || undefined,
       addressLocality: "Bengaluru",
       addressRegion: "Karnataka",
-      postalCode: "560078",
+      postalCode: "560070",
       addressCountry: "IN",
     },
     aggregateRating: {

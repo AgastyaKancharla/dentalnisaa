@@ -8,26 +8,29 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Real brand colors from the client's onboarding form: sage green,
+        // beige, brown, black. Token names kept the same as before so we
+        // don't have to touch every component — only the values changed.
         porcelain: {
-          DEFAULT: "#FDFCF9",
-          dim: "#EFE7D8",
+          DEFAULT: "#FAF6EE", // beige base
+          dim: "#EDE4D2", // deeper beige for section fills
         },
         ink: {
-          DEFAULT: "#2A2723",
-          soft: "#3E3A34",
+          DEFAULT: "#211E1A", // near-black
+          soft: "#37322B", // brown-black for secondary dark surfaces
         },
         gold: {
-          DEFAULT: "#B8935A",
-          light: "#D4B483",
-          dark: "#8F6F3F",
+          DEFAULT: "#7C9483", // sage green (primary accent)
+          light: "#A8BCA3",
+          dark: "#546B57",
         },
         glass: {
-          DEFAULT: "#D9E6E2",
-          soft: "#EDF3F1",
+          DEFAULT: "#E1DCC8", // pale sage-beige tint
+          soft: "#F1EEE1",
         },
         teal: {
-          DEFAULT: "#6E8F87",
-          dark: "#4C6961",
+          DEFAULT: "#8A6A4E", // brown (secondary accent)
+          dark: "#5E4531",
         },
       },
       fontFamily: {
