@@ -112,7 +112,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="pt-14 md:pt-16">{children}</main>
         <Footer />
         <StickyCTA />
       </body>
