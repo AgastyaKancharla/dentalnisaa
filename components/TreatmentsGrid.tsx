@@ -3,7 +3,9 @@ import { treatments } from "@/lib/site-data";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 
-export default function TreatmentsGrid() {
+export default function TreatmentsGrid({ limit }: { limit?: number }) {
+  const list = limit ? treatments.slice(0, limit) : treatments;
+
   return (
     <section id="treatments" className="bg-porcelain">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
@@ -18,7 +20,7 @@ export default function TreatmentsGrid() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 md:gap-x-14 border-t border-ink/10">
-          {treatments.map((t, i) => (
+          {list.map((t, i) => (
             <Reveal key={t.id} delay={(i % 6) * 40}>
               <Link
                 href={`/treatments/${t.id}`}
@@ -49,6 +51,18 @@ export default function TreatmentsGrid() {
             </Reveal>
           ))}
         </div>
+
+        {limit && treatments.length > limit && (
+          <Reveal className="mt-10">
+            <Link
+              href="/treatments"
+              className="focus-ring inline-flex items-center gap-2 font-semibold text-ink hover:text-gold-dark transition-colors"
+            >
+              View all {treatments.length} treatments
+              <span aria-hidden>→</span>
+            </Link>
+          </Reveal>
+        )}
       </div>
     </section>
   );

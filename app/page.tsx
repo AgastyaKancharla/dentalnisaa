@@ -12,7 +12,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Transparency />
-      <TreatmentsGrid />
+      <TreatmentsGrid limit={10} />
       <DoctorSpotlight />
       <Testimonials />
       <FinalCTA />
