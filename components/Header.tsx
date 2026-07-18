@@ -78,7 +78,7 @@ export default function Header() {
               aria-expanded={open}
               className={`focus-ring inline-flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full border transition-colors ${
                 transparent
-                  ? "border-porcelain/40 text-porcelain hover:bg-porcelain/10"
+                  ? "bg-ink/35 backdrop-blur-sm border-porcelain/30 text-porcelain hover:bg-ink/50"
                   : "border-ink/15 text-ink hover:bg-ink/5"
               }`}
             >
