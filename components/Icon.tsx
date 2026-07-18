@@ -4,7 +4,7 @@ type IconProps = {
 };
 
 // Minimal single-stroke line icons — matches the premium, understated
-// beige/white/glass aesthetic. All use currentColor so they inherit
+// beige, white, and sage aesthetic. All use currentColor so they inherit
 // whatever text color class is applied.
 const paths: Record<string, JSX.Element> = {
   tooth: (
@@ -74,7 +74,7 @@ const paths: Record<string, JSX.Element> = {
       <path d="M4 10h16M8 3v4M16 3v4" strokeLinecap="round" />
     </>
   ),
-  glass: (
+  scan: (
     <>
       <rect x="4" y="4" width="16" height="16" rx="2" />
       <path d="M4 9h16M9 4v16" />

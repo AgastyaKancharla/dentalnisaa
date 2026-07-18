@@ -104,7 +104,7 @@ export default function BlogPostPage({ params }: Props) {
 
       <section className="bg-porcelain-dim/50">
         <div className="max-w-2xl mx-auto px-5 md:px-8 py-16">
-          <Reveal className="glass-panel rounded-2xl p-8 text-center">
+          <Reveal className="surface-panel rounded-2xl p-8 text-center">
             <h2 className="font-display text-xl text-ink">
               Have a question of your own?
             </h2>

@@ -9,8 +9,8 @@ const config: Config = {
     extend: {
       colors: {
         // Real brand colors from the client's onboarding form: sage green,
-        // beige, brown, black. Token names kept the same as before so we
-        // don't have to touch every component — only the values changed.
+        // beige, brown, black. Neutral token names keep the visual system focused on sage, beige,
+        // brown, and black without tying components to a retired story.
         porcelain: {
           DEFAULT: "#FAF6EE", // beige base
           dim: "#EDE4D2", // deeper beige for section fills
@@ -24,7 +24,7 @@ const config: Config = {
           light: "#A8BCA3",
           dark: "#546B57",
         },
-        glass: {
+        mist: {
           DEFAULT: "#E1DCC8", // pale sage-beige tint
           soft: "#F1EEE1",
         },

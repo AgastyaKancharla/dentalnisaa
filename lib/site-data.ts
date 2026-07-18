@@ -476,7 +476,7 @@ export const treatments: Treatment[] = [
     id: "digital-xray",
     name: "Digital X-Ray",
     short: "Low-radiation digital imaging for accurate diagnosis.",
-    icon: "glass",
+    icon: "scan",
     tagline: "Seeing what a visual exam can't",
     overview: "Digital X-rays reveal decay, bone loss, and issues below the gumline that aren't visible to the eye — using significantly less radiation than traditional film X-rays, with instant results.",
     forWhom: ["Patients getting a first comprehensive exam", "Anyone with symptoms not explained by a visual check", "Patients due for routine diagnostic imaging"],
@@ -731,8 +731,8 @@ export const siteFaqs: { q: string; a: string }[] = [
     a: "Yes — we regularly treat children and many of our patients have been coming since childhood. See our Pediatric Dentistry page for more.",
   },
   {
-    q: "Why are your treatment rooms visible through glass?",
-    a: "It's a deliberate design choice for transparency and comfort — you can see the care happening from our waiting lounge, rather than wondering what's going on behind a closed door. Rooms are still fully private for anything you'd rather keep confidential.",
+    q: "How do you make dental visits feel less stressful?",
+    a: "We focus on clear explanations, gentle techniques, practical aftercare, and appointment pacing that gives patients time to understand their options before treatment begins.",
   },
 ];
 
@@ -821,26 +821,20 @@ export type GallerySpace = {
 
 // Descriptions of real clinic spaces — swap `image` from null to a real
 // photo path once available. Kept factual and non-superlative so nothing
-// here overstates what a photo would actually show.
-//
-// Two entries below use temporary stock photos (free Unsplash license, no
-// attribution required) as honest stand-ins for spaces they genuinely
-// resemble — general dental treatment rooms. The rest are left as
-// "coming soon" rather than mismatched to a stock photo that doesn't
-// actually depict that specific space (e.g. no photo of children was used
-// for the Kids' Corner, since a stock photo can't honestly represent a
-// specific real child at this clinic).
+// here overstates what a photo would actually show. Temporary stock photos
+// are labeled as representative and should be replaced with real clinic
+// photography before launch.
 export const gallerySpaces: GallerySpace[] = [
   {
     name: "Waiting Lounge",
     description:
-      "A calm space to sit before your appointment — designed with the same light, glass-forward feel as the rest of the clinic.",
+      "A calm space to sit before your appointment, ask questions, and settle in before treatment begins.",
     image: null,
   },
   {
-    name: "Glass Treatment Rooms",
+    name: "Treatment Rooms",
     description:
-      "Fully visible from the waiting lounge through floor-to-ceiling glass — see the care happening, not just wait for it.",
+      "Modern treatment spaces set up for routine dentistry, root canal treatment, cosmetic care, pediatric visits, and follow-up appointments.",
     image:
       "https://images.unsplash.com/photo-1722586663955-2f96a4c1f255?fm=jpg&q=80&w=1200&auto=format&fit=crop",
   },

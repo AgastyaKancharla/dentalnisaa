@@ -4,7 +4,7 @@ import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
   title: "Clinic Gallery — Kadarenahalli, Bengaluru",
-  description: `Take a look inside ${clinic.name} in Kadarenahalli, Bengaluru — including our glass-walled treatment rooms, visible from the waiting lounge.`,
+  description: `Take a look inside ${clinic.name} in Kadarenahalli, Bengaluru — from reception to consultation and treatment spaces.`,
   alternates: { canonical: "/gallery" },
 };
 
@@ -22,8 +22,8 @@ export default function GalleryPage() {
               <span className="italic text-gold-dark"> before you arrive.</span>
             </h1>
             <p className="mt-5 text-ink/60 max-w-xl">
-              Built around light, glass, and openness — here's a walk through
-              the clinic's spaces.
+              A calmer look at the clinic before you arrive — from check-in to
+              treatment and follow-up.
             </p>
           </Reveal>
         </div>
@@ -35,7 +35,7 @@ export default function GalleryPage() {
             {gallerySpaces.map((space, i) => (
               <Reveal key={space.name} delay={i * 60}>
                 <div className="rounded-2xl overflow-hidden border border-ink/10 bg-white/60 h-full">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20 flex items-center justify-center relative">
+                  <div className="aspect-[4/3] bg-gradient-to-br from-gold/15 via-porcelain-dim to-teal/10 flex items-center justify-center relative">
                     {space.image ? (
                       <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}

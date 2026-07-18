@@ -23,7 +23,7 @@ const milestones = [
     year: "Today",
     title: "A new home in Kadarenahalli",
     detail:
-      "A relocated, purpose-built clinic — designed around light, glass, and openness, so patients see the care happening, not just wait for it.",
+      "A refreshed Kadarenahalli clinic focused on calmer visits, clearer treatment plans, and a smoother experience from check-in to follow-up.",
   },
   {
     year: "Ongoing",
