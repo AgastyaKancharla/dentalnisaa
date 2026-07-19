@@ -24,14 +24,17 @@ export default function Hero() {
         <img
           src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
           alt="Calm, modern dental treatment room at DentalNisaa Oral Care"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover brightness-110 contrast-105 saturate-125"
         />
       </motion.div>
 
-      {/* 40% dark overlay for legible white type, plus a gentle bottom
-          gradient so the section below never fights the image edge. */}
-      <div className="absolute inset-0 bg-ink/40" />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
+      {/* Mobile: text spans nearly the full width, so a directional gradient
+          wouldn't leave any real bright area anyway — just a lighter flat
+          wash than before (30% vs the old 40%+70% stacked). Desktop (md+):
+          dark only behind the headline on the left, fading to transparent,
+          so most of the image reads bright and true-color. */}
+      <div className="absolute inset-0 bg-ink/30 md:bg-gradient-to-r md:from-ink/60 md:via-ink/25 md:to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/40 to-transparent" />
 
       <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
         <div className="max-w-2xl pt-14 md:pt-16">
