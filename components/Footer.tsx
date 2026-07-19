@@ -3,6 +3,7 @@ import Link from "next/link";
 import { clinic } from "@/lib/site-data";
 import Icon from "./Icon";
 import ClinicOpenStatus from "./ClinicOpenStatus";
+import WeeklyHours from "./WeeklyHours";
 
 export default function Footer() {
   return (
@@ -24,9 +25,10 @@ export default function Footer() {
       </div>
 
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-20 pb-10">
-        {/* Asymmetric layout: the brand + live status anchors the space,
-            Explore and Visit/Hours are narrower supporting columns —
-            deliberately not four even columns under a centered logo. */}
+        {/* Asymmetric layout with a real 3-tier hierarchy:
+            1. Brand + live status — the dominant, largest element
+            2. Phone/directions — secondary, still clearly actionable
+            3. Explore links + full hours — tertiary, quiet reference info */}
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
             <Image
@@ -50,66 +52,80 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="DentalNisaa on Instagram"
-                className="focus-ring w-9 h-9 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
               >
                 <Icon name="instagram" className="w-4 h-4" />
+              </a>
+              <a
+                href={`https://wa.me/${clinic.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Message DentalNisaa on WhatsApp"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+              >
+                <Icon name="chat" className="w-4 h-4" />
               </a>
               <a
                 href={clinic.address.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Get directions on Google Maps"
-                className="focus-ring w-9 h-9 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
               >
                 <Icon name="pin" className="w-4 h-4" />
               </a>
             </div>
           </div>
 
-          <div className="lg:col-span-3 text-sm space-y-2">
-            <p className="uppercase tracking-wide text-porcelain/40 text-xs mb-3">Explore</p>
-            <Link href="/treatments" className="block text-porcelain/70 hover:text-gold-light transition-colors">Treatments</Link>
-            <Link href="/gallery" className="block text-porcelain/70 hover:text-gold-light transition-colors">Gallery</Link>
-            <Link href="/blog" className="block text-porcelain/70 hover:text-gold-light transition-colors">Blog</Link>
-            <Link href="/faq" className="block text-porcelain/70 hover:text-gold-light transition-colors">FAQ</Link>
-          </div>
-
-          <div className="lg:col-span-4 text-sm">
-            <p className="uppercase tracking-wide text-porcelain/40 text-xs mb-3">Visit</p>
+          <nav aria-label="Footer" className="lg:col-span-3 text-sm">
+            <h3 className="uppercase tracking-wide text-porcelain/40 text-xs mb-3 font-normal">
+              Explore
+            </h3>
             <div className="space-y-2">
+              <Link href="/treatments" className="block text-porcelain/65 hover:text-gold-light transition-colors">Treatments</Link>
+              <Link href="/gallery" className="block text-porcelain/65 hover:text-gold-light transition-colors">Gallery</Link>
+              <Link href="/blog" className="block text-porcelain/65 hover:text-gold-light transition-colors">Blog</Link>
+              <Link href="/faq" className="block text-porcelain/65 hover:text-gold-light transition-colors">FAQ</Link>
+            </div>
+          </nav>
+
+          <div className="lg:col-span-4">
+            <h3 className="uppercase tracking-wide text-porcelain/40 text-xs mb-3 font-normal">
+              Visit
+            </h3>
+
+            <a
+              href={`tel:${clinic.phone.replace(/\s/g, "")}`}
+              className="focus-ring block font-display text-2xl text-porcelain hover:text-gold-light transition-colors"
+            >
+              {clinic.phone}
+            </a>
+
+            <div className="mt-3 text-sm text-porcelain/60 space-y-1">
               {clinic.address.line1 && <p>{clinic.address.line1}</p>}
               <p>{clinic.address.line2}</p>
-              <a
-                href={clinic.address.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-block text-gold-light hover:text-porcelain transition-colors pt-1"
-              >
-                Get directions →
-              </a>
-              <p className="pt-2">
-                <a href={`tel:${clinic.phone.replace(/\s/g, "")}`} className="hover:text-gold-light">
-                  {clinic.phone}
-                </a>
-              </p>
             </div>
+
+            <a
+              href={clinic.address.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring inline-flex items-center gap-1.5 mt-4 rounded-full border border-porcelain/20 px-4 py-2 text-sm font-semibold text-porcelain hover:border-gold-light hover:text-gold-light transition-colors"
+            >
+              Get directions <span aria-hidden>→</span>
+            </a>
 
             {/* Full weekly hours — secondary detail now that the live
                 open/closed status above answers the question most people
-                actually have ("can I call right now"). */}
-            <details className="group mt-6 pt-5 border-t border-porcelain/10">
+                actually have ("can I call right now"). Today's row is
+                highlighted once opened, so it stays genuinely informative
+                rather than a flat wall of identical text. */}
+            <details className="group mt-7 pt-5 border-t border-porcelain/10">
               <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/40">
                 Full weekly hours
                 <span aria-hidden className="transition-transform group-open:rotate-180">⌄</span>
               </summary>
-              <div className="mt-4 space-y-1.5 text-porcelain/55 text-xs">
-                {clinic.hours.map((h) => (
-                  <div key={h.day} className="flex justify-between gap-4">
-                    <span>{h.day}</span>
-                    <span>{h.slots}</span>
-                  </div>
-                ))}
-              </div>
+              <WeeklyHours />
             </details>
           </div>
         </div>

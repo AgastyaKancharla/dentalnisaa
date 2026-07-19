@@ -47,6 +47,13 @@ function formatMinutes(minutes: number): string {
   return m === 0 ? `${hour12} ${ampm}` : `${hour12}:${String(m).padStart(2, "0")} ${ampm}`;
 }
 
+export function getClinicLocalDayName(referenceDate: Date = new Date()): string {
+  const istNow = new Date(
+    referenceDate.toLocaleString("en-US", { timeZone: "Asia/Kolkata" })
+  );
+  return DAY_NAMES[istNow.getDay()];
+}
+
 export type ClinicStatus =
   | { open: true; closesAt: string }
   | { open: false; opensAt: string; opensDay: string };
