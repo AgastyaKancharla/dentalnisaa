@@ -30,18 +30,40 @@ body {
   outline-offset: 3px;
 }
 
-/* Frosted-glass panel — used to echo the clinic's real glass treatment-room
-   walls across cards, dividers, and callouts. */
-.glass-panel {
+/* Soft translucent panel used across cards, dividers, and callouts. */
+.surface-panel {
   background: rgba(255, 255, 255, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.65);
 }
 
-.glass-panel-dark {
+.surface-panel-dark {
   background: rgba(42, 39, 35, 0.55);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Driven by AccessibilityWidget.tsx — real effects, not decorative toggles. */
+html.a11y-large-text {
+  font-size: 112.5%; /* ~18px base instead of 16px */
+}
+html.a11y-reduce-motion *,
+html.a11y-reduce-motion *::before,
+html.a11y-reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Used on the mobile horizontal scroll rows (TrustBar, Clinic Tour) so the
+   scroll-snap feels like swipeable cards rather than a visible scrollbar. */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import AccessibilityWidget from "@/components/AccessibilityWidget";
 import { clinic } from "@/lib/site-data";
 
 const fraunces = Fraunces({
@@ -112,9 +113,10 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="pt-14 md:pt-16">{children}</main>
         <Footer />
         <StickyCTA />
+        <AccessibilityWidget />
       </body>
     </html>
   );

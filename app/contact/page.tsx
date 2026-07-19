@@ -37,10 +37,10 @@ export default function ContactPage() {
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-10">
-          <Reveal className="glass-panel rounded-2xl p-7 space-y-6 h-fit">
+          <Reveal className="surface-panel rounded-2xl p-7 space-y-6 h-fit">
             <div className="flex gap-4">
               <span className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal/10 text-teal-dark">
-                <Icon name="glass" className="w-5 h-5" />
+                <Icon name="scan" className="w-5 h-5" />
               </span>
               <div>
                 <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Address</p>

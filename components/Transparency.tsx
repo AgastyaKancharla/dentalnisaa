@@ -1,21 +1,21 @@
 import SectionSeam from "./SectionSeam";
-import GlassPanes from "./GlassPanes";
+import SignatureMark from "./SignatureMark";
 
 const points = [
   {
-    title: "Nothing hidden",
+    title: "Clear diagnosis",
     detail:
-      "Every treatment room has a glass wall facing our waiting lounge — you can see the care happening, not just wait for it.",
+      "We explain what we see, what can wait, and what should be treated now, so every appointment starts with clarity.",
   },
   {
-    title: "Built on trust",
+    title: "Comfort-first care",
     detail:
-      "It's a small design choice with a real reason: patients — especially children — feel calmer when the unknown becomes visible.",
+      "Gentle techniques, unhurried conversations, and practical aftercare help nervous patients and children feel more at ease.",
   },
   {
-    title: "Still fully private",
+    title: "Long-term planning",
     detail:
-      "Glass by design, not by accident — sound-insulated rooms and considerate staff keep every conversation confidential.",
+      "From routine check-ups to implants, braces, and full-mouth rehabilitation, we plan around lasting oral health.",
   },
 ];
 
@@ -25,19 +25,18 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
       {topDivider && <SectionSeam tone="dark" />}
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-20">
         <div className="relative">
-          <GlassPanes className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
+          <SignatureMark className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
-            Our clinic, by design
+            Our care philosophy
           </p>
           <h2 className="font-display text-4xl md:text-5xl leading-[1.05]">
-            Glass walls.
+            Clear advice.
             <br />
-            No surprises.
+            Calmer visits.
           </h2>
           <p className="mt-6 text-porcelain/60 leading-relaxed max-w-sm">
-            Our treatment rooms are visible from the waiting area through
-            floor-to-ceiling glass — a deliberate choice, not an aesthetic
-            one.
+            Dental care feels easier when you understand the plan, the reason,
+            and the next step before treatment begins.
           </p>
         </div>
 

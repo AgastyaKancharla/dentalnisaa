@@ -1,86 +1,116 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { clinic } from "@/lib/site-data";
-import GlassPanes from "./GlassPanes";
-import SectionSeam from "./SectionSeam";
+import { GoogleGIcon } from "./Icon";
 
 export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  // Subtle parallax: background drifts slower than scroll, image scales
+  // slightly so no edge gap ever appears while it translates.
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
+
   return (
-    <section className="relative bg-porcelain overflow-hidden">
-      <div className="grid md:grid-cols-2 md:min-h-[640px]">
-        <div className="flex items-center px-5 md:pl-10 lg:pl-16 xl:pl-24 md:pr-10 py-16 md:py-20 animate-fadeUp">
-          <div className="max-w-lg">
-            <p className="text-xs font-semibold text-gold-dark uppercase tracking-[0.2em] mb-5">
-              Dentist in Kadarenahalli, Bengaluru — since {clinic.foundedYear}
-            </p>
+    <section ref={ref} className="relative -mt-14 md:-mt-16 h-[100dvh] min-h-[560px] overflow-hidden bg-ink">
+      <motion.div style={{ y, scale }} className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
+          alt="Calm, modern dental treatment room at DentalNisaa Oral Care"
+          className="h-full w-full object-cover"
+        />
+      </motion.div>
 
-            <h1 className="font-display text-[3.1rem] leading-[0.98] md:text-[4.5rem] md:leading-[0.95] text-ink tracking-tight">
-              Grow up
-              <br />
-              with your
-              <br />
-              dentist.
-            </h1>
+      {/* 40% dark overlay for legible white type, plus a gentle bottom
+          gradient so the section below never fights the image edge. */}
+      <div className="absolute inset-0 bg-ink/40" />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-ink/70 to-transparent" />
 
-            <p className="mt-7 text-ink/65 text-[17px] leading-relaxed">
-              For {clinic.yearsActive} years, DentalNisaa has cared for
-              grandparents, parents and children in Kadarenahalli — painless
-              treatment, honest advice, and treatment rooms built on trust:
-              fully visible through glass, right from our waiting lounge.
-            </p>
+      <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
+        <div className="max-w-2xl pt-14 md:pt-16">
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-light mb-6"
+          >
+            Kadarenahalli, Bengaluru — Since {clinic.foundedYear}
+          </motion.p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-4">
-              <Link
-                href="/booking"
-                className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
-              >
-                Book your visit
-              </Link>
-              <a
-                href={`https://wa.me/${clinic.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
-              >
-                Chat on WhatsApp
-                <span aria-hidden>→</span>
-              </a>
-            </div>
+          <h1 className="font-display text-porcelain text-[3.4rem] leading-[0.95] md:text-[6rem] md:leading-[0.92] tracking-tight">
+            <motion.span
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.28, ease: "easeOut" }}
+              className="block"
+            >
+              Smiles that
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.42, ease: "easeOut" }}
+              className="block italic text-gold-light"
+            >
+              grow up here.
+            </motion.span>
+          </h1>
 
-            <div className="mt-12 flex items-center gap-5 border-t border-ink/10 pt-6">
-              <span className="font-display text-3xl text-ink">{clinic.rating}★</span>
-              <span className="text-sm text-ink/50 leading-tight max-w-[9rem]">
-                from {clinic.reviewCount}+ Google reviews
-              </span>
-            </div>
-          </div>
-        </div>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
+            className="mt-7 text-porcelain/75 text-lg leading-relaxed max-w-md"
+          >
+            Modern family dentistry with compassionate care — trusted by
+            grandparents, parents, and children alike, {clinic.yearsActive}
+            {" "}years and counting.
+          </motion.p>
 
-        <div className="relative h-[340px] md:h-auto">
-          {/* TEMPORARY stock photo (free Unsplash license, no attribution
-              required) standing in for a real clinic photo — swap the src
-              below for an actual photo of the glass treatment rooms as
-              soon as one is available. */}
-          <img
-            src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1200&auto=format&fit=crop"
-            alt="Bright, glass-walled dental treatment room"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          <span className="absolute top-5 right-5 bg-ink/60 text-porcelain text-[11px] font-medium tracking-wide px-3 py-1 rounded-full backdrop-blur">
-            Representative photo
-          </span>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
+            className="mt-9 flex flex-wrap items-center gap-4"
+          >
+            <Link
+              href="/booking"
+              className="focus-ring inline-flex items-center rounded-full bg-gold text-ink px-7 py-3.5 font-semibold shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-gold-light transition-colors"
+            >
+              Book Appointment
+            </Link>
+            <a
+              href={`tel:${clinic.phone.replace(/\s/g, "")}`}
+              className="focus-ring inline-flex items-center gap-2 rounded-full border border-porcelain/30 text-porcelain px-7 py-3.5 font-semibold hover:bg-porcelain/10 transition-colors"
+            >
+              Call Clinic
+            </a>
+          </motion.div>
 
-          <div className="absolute bottom-0 left-0 bg-porcelain px-6 py-5 border-t border-r border-ink/10 md:max-w-[220px]">
-            <GlassPanes className="w-10 h-10 text-gold-dark absolute -top-5 left-6" strokeOpacity={0.5} />
-            <p className="text-xs uppercase tracking-wide text-ink/50 font-semibold mt-3">
-              Since {clinic.foundedYear}
-            </p>
-            <p className="font-display text-2xl text-ink mt-0.5">
-              {clinic.yearsActive} years
-            </p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-porcelain/80 text-sm"
+          >
+            <span className="inline-flex items-center gap-2 font-semibold">
+              <GoogleGIcon className="w-4 h-4" />
+              {clinic.rating} Google Rating
+            </span>
+            <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
+            <span>{clinic.reviewCount}+ Google Reviews</span>
+            <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
+            <span>Since {clinic.foundedYear}</span>
+          </motion.div>
         </div>
       </div>
-      <SectionSeam />
     </section>
   );
 }

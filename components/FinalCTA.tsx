@@ -3,7 +3,7 @@ import { clinic } from "@/lib/site-data";
 
 export default function FinalCTA() {
   return (
-    <section className="bg-glass-soft">
+    <section className="bg-mist-soft">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-24 text-center">
         <h2 className="font-display text-3xl md:text-4xl text-ink max-w-2xl mx-auto leading-tight">
           Your next appointment could be the start of{" "}

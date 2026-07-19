@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { testimonials, clinic } from "@/lib/site-data";
-import GlassPanes from "./GlassPanes";
+import SignatureMark from "./SignatureMark";
 
 const googleReviewsUrl =
   clinic.address.mapsUrl ||
@@ -40,7 +40,7 @@ export default function Testimonials() {
         {current ? (
           <div className="grid md:grid-cols-[1.4fr_0.6fr] gap-14 md:gap-16 items-start">
             <div className="relative">
-              <GlassPanes className="w-16 h-16 text-gold absolute -top-8 -left-3 hidden md:block" strokeOpacity={0.5} />
+              <SignatureMark className="w-16 h-16 text-gold absolute -top-8 -left-3 hidden md:block" strokeOpacity={0.5} />
               <blockquote className="font-display text-2xl md:text-[2rem] leading-[1.3] text-ink">
                 “{current.quote}”
               </blockquote>
