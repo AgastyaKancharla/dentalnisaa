@@ -15,6 +15,12 @@ type BookingPayload = {
   day: string;
   slot: string;
   notes?: string;
+  // Added for the /book multi-step flow — optional so the original
+  // single-page /booking widget's payload still validates unchanged.
+  appointmentId?: string;
+  doctor?: string;
+  reasonForVisit?: string;
+  patientType?: "new" | "existing";
 };
 
 function isValidPayload(body: unknown): body is BookingPayload {
@@ -27,7 +33,11 @@ function isValidPayload(body: unknown): body is BookingPayload {
     b.phone.trim().length > 0 &&
     typeof b.treatment === "string" &&
     typeof b.day === "string" &&
-    typeof b.slot === "string"
+    typeof b.slot === "string" &&
+    (b.appointmentId === undefined || typeof b.appointmentId === "string") &&
+    (b.doctor === undefined || typeof b.doctor === "string") &&
+    (b.reasonForVisit === undefined || typeof b.reasonForVisit === "string") &&
+    (b.patientType === undefined || b.patientType === "new" || b.patientType === "existing")
   );
 }
 

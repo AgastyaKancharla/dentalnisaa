@@ -82,6 +82,9 @@ export const staff = [
 export type Treatment = {
   id: string;
   name: string;
+  // Organizational grouping for the booking flow's category filter — not
+  // a claim about the clinic, just a way to group the 25 real services.
+  category: string;
   short: string;
   icon: string;
   tagline: string;
@@ -96,6 +99,7 @@ export type Treatment = {
 export const treatments: Treatment[] = [
   {
     id: "general-checkup",
+    category: "General & Preventive",
     name: "General Checkup",
     short: "Routine exams that catch problems while they're still small.",
     icon: "tooth",
@@ -117,6 +121,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "teeth-whitening",
+    category: "Cosmetic",
     name: "Teeth Whitening",
     short: "Safe, professional whitening for a noticeably brighter smile.",
     icon: "sparkle",
@@ -138,6 +143,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "dental-bonding",
+    category: "Cosmetic",
     name: "Dental Bonding",
     short: "A quick, affordable fix for chips, gaps, and minor imperfections.",
     icon: "sparkle",
@@ -159,6 +165,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "tooth-jewellery",
+    category: "Cosmetic",
     name: "Tooth Jewellery",
     short: "A subtle, removable sparkle for your smile.",
     icon: "sparkle",
@@ -180,6 +187,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "teeth-reshaping",
+    category: "Cosmetic",
     name: "Teeth Reshaping",
     short: "Small contouring adjustments for a more balanced smile.",
     icon: "sparkle",
@@ -201,6 +209,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "gummy-smile-correction",
+    category: "Cosmetic",
     name: "Gummy Smile Correction",
     short: "Rebalancing the ratio of gum to tooth for a more even smile.",
     icon: "sparkle",
@@ -222,6 +231,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "midline-diastema-closure",
+    category: "Cosmetic",
     name: "Midline Diastema Closure",
     short: "Closing the gap between the front two teeth.",
     icon: "sparkle",
@@ -243,6 +253,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "dental-implants",
+    category: "Restorative & Surgical",
     name: "Dental Implants",
     short: "Permanent, natural-feeling replacements for missing teeth.",
     icon: "implant",
@@ -264,6 +275,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "emergency-care",
+    category: "Emergency & Laser",
     name: "Emergency Care",
     short: "Urgent dental care when pain or injury can't wait.",
     icon: "shield",
@@ -285,6 +297,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "extractions",
+    category: "Restorative & Surgical",
     name: "Extractions",
     short: "Gentle, safe removal when a tooth can't be saved.",
     icon: "root",
@@ -306,6 +319,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "fillings-sealants",
+    category: "General & Preventive",
     name: "Fillings & Sealants",
     short: "Treating cavities and protecting teeth before they start.",
     icon: "tooth",
@@ -327,6 +341,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "laser-dentistry",
+    category: "Emergency & Laser",
     name: "Laser Dentistry",
     short: "Precise, minimally invasive treatment using dental lasers.",
     icon: "sparkle",
@@ -348,6 +363,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "mouth-guards",
+    category: "General & Preventive",
     name: "Mouth Guards",
     short: "Custom protection for sports, or for teeth grinding at night.",
     icon: "shield",
@@ -369,6 +385,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "oral-surgery",
+    category: "Restorative & Surgical",
     name: "Oral Surgery",
     short: "Surgical care for more complex dental and jaw issues.",
     icon: "root",
@@ -390,6 +407,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "pediatric-dentistry",
+    category: "Pediatric",
     name: "Pediatric Dentistry",
     short: "Gentle, patient care that keeps kids comfortable.",
     icon: "family",
@@ -411,6 +429,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "root-canal-treatment",
+    category: "Restorative & Surgical",
     name: "Root Canal Treatment",
     short: "Painless, precise care to save a tooth that's under threat.",
     icon: "root",
@@ -432,6 +451,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "scaling-polishing",
+    category: "General & Preventive",
     name: "Teeth Scaling & Polishing",
     short: "Professional cleaning to clear plaque and tartar your toothbrush can't reach.",
     icon: "sparkle",
@@ -453,6 +473,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "veneers-crowns",
+    category: "Cosmetic",
     name: "Veneers & Crowns",
     short: "Durable, custom-matched restorations for damaged or imperfect teeth.",
     icon: "bridge",
@@ -474,6 +495,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "digital-xray",
+    category: "General & Preventive",
     name: "Digital X-Ray",
     short: "Low-radiation digital imaging for accurate diagnosis.",
     icon: "scan",
@@ -495,6 +517,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "braces-aligners",
+    category: "Orthodontics",
     name: "Braces & Aligners",
     short: "Straighter teeth at any age, with options that fit your lifestyle.",
     icon: "align",
@@ -516,6 +539,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "impactions",
+    category: "Orthodontics",
     name: "Impacted Tooth Treatment",
     short: "Careful treatment for teeth — often wisdom teeth — that haven't erupted properly.",
     icon: "root",
@@ -537,6 +561,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "full-mouth-rehabilitation",
+    category: "Restorative & Surgical",
     name: "Full Mouth Rehabilitation",
     short: "Complete restoration for complex cases — one plan, start to finish.",
     icon: "mouth",
@@ -558,6 +583,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "dentures-bridges",
+    category: "Restorative & Surgical",
     name: "Dentures & Bridges",
     short: "Comfortable, natural-looking solutions for missing teeth.",
     icon: "bridge",
@@ -579,6 +605,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "fluoride-application",
+    category: "General & Preventive",
     name: "Fluoride Application",
     short: "A simple treatment that strengthens enamel against decay.",
     icon: "shield",
@@ -600,6 +627,7 @@ export const treatments: Treatment[] = [
   },
   {
     id: "oral-cancer-screening",
+    category: "General & Preventive",
     name: "Oral Cancer Screening",
     short: "A quick, painless check for early warning signs.",
     icon: "shield",
