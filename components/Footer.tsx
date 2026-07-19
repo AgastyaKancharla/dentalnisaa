@@ -24,11 +24,11 @@ export default function Footer() {
 
       <div className="flex justify-center pt-14 md:pt-16 pb-6">
         <Image
-          src="/logo.png"
+          src="/logo-header.png"
           alt={clinic.name}
-          width={720}
-          height={1600}
-          className="h-20 md:h-24 w-auto"
+          width={970}
+          height={509}
+          className="h-16 md:h-20 w-auto"
         />
       </div>
 
