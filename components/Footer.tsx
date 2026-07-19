@@ -1,15 +1,39 @@
+import Image from "next/image";
 import Link from "next/link";
 import { clinic } from "@/lib/site-data";
 import Icon from "./Icon";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0">
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-14 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
+    <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0 relative">
+      {/* Wave divider — curves the page's porcelain background into the
+          footer's dark ink, instead of a flat hard edge between them. */}
+      <div className="absolute -top-px left-0 right-0 -translate-y-full leading-[0] overflow-hidden">
+        <svg
+          viewBox="0 0 1440 90"
+          className="w-full h-[50px] md:h-[80px]"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M0,40 C240,90 480,0 720,20 C960,40 1200,90 1440,40 L1440,90 L0,90 Z"
+            className="fill-ink"
+          />
+        </svg>
+      </div>
+
+      <div className="flex justify-center pt-14 md:pt-16 pb-6">
+        <Image
+          src="/logo.png"
+          alt={clinic.name}
+          width={720}
+          height={1600}
+          className="h-20 md:h-24 w-auto"
+        />
+      </div>
+
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-10 grid gap-10 sm:grid-cols-2 md:grid-cols-4">
         <div>
-          <div className="font-display text-2xl mb-3">
-            Dental<span className="text-gold-light italic">Nisaa</span>
-          </div>
           <p className="text-sm text-porcelain/60 max-w-xs">
             {clinic.tagline}.
           </p>

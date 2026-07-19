@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Public_Sans } from "next/font/google";
+import { Fraunces, Public_Sans, Parisienne } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -19,6 +19,15 @@ const publicSans = Public_Sans({
   subsets: ["latin"],
   variable: "--font-public-sans",
   weight: ["400", "500", "600", "700"],
+});
+
+// Single weight, used only for the one signature word in the Hero — kept
+// deliberately narrow in scope so it doesn't become a second body/display
+// font and doesn't add real weight to the font payload.
+const parisienne = Parisienne({
+  subsets: ["latin"],
+  variable: "--font-script",
+  weight: ["400"],
 });
 
 const title = "DentalNisaa Oral Care | Dentist in Kadarenahalli, Bengaluru";
@@ -102,7 +111,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${publicSans.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${publicSans.variable} ${parisienne.variable}`}>
       <head>
         <DentistSchema />
       </head>
