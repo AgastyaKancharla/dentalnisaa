@@ -36,6 +36,7 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
         body: ["var(--font-public-sans)", "system-ui", "sans-serif"],
+        script: ["var(--font-script)", "cursive"],
       },
       borderRadius: {
         arch: "999px 999px 0 0",

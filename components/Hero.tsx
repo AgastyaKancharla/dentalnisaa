@@ -33,36 +33,27 @@ export default function Hero() {
           wash than before (30% vs the old 40%+70% stacked). Desktop (md+):
           dark only behind the headline on the left, fading to transparent,
           so most of the image reads bright and true-color. */}
-      <div className="absolute inset-0 bg-ink/30 md:bg-gradient-to-r md:from-ink/60 md:via-ink/25 md:to-transparent" />
+      <div className="absolute inset-0 bg-ink/40 md:bg-gradient-to-r md:from-ink/70 md:via-ink/32 md:to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/40 to-transparent" />
 
       <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
         <div className="max-w-2xl pt-14 md:pt-16">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-            className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-light mb-6"
-          >
-            Kadarenahalli, Bengaluru — Since {clinic.foundedYear}
-          </motion.p>
-
-          <h1 className="font-display text-porcelain text-[3.4rem] leading-[0.95] md:text-[6rem] md:leading-[0.92] tracking-tight">
+          <h1 className="text-porcelain [text-shadow:0_4px_24px_rgba(0,0,0,0.55)]">
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.28, ease: "easeOut" }}
-              className="block"
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1"
             >
-              Smiles that
+              Certified,
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.42, ease: "easeOut" }}
-              className="block italic text-gold-light"
+              transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
+              className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-3"
             >
-              grow up here.
+              implants, cosmetic &amp; family dentistry under one roof
             </motion.span>
           </h1>
 
@@ -70,11 +61,9 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain/75 text-lg leading-relaxed max-w-md"
+            className="mt-7 text-porcelain/75 text-lg leading-relaxed max-w-md [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]"
           >
-            Modern family dentistry with compassionate care — trusted by
-            grandparents, parents, and children alike, {clinic.yearsActive}
-            {" "}years and counting.
+            {clinic.tagline}.
           </motion.p>
 
           <motion.div
