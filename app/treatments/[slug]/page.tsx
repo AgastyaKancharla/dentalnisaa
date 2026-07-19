@@ -3,11 +3,26 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { treatments, clinic } from "@/lib/site-data";
 import { buildTitle, buildDescription } from "@/lib/seo";
+import {
+  buildMedicalProcedureSchema,
+  buildFaqSchema,
+  buildBreadcrumbSchema,
+} from "@/lib/schema";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
+import TreatmentMedia from "@/components/TreatmentMedia";
+import TreatmentCard from "@/components/TreatmentCard";
+import TreatmentProcessTimeline from "@/components/TreatmentProcessTimeline";
+import TreatmentFinalCTA from "@/components/TreatmentFinalCTA";
+import FaqAccordion from "@/components/FaqAccordion";
+import DoctorSpotlight from "@/components/DoctorSpotlight";
+import SectionSeam from "@/components/SectionSeam";
 
 type Props = { params: { slug: string } };
 
+// Every URL under /treatments/[slug] is built from this one template —
+// new treatments only ever require a new entry in lib/site-data.ts, never
+// a new page file or layout variant.
 export function generateStaticParams() {
   return treatments.map((t) => ({ slug: t.id }));
 }
@@ -34,7 +49,8 @@ export function generateMetadata({ params }: Props): Metadata {
     title: { absolute: title },
     description,
     alternates: { canonical: `/treatments/${treatment.id}` },
-    openGraph: { title, description },
+    openGraph: { title, description, type: "article" },
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 
@@ -46,43 +62,15 @@ export default function TreatmentPage({ params }: Props) {
     .map((id) => treatments.find((t) => t.id === id))
     .filter((t): t is NonNullable<typeof t> => Boolean(t));
 
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "MedicalProcedure",
-    name: treatment.name,
-    description: treatment.overview,
-    provider: {
-      "@type": "Dentist",
-      name: clinic.name,
-      telephone: clinic.phone,
-    },
-  };
-
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: treatment.faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: clinic.website },
-      { "@type": "ListItem", position: 2, name: "Treatments", item: `${clinic.website}/treatments` },
-      { "@type": "ListItem", position: 3, name: treatment.name, item: `${clinic.website}/treatments/${treatment.id}` },
-    ],
-  };
+  const procedureSchema = buildMedicalProcedureSchema(treatment);
+  const faqSchema = buildFaqSchema(treatment);
+  const breadcrumbSchema = buildBreadcrumbSchema(treatment);
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(procedureSchema) }}
       />
       <script
         type="application/ld+json"
@@ -93,105 +81,209 @@ export default function TreatmentPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* Hero */}
-      <section className="bg-porcelain">
-        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-16 md:pb-20">
-          <Reveal>
-            <nav className="text-sm text-ink/50 mb-8">
-              <Link href="/treatments" className="hover:text-ink transition-colors">
-                Treatments
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-ink/70">{treatment.name}</span>
-            </nav>
+      {/* ================= HERO ================= */}
+      <section className="relative bg-porcelain overflow-hidden">
+        <div className="grid md:grid-cols-2 md:min-h-[560px]">
+          <div className="flex items-center px-5 md:pl-10 lg:pl-16 xl:pl-24 md:pr-10 py-14 md:py-20">
+            <div className="max-w-lg">
+              <Reveal>
+                <nav aria-label="Breadcrumb" className="text-sm text-ink/50 mb-7">
+                  <Link href="/treatments" className="hover:text-ink transition-colors">
+                    Treatments
+                  </Link>
+                  <span className="mx-2">/</span>
+                  <span className="text-ink/70" aria-current="page">
+                    {treatment.name}
+                  </span>
+                </nav>
 
-            <span className="inline-flex items-center gap-3 text-teal-dark mb-6">
-              <Icon name={treatment.icon} className="w-8 h-8" />
-              <span className="h-px w-8 bg-ink/15" />
-            </span>
+                <span className="inline-flex items-center gap-3 text-teal-dark mb-5">
+                  <Icon name={treatment.icon} className="w-7 h-7" />
+                  <span className="h-px w-8 bg-ink/15" />
+                  <span className="text-xs font-semibold uppercase tracking-wide text-teal-dark">
+                    {treatment.category}
+                  </span>
+                </span>
 
-            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-              {treatment.tagline}
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl leading-tight text-ink">
-              {treatment.name}
-            </h1>
-            <p className="mt-6 text-lg text-ink/70 leading-relaxed max-w-2xl">
-              {treatment.overview}
-            </p>
+                <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+                  {treatment.tagline}
+                </p>
+                <h1 className="font-display text-4xl md:text-5xl leading-tight text-ink">
+                  {treatment.name}
+                </h1>
+                <p className="mt-6 text-ink/70 text-lg leading-relaxed">
+                  {treatment.short}
+                </p>
 
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <Link
-                href={`/booking?treatment=${treatment.id}`}
-                className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
-              >
-                Book a consultation
-              </Link>
-              <a
-                href={`https://wa.me/${clinic.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center rounded-full border border-ink/20 text-ink px-7 py-3.5 font-semibold hover:bg-ink/5 transition-colors"
-              >
-                Ask a question on WhatsApp
-              </a>
+                <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-ink/10 pt-6">
+                  <div className="flex items-center gap-2.5">
+                    <Icon name="clock" className="w-4 h-4 text-ink/40" />
+                    <div>
+                      <p className="text-sm font-semibold text-ink">{treatment.duration}</p>
+                      <p className="text-xs text-ink/45">Typical duration</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <Icon name="shield" className="w-4 h-4 text-ink/40" />
+                    <div>
+                      <p className="text-sm font-semibold text-ink max-w-[14rem] leading-snug">
+                        {treatment.recovery}
+                      </p>
+                      <p className="text-xs text-ink/45">Recovery</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-8 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={`/booking?treatment=${treatment.id}`}
+                    className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
+                  >
+                    Book a consultation
+                  </Link>
+                  <a
+                    href={`https://wa.me/${clinic.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
+                  >
+                    Ask a question on WhatsApp
+                    <span aria-hidden>→</span>
+                  </a>
+                </div>
+              </Reveal>
             </div>
+          </div>
+
+          <div className="relative h-[300px] md:h-auto">
+            <TreatmentMedia
+              treatment={treatment}
+              variant="hero"
+              className="w-full h-full"
+            />
+          </div>
+        </div>
+        <SectionSeam />
+      </section>
+
+      {/* ================= OVERVIEW ================= */}
+      <section className="bg-porcelain">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
+          <Reveal className="max-w-2xl">
+            <h2 className="font-display text-2xl md:text-3xl text-ink mb-6">Overview</h2>
+            <p className="text-ink/70 text-lg leading-relaxed">{treatment.overview}</p>
           </Reveal>
         </div>
       </section>
 
-      {/* Who it's for */}
+      {/* ================= WHO NEEDS THIS ================= */}
       <section className="bg-porcelain-dim/50">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
-          <Reveal>
-            <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
-              Is this right for you?
-            </h2>
-            <ul className="space-y-4 max-w-xl">
-              {treatment.forWhom.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-1 text-gold-dark" aria-hidden>
-                    ✓
-                  </span>
-                  <span className="text-ink/75 leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </Reveal>
+          <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+            <Reveal>
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
+                Is this right for you?
+              </h2>
+              <ul className="space-y-4">
+                {treatment.forWhom.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span className="mt-1 text-gold-dark shrink-0" aria-hidden>
+                      ✓
+                    </span>
+                    <span className="text-ink/75 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
+                Signs to watch for
+              </h2>
+              <ul className="space-y-4">
+                {treatment.symptoms.map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <span
+                      className="mt-2 w-1.5 h-1.5 rounded-full bg-ink/30 shrink-0"
+                      aria-hidden
+                    />
+                    <span className="text-ink/75 leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </div>
         </div>
       </section>
 
-      {/* Process */}
-      <section className="bg-ink text-porcelain">
+      {/* ================= BENEFITS ================= */}
+      <section className="bg-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
-            <h2 className="font-display text-2xl md:text-3xl mb-10">
-              What to expect
+            <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
+              Why patients choose this
             </h2>
           </Reveal>
-          <div className="grid sm:grid-cols-2">
-            {treatment.process.map((step, i) => (
+          <div className="grid sm:grid-cols-3 border-t border-ink/10">
+            {treatment.benefits.map((benefit, i) => (
               <Reveal
-                key={step.title}
-                delay={i * 80}
-                className={`py-7 ${i % 2 === 0 ? "sm:pr-10" : "sm:pl-10"} ${
-                  i < 2 ? "border-b border-porcelain/10" : ""
-                } ${i % 2 === 0 ? "sm:border-r border-porcelain/10" : ""}`}
+                key={benefit}
+                delay={i * 70}
+                className={`py-7 ${i > 0 ? "sm:border-l border-ink/10 sm:pl-8" : ""}`}
               >
-                <span className="text-sm font-semibold text-gold-light">
-                  {String(i + 1).padStart(2, "0")}
+                <span className="text-gold-dark text-xl" aria-hidden>
+                  ✓
                 </span>
-                <h3 className="font-display text-lg mt-2">{step.title}</h3>
-                <p className="mt-2 text-porcelain/65 text-sm leading-relaxed max-w-xs">
-                  {step.detail}
-                </p>
+                <p className="mt-3 text-ink/75 leading-relaxed">{benefit}</p>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ================= PROCESS (timeline) ================= */}
+      <section className="bg-ink text-porcelain">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
+          <Reveal>
+            <h2 className="font-display text-2xl md:text-3xl mb-12">What to expect</h2>
+          </Reveal>
+          <div className="max-w-xl">
+            <TreatmentProcessTimeline steps={treatment.process} />
+          </div>
+        </div>
+      </section>
+
+      {/* ================= TECHNOLOGY, DURATION & RECOVERY ================= */}
+      <section className="bg-porcelain-dim/50">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
+          <div className="grid md:grid-cols-3 gap-12 md:gap-10">
+            <Reveal>
+              <h2 className="font-display text-xl text-ink mb-5">Technology used</h2>
+              <ul className="space-y-3">
+                {treatment.technology.map((tech) => (
+                  <li key={tech} className="flex items-start gap-3 text-ink/75 leading-relaxed">
+                    <Icon name="sparkle" className="w-4 h-4 mt-1 text-teal-dark shrink-0" />
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+            <Reveal delay={70}>
+              <h2 className="font-display text-xl text-ink mb-5">Treatment duration</h2>
+              <p className="font-display text-2xl text-ink mb-2">{treatment.duration}</p>
+              <p className="text-ink/60 text-sm leading-relaxed">
+                Exact timing depends on your specific case — confirmed at consultation.
+              </p>
+            </Reveal>
+            <Reveal delay={140}>
+              <h2 className="font-display text-xl text-ink mb-5">Recovery</h2>
+              <p className="text-ink/75 leading-relaxed">{treatment.recovery}</p>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FAQ ================= */}
       <section className="bg-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
@@ -199,64 +291,37 @@ export default function TreatmentPage({ params }: Props) {
               Common questions
             </h2>
           </Reveal>
-          <div className="border-t border-ink/10">
-            {treatment.faqs.map((f) => (
-              <Reveal key={f.q} className="py-6 border-b border-ink/10">
-                <h3 className="font-semibold text-ink">{f.q}</h3>
-                <p className="mt-2 text-ink/65 text-sm leading-relaxed max-w-xl">{f.a}</p>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal delay={60} className="max-w-2xl">
+            <FaqAccordion items={treatment.faqs} />
+          </Reveal>
         </div>
       </section>
 
-      {/* Related treatments */}
+      {/* ================= MEET YOUR DOCTOR ================= */}
+      <DoctorSpotlight topDivider={false} />
+
+      {/* ================= RELATED TREATMENTS ================= */}
       {related.length > 0 && (
-        <section className="bg-porcelain-dim/50">
+        <section className="bg-porcelain">
           <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
             <Reveal>
-              <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
+              <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
                 Related treatments
               </h2>
             </Reveal>
-            <div className="grid sm:grid-cols-3 border-t border-ink/10">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
               {related.map((r, i) => (
-                <Link
-                  key={r.id}
-                  href={`/treatments/${r.id}`}
-                  className={`group flex items-center gap-3 py-6 hover:pl-2 transition-[padding] duration-300 ${
-                    i > 0 ? "sm:border-l border-ink/10 sm:pl-6" : ""
-                  }`}
-                >
-                  <Icon name={r.icon} className="w-5 h-5 text-teal-dark group-hover:text-gold-dark transition-colors shrink-0" />
-                  <span className="font-display text-base text-ink group-hover:text-gold-dark transition-colors">
-                    {r.name}
-                  </span>
-                </Link>
+                <Reveal key={r.id} delay={i * 60}>
+                  <TreatmentCard treatment={r} />
+                </Reveal>
               ))}
             </div>
           </div>
         </section>
       )}
 
-      {/* Final CTA */}
-      <section className="bg-gold text-ink">
-        <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20 text-center">
-          <h2 className="font-display text-3xl md:text-4xl">
-            Ready to talk about {treatment.name.toLowerCase()}?
-          </h2>
-          <p className="mt-3 text-ink/70 max-w-md mx-auto">
-            Book a consultation and we'll walk you through exactly what's
-            right for your situation.
-          </p>
-          <Link
-            href={`/booking?treatment=${treatment.id}`}
-            className="focus-ring inline-flex items-center mt-7 bg-ink text-porcelain px-8 py-3.5 font-semibold hover:bg-ink/85 transition-colors"
-          >
-            Book your visit
-          </Link>
-        </div>
-      </section>
+      {/* ================= FINAL CTA ================= */}
+      <TreatmentFinalCTA treatmentName={treatment.name} treatmentId={treatment.id} />
     </>
   );
 }

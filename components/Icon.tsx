@@ -100,6 +100,12 @@ const paths: Record<string, JSX.Element> = {
       <circle cx="12" cy="9.5" r="2.4" />
     </>
   ),
+  search: (
+    <>
+      <circle cx="10.5" cy="10.5" r="6.5" />
+      <path d="M20 20l-4.8-4.8" strokeLinecap="round" />
+    </>
+  ),
 };
 
 // Google's real four-color "G" mark, kept separate from the single-stroke
