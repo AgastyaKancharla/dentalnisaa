@@ -57,6 +57,9 @@ html.a11y-reduce-motion *::after {
   transition-duration: 0.01ms !important;
   scroll-behavior: auto !important;
 }
+html.a11y-reduce-motion [data-parallax] {
+  transform: none !important;
+}
 
 /* Used on the mobile horizontal scroll rows (TrustBar, Clinic Tour) so the
    scroll-snap feels like swipeable cards rather than a visible scrollbar. */

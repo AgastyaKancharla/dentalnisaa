@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import SectionSeam from "./SectionSeam";
 import SignatureMark from "./SignatureMark";
 
@@ -20,10 +23,12 @@ const points = [
 ];
 
 export default function Transparency({ topDivider = false }: { topDivider?: boolean }) {
+  const [active, setActive] = useState(0);
+
   return (
     <section className="bg-ink text-porcelain relative">
       {topDivider && <SectionSeam tone="dark" />}
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-20">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-10">
         <div className="relative">
           <SignatureMark className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
@@ -40,25 +45,72 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
           </p>
         </div>
 
-        <div>
-          {points.map((p, i) => (
-            <div
-              key={p.title}
-              className={`flex gap-6 md:gap-10 py-7 ${
-                i !== 0 ? "border-t border-porcelain/10" : ""
-              }`}
-            >
-              <span className="font-display text-lg text-gold-light/70 shrink-0 w-8">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="font-display text-xl mb-2">{p.title}</h3>
-                <p className="text-porcelain/60 leading-relaxed text-sm max-w-md">
-                  {p.detail}
-                </p>
-              </div>
-            </div>
-          ))}
+        {/* Expand-on-hover/tap panels: collapsed tiles show only a vertical
+            label; the active one expands to reveal its detail text. Exactly
+            one panel is open at a time, like a set of tabs rendered as
+            physical panels rather than a plain numbered list. */}
+        <div
+          role="tablist"
+          aria-label="Our care philosophy"
+          className="flex flex-col md:flex-row gap-2 md:gap-1 md:h-[340px]"
+        >
+          {points.map((p, i) => {
+            const isActive = i === active;
+            return (
+              <button
+                key={p.title}
+                type="button"
+                id={`philosophy-tab-${i}`}
+                role="tab"
+                aria-selected={isActive}
+                aria-controls={`philosophy-panel-${i}`}
+                onClick={() => setActive(i)}
+                onMouseEnter={() => setActive(i)}
+                onFocus={() => setActive(i)}
+                className={`focus-ring group text-left border border-porcelain/10 transition-all duration-500 ease-out overflow-hidden ${
+                  isActive
+                    ? "md:flex-[3] bg-white/[0.04]"
+                    : "md:flex-[1] bg-transparent hover:bg-white/[0.03]"
+                }`}
+              >
+                <div className="h-full flex md:flex-col p-6 md:p-7 gap-4">
+                  {/* Collapsed state: number + vertical label (desktop only) */}
+                  <div
+                    className={`flex md:flex-col items-center md:items-start gap-3 shrink-0 transition-opacity duration-300 ${
+                      isActive ? "md:opacity-40" : "opacity-100"
+                    }`}
+                  >
+                    <span className="font-display text-lg text-gold-light/70">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3
+                      className={`font-display text-lg md:text-xl whitespace-nowrap ${
+                        !isActive ? "md:[writing-mode:vertical-rl] md:rotate-180" : ""
+                      }`}
+                    >
+                      {p.title}
+                    </h3>
+                  </div>
+
+                  {/* Detail — only meaningfully visible when active */}
+                  <div
+                    id={`philosophy-panel-${i}`}
+                    role="tabpanel"
+                    aria-labelledby={`philosophy-tab-${i}`}
+                    className={`transition-opacity duration-300 ${
+                      isActive
+                        ? "opacity-100 delay-150"
+                        : "opacity-0 hidden md:block md:pointer-events-none"
+                    }`}
+                  >
+                    <p className="text-porcelain/60 leading-relaxed text-sm max-w-xs mt-1 md:mt-8">
+                      {p.detail}
+                    </p>
+                  </div>
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
       <SectionSeam tone="dark" />
