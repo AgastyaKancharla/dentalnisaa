@@ -80,7 +80,41 @@ const paths: Record<string, JSX.Element> = {
       <path d="M4 9h16M9 4v16" />
     </>
   ),
+  accessibility: (
+    <>
+      <circle cx="12" cy="5" r="1.8" fill="currentColor" stroke="none" />
+      <path d="M4 8.5c2.6.9 5.3 1.3 8 1.3s5.4-.4 8-1.3" strokeLinecap="round" />
+      <path d="M12 9.8V21M12 14l-3.5 7M12 14l3.5 7" strokeLinecap="round" />
+    </>
+  ),
+  instagram: (
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="5" />
+      <circle cx="12" cy="12" r="3.6" />
+      <circle cx="16.6" cy="7.4" r="0.8" fill="currentColor" stroke="none" />
+    </>
+  ),
+  pin: (
+    <>
+      <path d="M12 21s7-6.4 7-11.5a7 7 0 10-14 0C5 14.6 12 21 12 21z" />
+      <circle cx="12" cy="9.5" r="2.4" />
+    </>
+  ),
 };
+
+// Google's real four-color "G" mark, kept separate from the single-stroke
+// set above since it's a fixed-color brand mark, not a currentColor icon —
+// used only next to genuine Google review data, never as decoration.
+export function GoogleGIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
+      <path fill="#4285F4" d="M45.1 24.5c0-1.6-.1-3.1-.4-4.6H24v9h11.9c-.5 2.8-2.1 5.1-4.4 6.7v5.5h7.1c4.2-3.9 6.5-9.6 6.5-16.6z" />
+      <path fill="#34A853" d="M24 46c5.9 0 10.9-2 14.5-5.3l-7.1-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 41.1 15.4 46 24 46z" />
+      <path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.2-3 .7-4.3v-5.7H4.5C3 16.9 2 20.3 2 24s1 7.1 2.5 10l7.3-5.7z" />
+      <path fill="#EA4335" d="M24 10.7c3.2 0 6 1.1 8.3 3.2l6.2-6.2C34.9 4.2 29.9 2 24 2 15.4 2 8.1 6.9 4.5 14l7.3 5.7c1.7-5.2 6.5-9 12.2-9z" />
+    </svg>
+  );
+}
 
 export default function Icon({ name, className = "w-6 h-6" }: IconProps) {
   const path = paths[name] ?? paths.tooth;

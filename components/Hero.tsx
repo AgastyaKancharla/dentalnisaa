@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { clinic } from "@/lib/site-data";
+import { GoogleGIcon } from "./Icon";
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
@@ -99,14 +100,12 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
             className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-porcelain/80 text-sm"
           >
-            <span className="inline-flex items-center gap-1.5 font-semibold">
-              <span className="text-gold-light tracking-tight" aria-hidden>
-                ★★★★★
-              </span>
+            <span className="inline-flex items-center gap-2 font-semibold">
+              <GoogleGIcon className="w-4 h-4" />
               {clinic.rating} Google Rating
             </span>
             <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
-            <span>{clinic.reviewCount}+ Happy Patients</span>
+            <span>{clinic.reviewCount}+ Google Reviews</span>
             <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
             <span>Since {clinic.foundedYear}</span>
           </motion.div>

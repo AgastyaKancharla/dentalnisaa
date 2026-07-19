@@ -684,14 +684,27 @@ export const testimonials: { quote: string; context: string; author: string }[] 
   },
 ];
 
-export const trustPoints = [
+// `value` (a plain number) drives the animated count-up in TrustBar; leave
+// it undefined for points that aren't a number (e.g. "Painless care").
+// Every number here is sourced directly from `clinic` above — nothing
+// invented for the redesign.
+export const trustPoints: {
+  value?: number;
+  suffix?: string;
+  label: string;
+  detail: string;
+}[] = [
   {
-    label: `${new Date().getFullYear() - 1995}+ years`,
+    value: clinic.yearsActive,
+    suffix: "+ years",
+    label: `${clinic.yearsActive}+ years`,
     detail: "Serving families in Kadarenahalli",
   },
   {
-    label: "4.8★ rated",
-    detail: "From 195+ Google reviews",
+    value: clinic.rating,
+    suffix: "★ rated",
+    label: `${clinic.rating}★ rated`,
+    detail: `From ${clinic.reviewCount}+ Google reviews`,
   },
   {
     label: "Painless care",
