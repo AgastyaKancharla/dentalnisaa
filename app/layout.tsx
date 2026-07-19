@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import ConditionalChrome from "@/components/ConditionalChrome";
 import { clinic } from "@/lib/site-data";
 
 const fraunces = Fraunces({
@@ -114,8 +115,10 @@ export default function RootLayout({
         </a>
         <Header />
         <main id="main-content" className="pt-14 md:pt-16">{children}</main>
-        <Footer />
-        <StickyCTA />
+        <ConditionalChrome>
+          <Footer />
+          <StickyCTA />
+        </ConditionalChrome>
         <AccessibilityWidget />
       </body>
     </html>
