@@ -3,46 +3,64 @@ import { treatments } from "@/lib/site-data";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 
+// Editorial "index" redesign: oversized watermark numerals, a real per-
+// treatment tagline instead of the generic short description (both already
+// exist in site-data, tagline was just unused), and a colored icon chip
+// that fills on hover. No fabricated "Most Popular" hierarchy — the data
+// has no popularity field, so every row stays equal weight by design.
 export default function TreatmentsGrid({ limit }: { limit?: number }) {
   const list = limit ? treatments.slice(0, limit) : treatments;
 
   return (
     <section id="treatments" className="bg-porcelain">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
-        <Reveal className="max-w-xl mb-14">
-          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-            Dental Treatments in Kadarenahalli, Bengaluru
-          </p>
-          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
-            Everything a family's teeth ask for,
-            <span className="text-gold-dark"> under one roof.</span>
-          </h2>
+        <Reveal className="max-w-xl mb-14 flex items-end justify-between flex-wrap gap-4">
+          <div>
+            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+              Dental Treatments in Kadarenahalli, Bengaluru
+            </p>
+            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
+              Everything a family's teeth ask for,
+              <span className="text-gold-dark italic"> under one roof.</span>
+            </h2>
+          </div>
         </Reveal>
 
-        <div className="grid md:grid-cols-2 md:gap-x-14 border-t border-ink/10">
+        <div className="grid md:grid-cols-2 md:gap-x-10 border-t border-ink/10">
           {list.map((t, i) => (
             <Reveal key={t.id} delay={(i % 6) * 40}>
               <Link
                 href={`/treatments/${t.id}`}
-                className="group flex items-center gap-5 py-6 border-b border-ink/10 hover:pl-2 transition-[padding] duration-300"
+                className="group relative flex items-center gap-5 py-7 border-b border-ink/10 overflow-hidden"
               >
-                <span className="font-display text-sm text-ink/30 w-6 shrink-0">
+                {/* Oversized watermark numeral — sits behind the content,
+                    grows and warms on hover for a bit of theatre. */}
+                <span
+                  aria-hidden
+                  className="pointer-events-none select-none absolute -left-1 top-1/2 -translate-y-1/2 font-display text-[4.5rem] leading-none text-ink/[0.04] group-hover:text-gold/10 transition-colors duration-500"
+                >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <Icon
-                  name={t.icon}
-                  className="w-6 h-6 text-teal-dark group-hover:text-gold-dark transition-colors shrink-0"
-                />
-                <span className="flex-1 min-w-0">
+
+                {/* Icon chip — outline by default, fills solid on hover. */}
+                <span className="relative z-10 shrink-0 w-11 h-11 rounded-full border border-ink/15 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-colors duration-300">
+                  <Icon
+                    name={t.icon}
+                    className="w-5 h-5 text-teal-dark group-hover:text-ink transition-colors duration-300"
+                  />
+                </span>
+
+                <span className="relative z-10 flex-1 min-w-0">
                   <span className="block font-display text-lg text-ink group-hover:text-gold-dark transition-colors">
                     {t.name}
                   </span>
                   <span className="block text-sm text-ink/50 leading-snug mt-0.5 truncate group-hover:whitespace-normal">
-                    {t.short}
+                    {t.tagline ?? t.short}
                   </span>
                 </span>
+
                 <span
-                  className="shrink-0 text-ink/30 group-hover:text-gold-dark group-hover:translate-x-1 transition-all"
+                  className="relative z-10 shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-ink/30 group-hover:text-porcelain group-hover:bg-ink group-hover:translate-x-1 transition-all duration-300"
                   aria-hidden
                 >
                   →
