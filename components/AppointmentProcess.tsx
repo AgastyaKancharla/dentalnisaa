@@ -1,7 +1,7 @@
 import Reveal from "./Reveal";
 import Icon from "./Icon";
 
-const steps = [
+export const appointmentSteps = [
   { title: "Book", detail: "Online, by call, or WhatsApp — pick a time that works for you.", icon: "calendar" },
   { title: "Consultation", detail: "An honest conversation about what's bothering you and why.", icon: "chat" },
   { title: "Diagnosis", detail: "A visual and, where needed, digital X-ray review to see the full picture.", icon: "mouth" },
@@ -29,14 +29,14 @@ export default function AppointmentProcess() {
             aria-hidden
           />
           <div className="grid gap-10 md:grid-cols-5 md:gap-6">
-            {steps.map((step, i) => (
+            {appointmentSteps.map((step, i) => (
               <Reveal key={step.title} delay={i * 80}>
                 <div className="relative flex md:flex-col gap-5 md:gap-0">
                   <div className="relative shrink-0 md:mb-6">
                     <div className="w-12 h-12 rounded-full bg-ink text-porcelain flex items-center justify-center relative z-10">
                       <Icon name={step.icon} className="w-5 h-5" />
                     </div>
-                    {i !== steps.length - 1 && (
+                    {i !== appointmentSteps.length - 1 && (
                       <div className="md:hidden absolute top-12 left-1/2 -translate-x-1/2 w-px h-full bg-ink/10" aria-hidden />
                     )}
                   </div>
