@@ -45,7 +45,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
               className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1"
             >
-              Trust,
+              Trusted,
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28 }}
@@ -53,7 +53,7 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
               className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-3"
             >
-              family dentistry for three generations
+              implants, cosmetic &amp; family dentistry under one roof
             </motion.span>
           </h1>
 
