@@ -33,19 +33,19 @@ export default function Hero() {
           wash than before (30% vs the old 40%+70% stacked). Desktop (md+):
           dark only behind the headline on the left, fading to transparent,
           so most of the image reads bright and true-color. */}
-      <div className="absolute inset-0 bg-ink/30 md:bg-gradient-to-r md:from-ink/60 md:via-ink/25 md:to-transparent" />
+      <div className="absolute inset-0 bg-ink/40 md:bg-gradient-to-r md:from-ink/70 md:via-ink/32 md:to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/40 to-transparent" />
 
       <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
         <div className="max-w-2xl pt-14 md:pt-16">
-          <h1 className="text-porcelain">
+          <h1 className="text-porcelain [text-shadow:0_4px_24px_rgba(0,0,0,0.55)]">
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
               className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1"
             >
-              Trusted,
+              Certified,
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28 }}
@@ -61,7 +61,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain/75 text-lg leading-relaxed max-w-md"
+            className="mt-7 text-porcelain/75 text-lg leading-relaxed max-w-md [text-shadow:0_2px_12px_rgba(0,0,0,0.5)]"
           >
             {clinic.tagline}.
           </motion.p>
