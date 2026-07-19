@@ -106,6 +106,8 @@ const paths: Record<string, JSX.Element> = {
       <path d="M20 20l-4.8-4.8" strokeLinecap="round" />
     </>
   ),
+  "arrow-left": <path d="M19 12H5M11 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />,
+  "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />,
 };
 
 // Google's real four-color "G" mark, kept separate from the single-stroke

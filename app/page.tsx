@@ -1,7 +1,7 @@
 import Hero from "@/components/Hero";
 import TrustBar from "@/components/TrustBar";
 import Transparency from "@/components/Transparency";
-import TreatmentsGrid from "@/components/TreatmentsGrid";
+import TreatmentsDeckSection from "@/components/TreatmentsDeckSection";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
 import ClinicTourPreview from "@/components/ClinicTourPreview";
 import Testimonials from "@/components/Testimonials";
@@ -16,7 +16,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar />
       <Transparency />
-      <TreatmentsGrid limit={10} />
+      <TreatmentsDeckSection limit={10} />
       <DoctorSpotlight />
       <ClinicTourPreview />
       <Testimonials />
