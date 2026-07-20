@@ -43,10 +43,10 @@ export default function Header() {
       >
         <div
           className={`px-5 md:px-10 lg:px-16 xl:px-24 flex items-center justify-between transition-all duration-300 ${
-            transparent ? "h-20 md:h-24" : "h-14 md:h-16"
+            transparent ? "h-24 md:h-28" : "h-16 md:h-20"
           }`}
         >
-          <Link href="/" className="flex items-center h-full py-2.5" onClick={() => setOpen(false)}>
+          <Link href="/" className="flex items-center h-full py-1 md:py-1.5" onClick={() => setOpen(false)}>
             <Image
               src="/logo-header.png"
               alt={clinic.name}
