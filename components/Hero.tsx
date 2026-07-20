@@ -28,13 +28,14 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Mobile: text spans nearly the full width, so a directional gradient
-          wouldn't leave any real bright area anyway — just a lighter flat
-          wash than before (30% vs the old 40%+70% stacked). Desktop (md+):
-          dark only behind the headline on the left, fading to transparent,
-          so most of the image reads bright and true-color. */}
-      <div className="absolute inset-0 bg-ink/40 md:bg-gradient-to-r md:from-ink/70 md:via-ink/32 md:to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/40 to-transparent" />
+      {/* Much lighter scrim than before — just enough to anchor the
+          headline's left edge on mobile, and a soft fade behind it on
+          desktop. The photo itself (boosted brightness/contrast/saturation
+          above) should read bright and true-color everywhere else; text
+          legibility comes from the stroke + shadow on the type itself,
+          not from darkening the whole image. */}
+      <div className="absolute inset-0 bg-ink/12 md:bg-gradient-to-r md:from-ink/40 md:via-ink/10 md:to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/25 to-transparent" />
 
       <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
         <div className="max-w-2xl pt-14 md:pt-16">
@@ -85,7 +86,7 @@ export default function Hero() {
             </Link>
             <a
               href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-              className="focus-ring inline-flex items-center gap-2 rounded-full border border-porcelain/30 text-porcelain px-7 py-3.5 font-semibold hover:bg-porcelain/10 transition-colors"
+              className="focus-ring inline-flex items-center gap-2 rounded-full border-2 border-porcelain/70 bg-ink/10 backdrop-blur-sm text-porcelain px-7 py-3.5 font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:bg-porcelain/15 transition-colors"
             >
               Call Clinic
             </a>
@@ -95,7 +96,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-porcelain/80 text-sm"
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
           >
             <span className="inline-flex items-center gap-2 font-semibold">
               <GoogleGIcon className="w-4 h-4" />
