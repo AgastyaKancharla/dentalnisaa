@@ -309,7 +309,7 @@ export default function TreatmentPage({ params }: Props) {
                 Related treatments
               </h2>
             </Reveal>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-7">
               {related.map((r, i) => (
                 <Reveal key={r.id} delay={i * 60}>
                   <TreatmentCard treatment={r} />

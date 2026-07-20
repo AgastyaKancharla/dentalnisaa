@@ -91,7 +91,7 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
 
         {/* Results */}
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-7">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-7">
             {filtered.map((t, i) => (
               <Reveal key={t.id} delay={(i % 8) * 40}>
                 <TreatmentCard treatment={t} />
