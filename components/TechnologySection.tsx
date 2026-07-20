@@ -3,40 +3,15 @@ import { treatments, gallerySpaces } from "@/lib/site-data";
 import Reveal from "./Reveal";
 import Icon from "./Icon";
 
-// Built only from facts already published elsewhere on the site (the
-// digital-xray treatment page, the sterilization gallery entry) — the brief
-// asked to "explain benefits instead of equipment," which also keeps this
-// section honest instead of listing brand-name machines the clinic hasn't
-// confirmed it owns.
+// Only two real, distinct facts exist here (digital imaging, sterilization
+// protocol) -- the earlier version split digital imaging into two cards
+// ("low-radiation imaging" + "instant results") just to fill a 3-up grid,
+// which read as padded, generic AI-copy. Two honest cards, asymmetric
+// sizing (matches the DoctorSpotlight pairing elsewhere on the site)
+// instead of forcing a third.
 export default function TechnologySection() {
   const xray = treatments.find((t) => t.id === "digital-xray");
   const sterilization = gallerySpaces.find((s) => s.name === "Sterilization & Safety");
-
-  const cards = [
-    {
-      icon: "scan",
-      title: "Digital, low-radiation imaging",
-      detail:
-        xray?.overview ??
-        "Digital X-rays reveal what a visual exam can't, using significantly less radiation than traditional film.",
-      href: xray ? `/treatments/${xray.id}` : "/treatments",
-    },
-    {
-      icon: "shield",
-      title: "Sterilization, every time",
-      detail:
-        sterilization?.description ??
-        "Instrument sterilization and hygiene protocols followed for every single patient, every single time.",
-      href: "/gallery",
-    },
-    {
-      icon: "sparkle",
-      title: "Instant results, clearer answers",
-      detail:
-        "Digital imaging displays immediately, so your dentist can explain findings and next steps in the same visit.",
-      href: xray ? `/treatments/${xray.id}` : "/treatments",
-    },
-  ];
 
   return (
     <section className="bg-ink text-porcelain">
@@ -51,22 +26,50 @@ export default function TechnologySection() {
           </h2>
         </Reveal>
 
-        <div className="grid md:grid-cols-3 gap-px bg-porcelain/10">
-          {cards.map((card, i) => (
-            <Reveal key={card.title} delay={i * 80} className="bg-ink">
-              <Link
-                href={card.href}
-                className="focus-ring group block h-full p-8 hover:bg-porcelain/[0.04] transition-colors"
-              >
-                <Icon name={card.icon} className="w-8 h-8 text-gold-light" />
-                <h3 className="font-display text-xl mt-6 mb-3">{card.title}</h3>
-                <p className="text-sm text-porcelain/55 leading-relaxed">{card.detail}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold-light opacity-0 group-hover:opacity-100 transition-opacity">
-                  Learn more <span aria-hidden>→</span>
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+        <div className="flex flex-col md:flex-row gap-10 md:gap-8">
+          <Reveal className="md:flex-[1.4]">
+            <Link
+              href={xray ? `/treatments/${xray.id}` : "/treatments"}
+              className="focus-ring group block h-full border border-porcelain/10 p-8 md:p-10 hover:border-gold-light/40 transition-colors"
+            >
+              <Icon name="scan" className="w-9 h-9 text-gold-light" />
+              <h3 className="font-display text-2xl md:text-3xl mt-6 mb-4 leading-snug">
+                You're looking at the same screen we are.
+              </h3>
+              <p className="text-porcelain/60 leading-relaxed max-w-md">
+                Digital X-rays show up the moment they're taken — no waiting
+                for film, no vague description after the fact. If something
+                needs a closer look, your dentist points at the actual
+                image while explaining it, in the same visit, using{" "}
+                {xray?.overview
+                  ? "meaningfully less radiation than traditional film"
+                  : "a meaningfully lower dose than traditional film"}
+                .
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-light opacity-0 group-hover:opacity-100 transition-opacity">
+                How digital X-rays work <span aria-hidden>→</span>
+              </span>
+            </Link>
+          </Reveal>
+
+          <Reveal delay={100} className="md:flex-[1]">
+            <Link
+              href="/gallery"
+              className="focus-ring group block h-full border border-porcelain/10 p-8 md:p-10 hover:border-gold-light/40 transition-colors"
+            >
+              <Icon name="shield" className="w-9 h-9 text-gold-light" />
+              <h3 className="font-display text-2xl mt-6 mb-4 leading-snug">
+                New gloves. New tray. Every time.
+              </h3>
+              <p className="text-porcelain/60 leading-relaxed">
+                {sterilization?.description ??
+                  "Every instrument that touches your mouth goes through the same sterilization cycle, whether you're the first appointment of the morning or the last of the day."}
+              </p>
+              <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-gold-light opacity-0 group-hover:opacity-100 transition-opacity">
+                See the sterilization room <span aria-hidden>→</span>
+              </span>
+            </Link>
+          </Reveal>
         </div>
       </div>
     </section>
