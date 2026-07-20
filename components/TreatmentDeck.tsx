@@ -6,7 +6,10 @@ import type { Treatment } from "@/lib/site-data";
 import Icon from "./Icon";
 import TreatmentMedia from "./TreatmentMedia";
 
-const DEPTH = 4; // how many cards are visible in the stack (front + 3 peeking)
+const VISIBLE_SIDE = 2; // cards shown on each side of the active one (5 total on screen)
+const ANGLE_STEP = 26; // degrees between adjacent cards around the arc
+const RADIUS_X = 260; // horizontal spread, px
+const RADIUS_Y = 64; // how much the arc curves upward at its ends, px
 
 export default function TreatmentDeck({ treatments }: { treatments: Treatment[] }) {
   const [active, setActive] = useState(0);
@@ -17,6 +20,15 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
     setActive((prev) => (prev + delta + count) % count);
   };
   const goTo = (index: number) => setActive(index);
+
+  // Shortest signed distance around the loop, e.g. with 10 cards, index 9
+  // relative to active 0 is -1 (one step back), not +9.
+  const signedOffset = (i: number) => {
+    let o = i - active;
+    if (o > count / 2) o -= count;
+    if (o < -count / 2) o += count;
+    return o;
+  };
 
   const onTouchStart: React.TouchEventHandler = (e) => {
     touchStartX.current = e.touches[0].clientX;
@@ -43,19 +55,26 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
         onKeyDown={onKeyDown}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        className="focus-ring relative h-[460px] sm:h-[420px] select-none"
+        className="focus-ring relative h-[500px] sm:h-[460px] select-none"
       >
         {treatments.map((t, i) => {
-          const rank = (i - active + count) % count;
-          if (rank >= DEPTH) return null;
-          const isFront = rank === 0;
+          const offset = signedOffset(i);
+          if (Math.abs(offset) > VISIBLE_SIDE) return null;
+          const isFront = offset === 0;
+
+          const angleDeg = offset * ANGLE_STEP;
+          const angleRad = (angleDeg * Math.PI) / 180;
+          const x = RADIUS_X * Math.sin(angleRad);
+          const y = -RADIUS_Y * (1 - Math.cos(angleRad)); // curves upward away from center
+          const rotate = angleDeg * 0.55;
+          const dist = Math.abs(offset);
+          const scale = 1 - dist * 0.14;
+          const opacity = 1 - dist * 0.32;
 
           const style: React.CSSProperties = {
-            transform: `translate(-50%, 0) translateX(${rank * 26}px) translateY(${rank * 14}px) scale(${
-              1 - rank * 0.06
-            })`,
-            zIndex: DEPTH - rank,
-            opacity: 1 - rank * 0.22,
+            transform: `translate(-50%, 0) translateX(${x}px) translateY(${y}px) rotate(${rotate}deg) scale(${scale})`,
+            zIndex: 10 - dist,
+            opacity,
           };
 
           return (
