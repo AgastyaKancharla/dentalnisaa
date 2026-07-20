@@ -80,6 +80,21 @@ const paths: Record<string, JSX.Element> = {
       <path d="M4 9h16M9 4v16" />
     </>
   ),
+  monitor: (
+    <>
+      <rect x="3" y="4" width="18" height="13" rx="1.5" />
+      <path d="M8 21h8M12 17v4" />
+    </>
+  ),
+  droplet: (
+    <path d="M12 3s6 6.5 6 11a6 6 0 1 1-12 0c0-4.5 6-11 6-11z" />
+  ),
+  lock: (
+    <>
+      <rect x="5" y="11" width="14" height="9" rx="1.5" />
+      <path d="M8 11V7a4 4 0 1 1 8 0v4" />
+    </>
+  ),
   accessibility: (
     <>
       <circle cx="12" cy="5" r="1.8" fill="currentColor" stroke="none" />
