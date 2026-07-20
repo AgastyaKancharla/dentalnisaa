@@ -43,6 +43,11 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              style={{
+                WebkitTextStroke: "1.5px #211E1A",
+                textShadow:
+                  "1px 1px 0 #211E1A, -1px -1px 0 #211E1A, 1px -1px 0 #211E1A, -1px 1px 0 #211E1A, 0 10px 30px rgba(0,0,0,0.55)",
+              }}
               className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1"
             >
               Certified,

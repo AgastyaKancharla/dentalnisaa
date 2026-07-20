@@ -4,10 +4,12 @@ import { clinic } from "@/lib/site-data";
 import Icon from "./Icon";
 import ClinicOpenStatus from "./ClinicOpenStatus";
 import WeeklyHours from "./WeeklyHours";
+import SignatureMark from "./SignatureMark";
+import Magnetic from "./Magnetic";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0 relative">
+    <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0 relative overflow-hidden">
       {/* Wave divider — curves the page's porcelain background into the
           footer's dark ink, instead of a flat hard edge between them. */}
       <div className="absolute -top-px left-0 right-0 -translate-y-full leading-[0] overflow-hidden">
@@ -24,12 +26,46 @@ export default function Footer() {
         </svg>
       </div>
 
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-20 pb-10">
-        {/* Asymmetric layout with a real 3-tier hierarchy:
-            1. Brand + live status — the dominant, largest element
-            2. Phone/directions — secondary, still clearly actionable
-            3. Explore links + full hours — tertiary, quiet reference info */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+      <SignatureMark
+        className="absolute -right-10 -top-10 w-72 h-72 md:w-96 md:h-96 text-porcelain/[0.05] pointer-events-none"
+        strokeOpacity={0.6}
+      />
+
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-20 relative">
+        {/* The footer's one big statement — oversized display type as the
+            focal point, not tucked-away fine print. Phone + live status
+            sit right beneath it since that's the natural next action for
+            anyone who reads "come say hello." */}
+        <div className="pb-14 md:pb-16 border-b border-porcelain/10">
+          <p className="text-xs uppercase tracking-wide text-porcelain/40 mb-5">
+            Ready when you are
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] leading-[1.05] max-w-3xl">
+            Come say{" "}
+            <Magnetic pull={0.3} className="align-middle">
+              <span className="font-script text-gold-light text-[1.3em] leading-none">
+                hello.
+              </span>
+            </Magnetic>
+          </h2>
+
+          <div className="mt-9 flex flex-wrap items-center gap-x-10 gap-y-5">
+            <Magnetic pull={0.2}>
+              <a
+                href={`tel:${clinic.phone.replace(/\s/g, "")}`}
+                className="focus-ring inline-flex items-center gap-3 font-display text-2xl md:text-3xl text-porcelain hover:text-gold-light transition-colors"
+              >
+                <Icon name="phone" className="w-6 h-6 md:w-7 md:h-7 shrink-0" />
+                {clinic.phone}
+              </a>
+            </Magnetic>
+            <ClinicOpenStatus />
+          </div>
+        </div>
+
+        {/* Supporting detail — same info as before, now clearly secondary
+            to the statement above rather than competing with it. */}
+        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 pt-12 pb-10">
           <div className="lg:col-span-5">
             <Image
               src="/logo-header.png"
@@ -42,17 +78,13 @@ export default function Footer() {
               {clinic.tagline}.
             </p>
 
-            <div className="mt-8 pt-6 border-t border-porcelain/10 max-w-xs">
-              <ClinicOpenStatus />
-            </div>
-
             <div className="flex items-center gap-3 mt-7">
               <a
                 href={clinic.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="DentalNisaa on Instagram"
-                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light hover:scale-110 transition-all"
               >
                 <Icon name="instagram" className="w-4 h-4" />
               </a>
@@ -61,7 +93,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Message DentalNisaa on WhatsApp"
-                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light hover:scale-110 transition-all"
               >
                 <Icon name="chat" className="w-4 h-4" />
               </a>
@@ -70,7 +102,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Get directions on Google Maps"
-                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light transition-colors"
+                className="focus-ring w-11 h-11 flex items-center justify-center border border-porcelain/15 hover:border-gold-light hover:text-gold-light hover:scale-110 transition-all"
               >
                 <Icon name="pin" className="w-4 h-4" />
               </a>
@@ -94,14 +126,7 @@ export default function Footer() {
               Visit
             </h3>
 
-            <a
-              href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-              className="focus-ring block font-display text-2xl text-porcelain hover:text-gold-light transition-colors"
-            >
-              {clinic.phone}
-            </a>
-
-            <div className="mt-3 text-sm text-porcelain/60 space-y-1">
+            <div className="text-sm text-porcelain/60 space-y-1">
               {clinic.address.line1 && <p>{clinic.address.line1}</p>}
               <p>{clinic.address.line2}</p>
             </div>
@@ -115,11 +140,6 @@ export default function Footer() {
               Get directions <span aria-hidden>→</span>
             </a>
 
-            {/* Full weekly hours — secondary detail now that the live
-                open/closed status above answers the question most people
-                actually have ("can I call right now"). Today's row is
-                highlighted once opened, so it stays genuinely informative
-                rather than a flat wall of identical text. */}
             <details className="group mt-7 pt-5 border-t border-porcelain/10">
               <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/40">
                 Full weekly hours
@@ -130,7 +150,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-porcelain/10 py-5 text-center text-xs text-porcelain/40">
+      <div className="border-t border-porcelain/10 py-5 text-center text-xs text-porcelain/40 relative">
         © {new Date().getFullYear()} {clinic.name}. All rights reserved.
       </div>
     </footer>
