@@ -2,6 +2,7 @@ import Link from "next/link";
 import { treatments, gallerySpaces } from "@/lib/site-data";
 import Reveal from "./Reveal";
 import Icon from "./Icon";
+import Tilt3D from "./Tilt3D";
 
 type Step = { icon: string; label: string };
 
@@ -11,9 +12,20 @@ function StepFlow({ steps }: { steps: Step[] }) {
       {steps.map((step, i) => (
         <div key={step.label} className="flex items-center">
           <div className="flex flex-col items-center text-center w-20 sm:w-24">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border border-gold-light/30 bg-gold-light/[0.06] flex items-center justify-center">
-              <Icon name={step.icon} className="w-5 h-5 sm:w-6 sm:h-6 text-gold-light" />
-            </div>
+            <Tilt3D maxDeg={16}>
+              <div
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center"
+                style={{
+                  background:
+                    "radial-gradient(circle at 32% 28%, rgba(240,222,180,0.18), rgba(240,222,180,0.04) 60%)",
+                  boxShadow:
+                    "0 10px 22px -8px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -6px 10px rgba(0,0,0,0.25)",
+                  border: "1px solid rgba(240,222,180,0.3)",
+                }}
+              >
+                <Icon name={step.icon} className="w-5 h-5 sm:w-6 sm:h-6 text-gold-light" />
+              </div>
+            </Tilt3D>
             <p className="mt-3 text-xs sm:text-sm text-porcelain/70 leading-snug">
               {step.label}
             </p>
