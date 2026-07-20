@@ -64,9 +64,13 @@ export default function Footer() {
         </div>
 
         {/* Supporting detail — same info as before, now clearly secondary
-            to the statement above rather than competing with it. */}
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-10 pt-12 pb-10">
-          <div className="lg:col-span-5">
+            to the statement above. Rebuilt from three plain text columns
+            into two: a signature block (logo/tagline/social), and a single
+            bordered panel with a real embedded map of the actual clinic
+            address, since a wall of address text was the flattest part of
+            the old layout. */}
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-14 pt-12 pb-10">
+          <div>
             <Image
               src="/logo-header.png"
               alt={clinic.name}
@@ -107,46 +111,62 @@ export default function Footer() {
                 <Icon name="pin" className="w-4 h-4" />
               </a>
             </div>
+
+            <nav aria-label="Footer" className="flex flex-wrap gap-x-2 gap-y-2 mt-9">
+              {[
+                ["Treatments", "/treatments"],
+                ["Gallery", "/gallery"],
+                ["Blog", "/blog"],
+                ["FAQ", "/faq"],
+              ].map(([label, href]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="focus-ring text-xs uppercase tracking-wide border border-porcelain/15 px-3 py-1.5 text-porcelain/65 hover:border-gold-light hover:text-gold-light transition-colors"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
           </div>
 
-          <nav aria-label="Footer" className="lg:col-span-3 text-sm">
-            <h3 className="uppercase tracking-wide text-porcelain/40 text-xs mb-3 font-normal">
-              Explore
-            </h3>
-            <div className="space-y-2">
-              <Link href="/treatments" className="block text-porcelain/65 hover:text-gold-light transition-colors">Treatments</Link>
-              <Link href="/gallery" className="block text-porcelain/65 hover:text-gold-light transition-colors">Gallery</Link>
-              <Link href="/blog" className="block text-porcelain/65 hover:text-gold-light transition-colors">Blog</Link>
-              <Link href="/faq" className="block text-porcelain/65 hover:text-gold-light transition-colors">FAQ</Link>
+          <div className="border border-porcelain/10">
+            <div className="aspect-[16/9] grayscale-[35%] contrast-[1.05] opacity-90">
+              <iframe
+                title={`${clinic.name} location map`}
+                src={`https://www.google.com/maps?q=${encodeURIComponent(
+                  `${clinic.address.line1}, ${clinic.address.line2}`
+                )}&output=embed`}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-          </nav>
+            <div className="p-6">
+              <p className="text-sm text-porcelain/60 leading-relaxed">
+                {clinic.address.line1}
+                <br />
+                {clinic.address.line2}
+              </p>
+              <div className="flex flex-wrap items-center gap-4 mt-4">
+                <a
+                  href={clinic.address.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-ring inline-flex items-center gap-1.5 rounded-full border border-porcelain/20 px-4 py-2 text-sm font-semibold text-porcelain hover:border-gold-light hover:text-gold-light transition-colors"
+                >
+                  Get directions <span aria-hidden>→</span>
+                </a>
+              </div>
 
-          <div className="lg:col-span-4">
-            <h3 className="uppercase tracking-wide text-porcelain/40 text-xs mb-3 font-normal">
-              Visit
-            </h3>
-
-            <div className="text-sm text-porcelain/60 space-y-1">
-              {clinic.address.line1 && <p>{clinic.address.line1}</p>}
-              <p>{clinic.address.line2}</p>
+              <details className="group mt-6 pt-5 border-t border-porcelain/10">
+                <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/40">
+                  Full weekly hours
+                  <span aria-hidden className="transition-transform group-open:rotate-180">⌄</span>
+                </summary>
+                <WeeklyHours />
+              </details>
             </div>
-
-            <a
-              href={clinic.address.mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="focus-ring inline-flex items-center gap-1.5 mt-4 rounded-full border border-porcelain/20 px-4 py-2 text-sm font-semibold text-porcelain hover:border-gold-light hover:text-gold-light transition-colors"
-            >
-              Get directions <span aria-hidden>→</span>
-            </a>
-
-            <details className="group mt-7 pt-5 border-t border-porcelain/10">
-              <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/40">
-                Full weekly hours
-                <span aria-hidden className="transition-transform group-open:rotate-180">⌄</span>
-              </summary>
-              <WeeklyHours />
-            </details>
           </div>
         </div>
       </div>
