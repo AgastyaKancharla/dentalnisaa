@@ -22,12 +22,12 @@ export default function OurValues() {
           </h2>
         </Reveal>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-8 sm:gap-8 md:gap-10">
           {values.map((v, i) => (
             <Reveal key={v.title} delay={i * 70}>
-              <Icon name={v.icon} className="w-7 h-7 text-gold-light" />
-              <h3 className="font-display text-xl mt-5 mb-2">{v.title}</h3>
-              <p className="text-sm text-porcelain/55 leading-relaxed max-w-xs">
+              <Icon name={v.icon} className="w-6 h-6 sm:w-7 sm:h-7 text-gold-light" />
+              <h3 className="font-display text-base sm:text-xl mt-3 sm:mt-5 mb-1.5 sm:mb-2">{v.title}</h3>
+              <p className="text-xs sm:text-sm text-porcelain/55 leading-relaxed max-w-xs">
                 {v.detail}
               </p>
             </Reveal>
