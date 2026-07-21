@@ -37,8 +37,8 @@ export default function Hero() {
       <div className="absolute inset-0 bg-ink/18 md:bg-gradient-to-r md:from-ink/50 md:via-ink/14 md:to-transparent" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/25 to-transparent" />
 
-      <div className="relative z-10 h-full flex items-center px-5 md:px-10 lg:px-16 xl:px-24">
-        <div className="max-w-2xl pt-14 md:pt-16">
+      <div className="relative z-10 h-full flex items-center md:justify-center px-5 md:px-10 lg:px-16 xl:px-24">
+        <div className="max-w-2xl pt-14 md:pt-16 md:mx-auto md:text-center">
           <h1 className="text-porcelain [text-shadow:0_4px_24px_rgba(0,0,0,0.55)]">
             <motion.span
               initial={{ opacity: 0, y: 28 }}
@@ -49,7 +49,7 @@ export default function Hero() {
                 textShadow:
                   "1px 1px 0 #211E1A, -1px -1px 0 #211E1A, 1px -1px 0 #211E1A, -1px 1px 0 #211E1A, 0 10px 30px rgba(0,0,0,0.55)",
               }}
-              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1"
+              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1 md:ml-0"
             >
               Certified,
             </motion.span>
@@ -72,7 +72,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md [text-shadow:0_2px_4px_rgba(0,0,0,0.7),0_4px_16px_rgba(0,0,0,0.5)]"
+            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md md:mx-auto [text-shadow:0_2px_4px_rgba(0,0,0,0.7),0_4px_16px_rgba(0,0,0,0.5)]"
           >
             {clinic.tagline}.
           </motion.p>
@@ -81,7 +81,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
-            className="mt-9 flex flex-wrap items-center gap-4"
+            className="mt-9 flex flex-wrap items-center md:justify-center gap-4"
           >
             <Link
               href="/booking"
@@ -101,7 +101,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
+            className="mt-12 flex flex-wrap items-center md:justify-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
           >
             <span className="inline-flex items-center gap-2 font-semibold">
               <GoogleGIcon className="w-4 h-4" />
