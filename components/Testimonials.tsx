@@ -4,6 +4,8 @@ import { useState } from "react";
 import { testimonials, clinic } from "@/lib/site-data";
 import SignatureMark from "./SignatureMark";
 import { GoogleGIcon } from "./Icon";
+import { useInView } from "@/lib/useInView";
+import MultiPlatformReviews from "./MultiPlatformReviews";
 
 const googleReviewsUrl =
   clinic.address.mapsUrl ||
@@ -11,14 +13,25 @@ const googleReviewsUrl =
     clinic.name + " " + clinic.address.line2
   )}+reviews`;
 
-// Google's actual review-star yellow, not a brand-palette gold -- this
-// section leans into "these are real Google reviews" rather than
-// inventing its own color language for it.
-function GoogleStars() {
+// This section's animation signature: stars twinkle in one by one (each
+// pops past full size then settles), and the quote fades in only once
+// they've finished -- distinct from every other section's entrance.
+function GoogleStars({ start }: { start: boolean }) {
   return (
     <span className="inline-flex gap-0.5" aria-hidden>
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} viewBox="0 0 20 20" className="w-4 h-4" fill="#FBBC05">
+        <svg
+          key={i}
+          viewBox="0 0 20 20"
+          className="w-4 h-4"
+          fill="#FBBC05"
+          style={{
+            opacity: start ? 1 : 0,
+            transform: start ? "scale(1)" : "scale(0)",
+            transition: "transform 450ms cubic-bezier(0.34,1.56,0.64,1), opacity 200ms ease-out",
+            transitionDelay: `${i * 120}ms`,
+          }}
+        >
           <path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" />
         </svg>
       ))}
@@ -30,6 +43,7 @@ export default function Testimonials() {
   const featured = testimonials.slice(0, 6);
   const [active, setActive] = useState(0);
   const current = featured[active];
+  const { ref, inView } = useInView<HTMLDivElement>(0.3);
 
   return (
     <section id="reviews" className="bg-ink text-porcelain relative overflow-hidden">
@@ -54,19 +68,46 @@ export default function Testimonials() {
           </a>
         </div>
 
+        <MultiPlatformReviews />
+
         {current ? (
-          <div className="grid md:grid-cols-[1.4fr_0.6fr] gap-14 md:gap-16 items-start">
+          <div ref={ref} className="grid md:grid-cols-[1.4fr_0.6fr] gap-14 md:gap-16 items-start">
             <div className="relative">
               <SignatureMark
                 className="w-16 h-16 text-porcelain absolute -top-8 -left-3 hidden md:block"
                 strokeOpacity={0.15}
               />
-              <GoogleStars />
-              <blockquote className="mt-4 font-display text-2xl md:text-[2rem] leading-[1.3]">
+              <GoogleStars start={inView} />
+              <blockquote
+                className="mt-4 font-display text-2xl md:text-[2rem] leading-[1.3]"
+                style={{
+                  opacity: inView ? 1 : 0,
+                  transition: "opacity 600ms ease-out",
+                  transitionDelay: "750ms",
+                }}
+              >
                 "{current.quote}"
               </blockquote>
-              <p className="mt-7 font-semibold">{current.author}</p>
-              <p className="text-sm text-porcelain/45">{current.context}</p>
+              <p
+                className="mt-7 font-semibold"
+                style={{
+                  opacity: inView ? 1 : 0,
+                  transition: "opacity 600ms ease-out",
+                  transitionDelay: "900ms",
+                }}
+              >
+                {current.author}
+              </p>
+              <p
+                className="text-sm text-porcelain/45"
+                style={{
+                  opacity: inView ? 1 : 0,
+                  transition: "opacity 600ms ease-out",
+                  transitionDelay: "950ms",
+                }}
+              >
+                {current.context}
+              </p>
             </div>
 
             <div className="border-t md:border-t-0 md:border-l border-porcelain/10 pt-6 md:pt-0 md:pl-8">

@@ -15,6 +15,32 @@ export const clinic = {
   whatsapp: "919731214949",
   email: "info.dentalnisaa@gmail.com", // confirmed via onboarding form
   instagram: "https://www.instagram.com/dentalnisaa", // confirmed via onboarding form
+  // Verified directly, not estimated -- Google is the clinic's own reported
+  // figure; Practo fetched live from practo.com/.../reviews on 2026-07-23;
+  // Justdial confirmed via the client's own screenshot of their claimed,
+  // verified listing on the same date. Do not add a platform here without
+  // a real, checkable number -- Lybrate/1mg/etc. were deliberately left out
+  // because no confirmed review count could be found for them.
+  reviewPlatforms: [
+    {
+      name: "Google",
+      rating: 4.8,
+      count: 195,
+      url: "https://maps.app.goo.gl/jKjAwve7WWSpyM8X8?g_st=aw",
+    },
+    {
+      name: "Practo",
+      rating: 5.0,
+      count: 357,
+      url: "https://www.practo.com/bangalore/clinic/dentalnisaa-kumaraswamy-layout/reviews",
+    },
+    {
+      name: "Justdial",
+      rating: 4.9,
+      count: 579,
+      url: "https://www.justdial.com/Bangalore/Dentalnisaa-Near-Dayanand-Sagar-College-Kumaraswamy-Layout/080PXX80-XX80-100712164554-F1D7_BZDET",
+    },
+  ],
   address: {
     line1: "No. 47, 2nd Main Road, J.H.B.C.S Layout, Subhash Chandra Bose Road, Kadarenahalli, Bendre Nagar",
     line2: "Bengaluru, Karnataka 560070",
