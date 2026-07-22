@@ -28,28 +28,26 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Much lighter scrim than before — just enough to anchor the
-          headline's left edge on mobile, and a soft fade behind it on
-          desktop. The photo itself (boosted brightness/contrast/saturation
-          above) should read bright and true-color everywhere else; text
-          legibility comes from the stroke + shadow on the type itself,
-          not from darkening the whole image. */}
-      <div className="absolute inset-0 bg-ink/18 md:bg-gradient-to-r md:from-ink/50 md:via-ink/14 md:to-transparent" />
+      {/* Centered, layered vignette instead of a left-anchored gradient —
+          supports centered text without needing to darken one whole side
+          of the image. Text legibility comes entirely from the layered
+          shadow on the type itself (tight dark contact shadow + soft wide
+          glow), not from an outline or from covering the photo. */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(33,30,26,0.42),rgba(33,30,26,0.14)_55%,transparent_78%)]" />
       <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/25 to-transparent" />
 
-      <div className="relative z-10 h-full flex items-center md:justify-center px-5 md:px-10 lg:px-16 xl:px-24">
-        <div className="max-w-2xl pt-14 md:pt-16 md:mx-auto md:text-center">
-          <h1 className="text-porcelain [text-shadow:0_4px_24px_rgba(0,0,0,0.55)]">
+      <div className="relative z-10 h-full flex items-center justify-center px-5 md:px-10 lg:px-16 xl:px-24">
+        <div className="max-w-2xl pt-14 md:pt-16 text-center mx-auto flex flex-col items-center">
+          <h1 className="text-porcelain">
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
               style={{
-                WebkitTextStroke: "1.5px #211E1A",
                 textShadow:
-                  "1px 1px 0 #211E1A, -1px -1px 0 #211E1A, 1px -1px 0 #211E1A, -1px 1px 0 #211E1A, 0 10px 30px rgba(0,0,0,0.55)",
+                  "0 2px 4px rgba(0,0,0,0.85), 0 6px 16px rgba(0,0,0,0.6), 0 16px 40px rgba(0,0,0,0.45)",
               }}
-              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75] -ml-1 md:ml-0"
+              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75]"
             >
               Certified,
             </motion.span>
@@ -58,9 +56,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
               style={{
-                WebkitTextStroke: "0.6px #211E1A",
                 textShadow:
-                  "0 1px 0 #211E1A, 0 -1px 0 #211E1A, 1px 0 0 #211E1A, -1px 0 0 #211E1A, 0 6px 20px rgba(0,0,0,0.6)",
+                  "0 2px 4px rgba(0,0,0,0.85), 0 4px 14px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.45)",
               }}
               className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-3"
             >
@@ -72,7 +69,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md md:mx-auto [text-shadow:0_2px_4px_rgba(0,0,0,0.7),0_4px_16px_rgba(0,0,0,0.5)]"
+            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md [text-shadow:0_2px_4px_rgba(0,0,0,0.75),0_4px_16px_rgba(0,0,0,0.5)]"
           >
             {clinic.tagline}.
           </motion.p>
@@ -81,7 +78,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
-            className="mt-9 flex flex-wrap items-center md:justify-center gap-4"
+            className="mt-9 flex flex-wrap items-center justify-center gap-4"
           >
             <Link
               href="/booking"
@@ -101,7 +98,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-            className="mt-12 flex flex-wrap items-center md:justify-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
+            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
           >
             <span className="inline-flex items-center gap-2 font-semibold">
               <GoogleGIcon className="w-4 h-4" />
