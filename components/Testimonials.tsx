@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { testimonials, clinic } from "@/lib/site-data";
 import SignatureMark from "./SignatureMark";
 import { GoogleGIcon } from "./Icon";
@@ -58,14 +59,22 @@ export default function Testimonials() {
               {clinic.rating}★ from {clinic.reviewCount}+ patients.
             </h2>
           </div>
-          <a
-            href={googleReviewsUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="focus-ring text-sm font-semibold text-porcelain/60 hover:text-porcelain underline underline-offset-4"
-          >
+          <div className="flex flex-col items-end gap-2">
+            <Link
+              href="/reviews"
+              className="focus-ring text-sm font-semibold text-gold-light hover:text-porcelain underline underline-offset-4"
+            >
+              See all platforms & reviews →
+            </Link>
+            <a
+              href={googleReviewsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring text-sm font-semibold text-porcelain/60 hover:text-porcelain underline underline-offset-4"
+            >
             See all reviews on Google →
-          </a>
+            </a>
+          </div>
         </div>
 
         <MultiPlatformReviews />
