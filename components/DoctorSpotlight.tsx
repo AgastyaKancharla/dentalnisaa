@@ -1,14 +1,6 @@
 import { doctors, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
-
-// A doctor's initial letter, used as a signature monogram when there's no
-// photo yet -- e.g. "Dr. Neha" -> "N". Deliberately not a generic person
-// icon or gray silhouette; it borrows the same display serif used in the
-// headlines so the empty state still feels art-directed rather than broken.
-function monogram(name: string) {
-  const cleaned = name.replace(/^Dr\.?\s*/i, "").trim();
-  return cleaned.charAt(0).toUpperCase() || "?";
-}
+import DoctorCard from "./DoctorCard";
 
 export default function DoctorSpotlight({ topDivider = true }: { topDivider?: boolean }) {
   return (
@@ -35,42 +27,13 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
               const offset = i % 2 === 1 ? "sm:mt-16" : "";
               const basis = i % 2 === 0 ? "sm:flex-[1.15]" : "sm:flex-[0.85]";
               return (
-                <div key={doctor.name} className={`${basis} ${offset} max-w-md`}>
-                  <div className="relative w-full aspect-[4/5] border border-porcelain/15 overflow-hidden bg-white/[0.02]">
-                    {doctor.photo ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={doctor.photo}
-                        alt={doctor.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <>
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 flex items-center justify-center font-display leading-none text-porcelain/[0.09] select-none"
-                          style={{ fontSize: "min(40vw, 11rem)" }}
-                        >
-                          {monogram(doctor.name)}
-                        </span>
-                        <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-porcelain/30">
-                          Photo coming soon
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <h3 className="font-display text-2xl mt-5">{doctor.name}</h3>
-                  {(doctor.title || doctor.experience) && (
-                    <p className="mt-1 text-sm text-porcelain/60">
-                      {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
-                    </p>
-                  )}
-                  {doctor.bio && (
-                    <p className="mt-3 text-porcelain/75 leading-relaxed text-sm">
-                      {doctor.bio}
-                    </p>
-                  )}
-                </div>
+                <DoctorCard
+                  key={doctor.name}
+                  doctor={doctor}
+                  basis={basis}
+                  offset={offset}
+                  delay={i * 180}
+                />
               );
             })}
           </div>

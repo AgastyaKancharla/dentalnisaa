@@ -5,6 +5,7 @@ import Link from "next/link";
 import { gallerySpaces } from "@/lib/site-data";
 import Reveal from "./Reveal";
 import SectionSeam from "./SectionSeam";
+import GalleryTile from "./GalleryTile";
 
 // Homepage teaser for the full /gallery page — same data, condensed to the
 // spaces that currently have a real photo so the preview never shows an
@@ -39,35 +40,12 @@ export default function ClinicTourPreview() {
 
         <div className="grid sm:grid-cols-3 gap-6">
           {preview.map((space, i) => (
-            <Reveal key={space.name} delay={i * 60}>
-              <button
-                type="button"
-                onClick={() => space.image && setOpenIndex(i)}
-                className="focus-ring group block w-full text-left border border-ink/10 overflow-hidden"
-              >
-                <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20">
-                  {space.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={space.image}
-                      alt={space.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-ink/30 text-xs">
-                      Photo coming soon
-                    </div>
-                  )}
-                </div>
-                <div className="p-5">
-                  <h3 className="font-display text-lg text-ink">{space.name}</h3>
-                  <p className="mt-1.5 text-sm text-ink/55 leading-relaxed line-clamp-2">
-                    {space.description}
-                  </p>
-                </div>
-              </button>
-            </Reveal>
+            <GalleryTile
+              key={space.name}
+              space={space}
+              index={i}
+              onOpen={() => space.image && setOpenIndex(i)}
+            />
           ))}
         </div>
       </div>
