@@ -1,12 +1,10 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-
 export default function ConditionalChrome({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
-  // The booking wizard is a focused, checkout-like flow — a full marketing
-  // footer and the call/WhatsApp/book sticky bar underneath it work against
-  // "extremely simple, under 60 seconds," so both are hidden here only.
-  if (pathname.startsWith("/book")) return null;
+  // Previously hid Footer/StickyCTA on /book (an unfinished, unlinked
+  // booking wizard). That route now permanently redirects to /booking
+  // (see next.config.js), so there's nothing left to special-case here.
+  // Kept as a pass-through wrapper rather than removed from layout.tsx,
+  // in case a future focused/checkout-style flow needs this again.
   return <>{children}</>;
 }
