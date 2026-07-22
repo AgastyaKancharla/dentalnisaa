@@ -40,6 +40,12 @@ export default function TreatmentMedia({ treatment, variant = "card", className 
           }`}
           loading={variant === "hero" ? "eager" : "lazy"}
         />
+        {/* Same disclosure pattern as Hero/Gallery — these are stock photos,
+            not actual photos of this clinic, and the site is consistent
+            about saying so wherever a stock image appears. */}
+        <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
+          Representative photo
+        </span>
       </div>
     );
   }
