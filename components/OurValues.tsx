@@ -6,7 +6,7 @@ const values = [
   { icon: "chat", title: "Transparency", detail: "Clear answers before treatment starts — what we see, what can wait, and why." },
   { icon: "scan", title: "Advanced Technology", detail: "Digital, low-radiation imaging and modern techniques used where they genuinely help." },
   { icon: "shield", title: "Comfort", detail: "A calm, unhurried visit — gentle techniques that put nervous patients and children at ease." },
-  { icon: "align", title: "Ethical Dentistry", detail: "We recommend what you need, explain why, and never treatment you don't." },
+  { icon: "align", title: "Ethical Dentistry", detail: "No commission-driven upselling — treatment decisions are clinical, never a sales target." },
 ];
 
 export default function OurValues() {
@@ -33,6 +33,19 @@ export default function OurValues() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={values.length * 70} className="mt-16 pt-14 border-t border-porcelain/10 max-w-3xl mx-auto text-center">
+          <p className="font-display text-xl md:text-2xl leading-snug">
+            "The best treatment plan is the one that's actually needed —{" "}
+            <span className="italic text-gold-light">
+              we'd rather earn your next visit than pad this one.
+            </span>
+            "
+          </p>
+          <p className="mt-4 text-xs uppercase tracking-wide text-porcelain/40">
+            How every consultation at DentalNisaa starts
+          </p>
+        </Reveal>
       </div>
     </section>
   );

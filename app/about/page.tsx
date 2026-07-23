@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
 import Transparency from "@/components/Transparency";
-import MissionVision from "@/components/MissionVision";
 import TrustStats from "@/components/TrustStats";
 import ClinicTourPreview from "@/components/ClinicTourPreview";
 import OurValues from "@/components/OurValues";
-import PatientPhilosophy from "@/components/PatientPhilosophy";
 import FinalCTA from "@/components/FinalCTA";
 import Reveal from "@/components/Reveal";
 import Breadcrumb from "@/components/Breadcrumb";
@@ -22,19 +20,25 @@ const milestones = [
     year: `${clinic.foundedYear}`,
     title: "Where it started",
     detail:
-      "DentalNisaa Oral Care opens its doors, built on a simple idea: dental care should feel personal, not like a queue number.",
+      "DentalNisaa Oral Care opens its doors in Bengaluru, built to feel like a family clinic first and a business second.",
   },
   {
     year: "Today",
     title: "A new home in Kadarenahalli",
     detail:
-      "A relocated, purpose-built clinic — designed around light, glass, and openness, so patients see the care happening, not just wait for it.",
+      "A relocated, purpose-built clinic — calmer, more modern, and designed around patient comfort from the waiting room in.",
   },
   {
     year: "Ongoing",
     title: "Three generations, one chair",
     detail:
       "Grandparents, parents, and children — many of our patients have trusted the same clinic across their whole family's life.",
+  },
+  {
+    year: "Always",
+    title: "Unhurried, honest care",
+    detail:
+      "Every visit runs on the same idea we started with: explain clearly, treat gently, and only recommend what's actually needed.",
   },
 ];
 
@@ -62,9 +66,9 @@ export default function AboutPage() {
             <p className="mt-6 text-lg text-ink/70 leading-relaxed max-w-xl">
               DentalNisaa Oral Care started with a simple idea: dental care
               should feel like visiting someone who knows you, not a queue
-              number. {clinic.yearsActive} years later, we still treat
-              grandparents and their grandchildren in the same chair — and
-              it shows in how our patients talk about us.
+              number. {clinic.yearsActive} years later, that's still what
+              brings families back — including ones who've been coming
+              since childhood.
             </p>
           </Reveal>
           <Reveal delay={100} className="relative">
@@ -113,9 +117,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* MISSION & VISION */}
-      <MissionVision />
-
       {/* MEET THE DOCTOR */}
       <DoctorSpotlight topDivider={false} />
 
@@ -125,14 +126,11 @@ export default function AboutPage() {
       {/* CLINIC TOUR */}
       <ClinicTourPreview />
 
-      {/* TRANSPARENCY (care philosophy — clear diagnosis, comfort, planning) */}
+      {/* CARE PHILOSOPHY */}
       <Transparency topDivider />
 
-      {/* VALUES */}
+      {/* VALUES (closing quote folded in below the grid) */}
       <OurValues />
-
-      {/* PATIENT FIRST PHILOSOPHY */}
-      <PatientPhilosophy />
 
       {/* FINAL CTA */}
       <FinalCTA />

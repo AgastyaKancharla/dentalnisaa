@@ -17,6 +17,7 @@ import TreatmentFinalCTA from "@/components/TreatmentFinalCTA";
 import FaqAccordion from "@/components/FaqAccordion";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
 import SectionSeam from "@/components/SectionSeam";
+import Breadcrumb from "@/components/Breadcrumb";
 
 type Props = { params: { slug: string } };
 
@@ -87,15 +88,15 @@ export default function TreatmentPage({ params }: Props) {
           <div className="flex items-center px-5 md:pl-10 lg:pl-16 xl:pl-24 md:pr-10 py-14 md:py-20">
             <div className="max-w-lg">
               <Reveal>
-                <nav aria-label="Breadcrumb" className="text-sm text-ink/50 mb-7">
-                  <Link href="/treatments" className="hover:text-ink transition-colors">
-                    Treatments
-                  </Link>
-                  <span className="mx-2">/</span>
-                  <span className="text-ink/70" aria-current="page">
-                    {treatment.name}
-                  </span>
-                </nav>
+                <div className="text-ink/50 mb-7">
+                  <Breadcrumb
+                    items={[
+                      { label: "Home", href: "/" },
+                      { label: "Treatments", href: "/treatments" },
+                      { label: treatment.name },
+                    ]}
+                  />
+                </div>
 
                 <span className="inline-flex items-center gap-3 text-teal-dark mb-5">
                   <Icon name={treatment.icon} className="w-7 h-7" />

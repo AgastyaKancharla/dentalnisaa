@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gallerySpaces } from "@/lib/site-data";
 import Reveal from "./Reveal";
@@ -14,6 +14,29 @@ export default function ClinicTourPreview() {
   const preview = (withPhotos.length ? withPhotos : gallerySpaces).slice(0, 3);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const active = openIndex !== null ? preview[openIndex] : null;
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const lastTriggerRef = useRef<HTMLElement | null>(null);
+
+  // Escape-to-close + body scroll lock while the lightbox is open, and
+  // return focus to whatever tile opened it when it closes.
+  useEffect(() => {
+    if (!active) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenIndex(null);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+      lastTriggerRef.current?.focus();
+    };
+  }, [active]);
 
   return (
     <section className="bg-porcelain relative">
@@ -42,7 +65,11 @@ export default function ClinicTourPreview() {
             <Reveal key={space.name} delay={i * 60}>
               <button
                 type="button"
-                onClick={() => space.image && setOpenIndex(i)}
+                onClick={(e) => {
+                  if (!space.image) return;
+                  lastTriggerRef.current = e.currentTarget;
+                  setOpenIndex(i);
+                }}
                 className="focus-ring group block w-full text-left border border-ink/10 overflow-hidden"
               >
                 <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20">
@@ -81,6 +108,7 @@ export default function ClinicTourPreview() {
           onClick={() => setOpenIndex(null)}
         >
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={() => setOpenIndex(null)}
             className="focus-ring absolute top-6 right-6 text-porcelain/70 hover:text-porcelain text-sm font-semibold"
