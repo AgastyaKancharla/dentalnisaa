@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { clinic } from "@/lib/site-data";
 import { GoogleGIcon } from "./Icon";
@@ -21,10 +22,13 @@ export default function Hero() {
   return (
     <section ref={ref} className="relative -mt-14 md:-mt-16 h-[100dvh] min-h-[560px] overflow-hidden bg-ink">
       <motion.div style={{ y, scale }} className="absolute inset-0">
-        <img
+        <Image
           src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
           alt="Calm, modern dental treatment room at DentalNisaa Oral Care"
-          className="h-full w-full object-cover brightness-110 contrast-105 saturate-125"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover brightness-110 contrast-105 saturate-125"
         />
       </motion.div>
 
@@ -40,7 +44,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="block font-display italic font-semibold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
+              className="block font-display font-bold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
             >
               Specialists,
             </motion.span>

@@ -2,6 +2,15 @@
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  images: {
+    // Lets next/image fetch and optimize this remote photo through
+    // Vercel's own image pipeline (server-side, cached at the edge)
+    // instead of every visitor's browser depending directly on
+    // Unsplash's CDN being reachable on their network.
+    remotePatterns: [
+      { protocol: "https", hostname: "images.unsplash.com" },
+    ],
+  },
   async redirects() {
     return [
       // /book (multi-step wizard) was an unfinished parallel build that
