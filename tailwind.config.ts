@@ -32,6 +32,17 @@ const config: Config = {
           DEFAULT: "#8A6A4E", // brown (secondary accent)
           dark: "#5E4531",
         },
+        // A deeper, more saturated warm beige/tan than porcelain (which is
+        // intentionally pale, for backgrounds). This is beige's turn to
+        // carry real visual weight — used as the solid-fill color for
+        // secondary buttons sitewide, paired next to sage-green primary
+        // buttons, so beige reads as an equally deliberate accent choice
+        // rather than just "the page background."
+        sand: {
+          DEFAULT: "#C9A66B",
+          light: "#DCC495",
+          dark: "#93753F",
+        },
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],

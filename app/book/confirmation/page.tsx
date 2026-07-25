@@ -128,7 +128,7 @@ export default function ConfirmationPage() {
           <button
             type="button"
             onClick={downloadIcs}
-            className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-ink/15 text-ink px-6 py-3.5 font-semibold hover:bg-ink/5 transition-colors min-h-[48px]"
+            className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-sand text-ink px-6 py-3.5 font-semibold hover:bg-sand-light transition-colors min-h-[48px]"
           >
             <Icon name="calendar" className="w-4 h-4" />
             Add to calendar

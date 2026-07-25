@@ -91,7 +91,7 @@ export default function ContactPage() {
               </a>
               <Link
                 href="/booking"
-                className="focus-ring inline-flex items-center rounded-full border border-ink/20 text-ink px-6 py-3 text-sm font-semibold hover:bg-ink/5 transition-colors"
+                className="focus-ring inline-flex items-center rounded-full bg-sand text-ink px-6 py-3 text-sm font-semibold hover:bg-sand-light transition-colors"
               >
                 Book a visit
               </Link>

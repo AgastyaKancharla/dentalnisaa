@@ -28,12 +28,10 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Light bottom-anchored gradient only — enough for legibility at the
-          text baseline without darkening the rest of the photo. No center
-          vignette, no heavy text-shadow stack; the previous version darkened
-          the whole frame and stacked multiple heavy black shadows on every
-          line of text, which read as dull/muddy rather than bright. */}
-      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/55 via-ink/15 to-transparent" />
+      {/* No dark overlay of any kind — the photo stays fully bright. Text
+          legibility now comes entirely from weight and scale (bold/black
+          weights, larger sizes) rather than darkening the image or
+          shadowing the type. */}
 
       <div className="relative z-10 h-full flex items-end md:items-center justify-center px-5 md:px-10 lg:px-16 xl:px-24 pb-16 md:pb-0">
         <div className="max-w-2xl pt-14 md:pt-16 text-center mx-auto flex flex-col items-center">
@@ -42,17 +40,15 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
-              className="block font-display italic text-gold-light text-4xl md:text-6xl leading-tight"
+              className="block font-display italic font-semibold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
             >
-              Certified,
+              Specialists,
             </motion.span>
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
-              className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-2"
+              className="block font-display font-bold uppercase tracking-wide text-3xl md:text-5xl leading-snug mt-2 [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
             >
               implants, cosmetic &amp; family dentistry under one roof
             </motion.span>
@@ -62,8 +58,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
-            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md"
+            className="mt-7 text-porcelain font-semibold text-xl leading-relaxed max-w-md [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
           >
             {clinic.tagline}.
           </motion.p>
@@ -82,7 +77,7 @@ export default function Hero() {
             </Link>
             <a
               href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-              className="focus-ring inline-flex items-center gap-2 rounded-full border-2 border-porcelain/70 bg-ink/10 backdrop-blur-sm text-porcelain px-7 py-3.5 font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:bg-porcelain/15 transition-colors"
+              className="focus-ring inline-flex items-center gap-2 rounded-full bg-sand text-ink px-7 py-3.5 font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:bg-sand-light transition-colors"
             >
               Call Clinic
             </a>
@@ -92,7 +87,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-porcelain/90 text-sm [text-shadow:0_2px_10px_rgba(0,0,0,0.55)]"
+            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-porcelain font-semibold text-sm [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
           >
             <span className="inline-flex items-center gap-2 font-semibold">
               <GoogleGIcon className="w-4 h-4" />

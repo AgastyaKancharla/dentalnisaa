@@ -22,7 +22,7 @@ export default function FinalCTA() {
           </Link>
           <a
             href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-            className="focus-ring inline-flex items-center rounded-full border border-ink/20 text-ink px-7 py-3.5 font-semibold hover:bg-ink/5 transition-colors"
+            className="focus-ring inline-flex items-center rounded-full bg-sand text-ink px-7 py-3.5 font-semibold hover:bg-sand-light transition-colors"
           >
             Call the clinic
           </a>

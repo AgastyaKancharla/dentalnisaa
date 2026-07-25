@@ -119,7 +119,7 @@ export default function BlogPostPage({ params }: Props) {
                 href={`https://wa.me/${clinic.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center rounded-full border border-ink/20 text-ink px-6 py-3 text-sm font-semibold hover:bg-ink/5 transition-colors"
+                className="focus-ring inline-flex items-center rounded-full bg-sand text-ink px-6 py-3 text-sm font-semibold hover:bg-sand-light transition-colors"
               >
                 Ask on WhatsApp
               </a>

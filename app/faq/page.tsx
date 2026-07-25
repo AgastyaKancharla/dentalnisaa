@@ -66,7 +66,7 @@ export default function FaqPage() {
               </a>
               <Link
                 href="/contact"
-                className="focus-ring inline-flex items-center rounded-full border border-ink/20 text-ink px-6 py-3 text-sm font-semibold hover:bg-ink/5 transition-colors"
+                className="focus-ring inline-flex items-center rounded-full bg-sand text-ink px-6 py-3 text-sm font-semibold hover:bg-sand-light transition-colors"
               >
                 Contact us
               </Link>
