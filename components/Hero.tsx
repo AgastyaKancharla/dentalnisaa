@@ -28,26 +28,22 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* Centered, layered vignette instead of a left-anchored gradient —
-          supports centered text without needing to darken one whole side
-          of the image. Text legibility comes entirely from the layered
-          shadow on the type itself (tight dark contact shadow + soft wide
-          glow), not from an outline or from covering the photo. */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(33,30,26,0.42),rgba(33,30,26,0.14)_55%,transparent_78%)]" />
-      <div className="absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-ink/25 to-transparent" />
+      {/* Light bottom-anchored gradient only — enough for legibility at the
+          text baseline without darkening the rest of the photo. No center
+          vignette, no heavy text-shadow stack; the previous version darkened
+          the whole frame and stacked multiple heavy black shadows on every
+          line of text, which read as dull/muddy rather than bright. */}
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/55 via-ink/15 to-transparent" />
 
-      <div className="relative z-10 h-full flex items-center justify-center px-5 md:px-10 lg:px-16 xl:px-24">
+      <div className="relative z-10 h-full flex items-end md:items-center justify-center px-5 md:px-10 lg:px-16 xl:px-24 pb-16 md:pb-0">
         <div className="max-w-2xl pt-14 md:pt-16 text-center mx-auto flex flex-col items-center">
           <h1 className="text-porcelain">
             <motion.span
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              style={{
-                textShadow:
-                  "0 2px 4px rgba(0,0,0,0.85), 0 6px 16px rgba(0,0,0,0.6), 0 16px 40px rgba(0,0,0,0.45)",
-              }}
-              className="block font-script text-gold-light text-[5.5rem] md:text-[8.5rem] leading-[0.75]"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
+              className="block font-display italic text-gold-light text-4xl md:text-6xl leading-tight"
             >
               Certified,
             </motion.span>
@@ -55,11 +51,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-              style={{
-                textShadow:
-                  "0 2px 4px rgba(0,0,0,0.85), 0 4px 14px rgba(0,0,0,0.6), 0 10px 30px rgba(0,0,0,0.45)",
-              }}
-              className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-3"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
+              className="block font-display font-semibold uppercase tracking-wide text-2xl md:text-4xl leading-snug mt-2"
             >
               implants, cosmetic &amp; family dentistry under one roof
             </motion.span>
@@ -69,7 +62,8 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md [text-shadow:0_2px_4px_rgba(0,0,0,0.75),0_4px_16px_rgba(0,0,0,0.5)]"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.45)" }}
+            className="mt-7 text-porcelain/90 text-lg leading-relaxed max-w-md"
           >
             {clinic.tagline}.
           </motion.p>

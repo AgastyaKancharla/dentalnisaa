@@ -53,7 +53,9 @@ export default function Header() {
               width={970}
               height={509}
               className={`h-full w-auto object-contain transition-all duration-300 ${
-                transparent ? "drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]" : ""
+                transparent
+                  ? "[filter:drop-shadow(0_1.5px_0_rgba(0,0,0,0.9))_drop-shadow(0_-1.5px_0_rgba(0,0,0,0.9))_drop-shadow(1.5px_0_0_rgba(0,0,0,0.9))_drop-shadow(-1.5px_0_0_rgba(0,0,0,0.9))_drop-shadow(1px_1px_0_rgba(0,0,0,0.9))_drop-shadow(-1px_1px_0_rgba(0,0,0,0.9))_drop-shadow(1px_-1px_0_rgba(0,0,0,0.9))_drop-shadow(-1px_-1px_0_rgba(0,0,0,0.9))_drop-shadow(0_2px_10px_rgba(0,0,0,0.5))]"
+                  : ""
               }`}
               priority
             />
