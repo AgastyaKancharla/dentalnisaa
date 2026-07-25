@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -10,53 +9,27 @@ import FullScreenMenu from "./FullScreenMenu";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === "/";
-  const transparent = isHome && !scrolled && !open;
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
 
   return (
     <>
+      {/* Plain, always-solid strip — logo left, Book Appointment (desktop)
+          + hamburger right. No transparent-over-hero state: that required
+          an outline hack on the logo to stay visible against photos, which
+          looked worse than just having a normal solid header bar. */}
       <motion.header
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-          transparent
-            ? "bg-transparent border-b border-transparent"
-            : "bg-porcelain/95 backdrop-blur border-b border-ink/10 shadow-sm"
-        }`}
+        className="fixed top-0 inset-x-0 z-50 bg-porcelain/95 backdrop-blur border-b border-ink/10 shadow-sm"
       >
-        <div
-          className={`px-5 md:px-10 lg:px-16 xl:px-24 flex items-center justify-between transition-all duration-300 ${
-            transparent ? "h-24 md:h-28" : "h-16 md:h-20"
-          }`}
-        >
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 h-16 md:h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center h-full py-1 md:py-1.5" onClick={() => setOpen(false)}>
             <Image
               src="/logo-header.png"
               alt={clinic.name}
               width={970}
               height={509}
-              className={`h-full w-auto object-contain transition-all duration-300 ${
-                transparent
-                  ? "[filter:drop-shadow(0_1.5px_0_rgba(0,0,0,0.9))_drop-shadow(0_-1.5px_0_rgba(0,0,0,0.9))_drop-shadow(1.5px_0_0_rgba(0,0,0,0.9))_drop-shadow(-1.5px_0_0_rgba(0,0,0,0.9))_drop-shadow(1px_1px_0_rgba(0,0,0,0.9))_drop-shadow(-1px_1px_0_rgba(0,0,0,0.9))_drop-shadow(1px_-1px_0_rgba(0,0,0,0.9))_drop-shadow(-1px_-1px_0_rgba(0,0,0,0.9))_drop-shadow(0_2px_10px_rgba(0,0,0,0.5))]"
-                  : ""
-              }`}
+              className="h-full w-auto object-contain"
               priority
             />
           </Link>
@@ -64,11 +37,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             <Link
               href="/booking"
-              className={`focus-ring hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold transition-colors ${
-                transparent
-                  ? "bg-porcelain/95 text-ink hover:bg-porcelain"
-                  : "bg-ink text-porcelain hover:bg-teal-dark"
-              }`}
+              className="focus-ring hidden md:inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-teal-dark transition-colors"
             >
               Book Appointment
             </Link>
@@ -78,11 +47,7 @@ export default function Header() {
               onClick={() => setOpen(true)}
               aria-label="Open menu"
               aria-expanded={open}
-              className={`focus-ring inline-flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full border transition-colors ${
-                transparent
-                  ? "bg-ink border-porcelain/20 text-porcelain hover:bg-ink/85"
-                  : "border-ink/15 text-ink hover:bg-ink/5"
-              }`}
+              className="focus-ring inline-flex items-center justify-center w-10 h-10 md:w-11 md:h-11 rounded-full border border-ink/15 text-ink hover:bg-ink/5 transition-colors"
             >
               <span className="sr-only">Menu</span>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
