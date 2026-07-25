@@ -1,20 +1,33 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import type { Treatment } from "@/lib/site-data";
 import Icon from "./Icon";
 import TreatmentMedia from "./TreatmentMedia";
 
-const VISIBLE_SIDE = 2; // cards shown on each side of the active one (5 total on screen)
-const ANGLE_STEP = 26; // degrees between adjacent cards around the arc
-const RADIUS_X = 260; // horizontal spread, px
-const RADIUS_Y = 64; // how much the arc curves upward at its ends, px
-
 export default function TreatmentDeck({ treatments }: { treatments: Treatment[] }) {
   const [active, setActive] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const count = treatments.length;
+
+  // The arc's geometry was tuned for desktop-width viewports (260px radius).
+  // Left as fixed constants, the two outermost peeking cards land far past
+  // a narrow phone's edge and get clipped by the section's overflow-hidden
+  // — the arc effectively disappears rather than looking clipped-on-purpose.
+  // Scale the whole geometry down on narrow viewports instead.
+  const [isNarrow, setIsNarrow] = useState(false);
+  useEffect(() => {
+    const check = () => setIsNarrow(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  const VISIBLE_SIDE = isNarrow ? 1 : 2; // cards shown on each side of the active one
+  const ANGLE_STEP = isNarrow ? 22 : 26; // degrees between adjacent cards around the arc
+  const RADIUS_X = isNarrow ? 118 : 260; // horizontal spread, px
+  const RADIUS_Y = isNarrow ? 28 : 64; // how much the arc curves upward at its ends, px
 
   const go = (delta: number) => {
     setActive((prev) => (prev + delta + count) % count);

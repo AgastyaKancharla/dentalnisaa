@@ -32,7 +32,7 @@ export default function StepPatientDetails() {
   };
 
   const inputClass = (hasError: boolean) =>
-    `focus-ring w-full rounded-lg border bg-white/70 px-4 py-3 text-sm min-h-[48px] ${
+    `focus-ring w-full rounded-lg border bg-white/70 px-4 py-3 text-base min-h-[48px] ${
       hasError ? "border-red-400" : "border-ink/15"
     }`;
 

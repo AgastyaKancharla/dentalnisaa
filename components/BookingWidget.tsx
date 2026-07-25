@@ -204,7 +204,7 @@ export default function BookingWidget({ initialTreatment }: { initialTreatment?:
             placeholder="Full name"
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-sm"
+            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-base"
           />
           <input
             required
@@ -212,12 +212,12 @@ export default function BookingWidget({ initialTreatment }: { initialTreatment?:
             placeholder="Phone number"
             value={form.phone}
             onChange={(e) => setForm({ ...form, phone: e.target.value })}
-            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-sm"
+            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-base"
           />
           <select
             value={form.treatment}
             onChange={(e) => setForm({ ...form, treatment: e.target.value })}
-            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-sm sm:col-span-2"
+            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-base sm:col-span-2"
           >
             {treatments.map((t) => (
               <option key={t.id} value={t.id}>
@@ -230,14 +230,14 @@ export default function BookingWidget({ initialTreatment }: { initialTreatment?:
             placeholder="Email (optional)"
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-sm sm:col-span-2"
+            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-base sm:col-span-2"
           />
           <textarea
             placeholder="Notes for the clinic (optional)"
             value={form.notes}
             onChange={(e) => setForm({ ...form, notes: e.target.value })}
             rows={3}
-            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-sm sm:col-span-2"
+            className="focus-ring rounded-lg border border-ink/15 bg-white/70 px-4 py-3 text-base sm:col-span-2"
           />
         </div>
       </div>
