@@ -44,7 +44,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="block font-display font-bold text-sand-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
+              className="block font-display font-bold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
             >
               Specialists,
             </motion.span>
@@ -81,7 +81,7 @@ export default function Hero() {
             </Link>
             <a
               href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-              className="focus-ring inline-flex items-center gap-2 rounded-full bg-sand text-ink px-7 py-3.5 font-semibold shadow-[0_8px_24px_rgba(0,0,0,0.2)] hover:bg-sand-light transition-colors"
+              className="focus-ring inline-flex items-center gap-2 rounded-full border-2 border-porcelain/70 text-porcelain px-7 py-3.5 font-semibold hover:bg-porcelain/10 transition-colors"
             >
               Call Clinic
             </a>
