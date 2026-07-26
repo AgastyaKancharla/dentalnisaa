@@ -44,8 +44,18 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="block font-display font-bold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
+              className="relative inline-block font-display font-bold text-gold-light text-5xl md:text-7xl leading-tight [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]"
             >
+              {/* Soft glow behind the title only — absolutely positioned,
+                  so it adds zero layout impact anywhere else on the page. */}
+              <span
+                className="absolute inset-0 -z-10 blur-2xl opacity-60"
+                style={{
+                  background:
+                    "radial-gradient(60% 80% at 50% 50%, rgba(124,148,131,0.55), transparent 70%)",
+                }}
+                aria-hidden
+              />
               Specialists,
             </motion.span>
             <motion.span
