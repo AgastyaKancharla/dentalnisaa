@@ -60,6 +60,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#211E1A",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 // JSON-LD structured data — helps Google understand this as a real dental

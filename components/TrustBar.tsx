@@ -8,12 +8,12 @@ import AnimatedCounter from "./AnimatedCounter";
 // no invented rating graphic, just a visual read of the real number.
 function Stars({ rating }: { rating: number }) {
   return (
-    <span className="inline-flex gap-0.5 text-gold-light" aria-hidden>
+    <span className="inline-flex gap-0.5 text-sage" aria-hidden>
       {Array.from({ length: 5 }).map((_, i) => {
         const fill = Math.max(0, Math.min(1, rating - i));
         return (
           <span key={i} className="relative inline-block w-4 h-4">
-            <span className="absolute inset-0 text-porcelain/20">★</span>
+            <span className="absolute inset-0 text-ink/15">★</span>
             <span
               className="absolute inset-0 overflow-hidden"
               style={{ width: `${fill * 100}%` }}
@@ -56,7 +56,7 @@ export default function TrustBar() {
       ref={ref}
       onMouseMove={handleMove}
       onMouseLeave={handleLeave}
-      className="bg-ink text-porcelain overflow-hidden"
+      className="bg-beige-deep text-ink overflow-hidden"
     >
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-10 md:gap-y-8">
         {/* Dominant: the real Google rating, largest element in the mural */}
@@ -70,11 +70,11 @@ export default function TrustBar() {
           }}
         >
           <Stars rating={clinic.rating} />
-          <p className="font-display leading-[0.9] text-[4.5rem] sm:text-[6rem] md:text-[8rem] mt-2">
+          <p className="font-display leading-[0.9] text-[4.5rem] sm:text-[6rem] md:text-[8rem] mt-2 text-sage">
             <AnimatedCounter value={clinic.rating} decimals={1} />
-            <span className="text-gold-light">★</span>
+            <span>★</span>
           </p>
-          <p className="mt-3 text-xs md:text-sm uppercase tracking-widest text-porcelain/40">
+          <p className="mt-3 text-xs md:text-sm uppercase tracking-widest text-ink/45">
             {trustPoints[1].detail}
           </p>
         </div>
@@ -89,10 +89,10 @@ export default function TrustBar() {
             transition: "transform 0.25s ease-out",
           }}
         >
-          <p className="font-display text-3xl sm:text-4xl md:text-5xl">
+          <p className="font-display text-3xl sm:text-4xl md:text-5xl text-ink">
             <AnimatedCounter value={clinic.yearsActive} suffix="+ years" />
           </p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-porcelain/40">
+          <p className="mt-1 text-xs uppercase tracking-wide text-ink/45">
             {trustPoints[0].detail}
           </p>
         </div>
@@ -107,18 +107,18 @@ export default function TrustBar() {
             transition: "transform 0.25s ease-out",
           }}
         >
-          <p className="font-display text-2xl sm:text-3xl md:text-4xl italic text-gold-light">
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl italic text-sage-deep">
             {trustPoints[2].label}
           </p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-porcelain/40 max-w-xs">
+          <p className="mt-1 text-xs uppercase tracking-wide text-ink/45 max-w-xs">
             {trustPoints[2].detail}
           </p>
         </div>
 
         {/* Multi-generational — full-width footer line, ties the mural down */}
-        <div className="md:col-span-12 pt-6 border-t border-porcelain/10 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="font-display text-xl md:text-2xl">{trustPoints[3].label}</p>
-          <p className="text-xs uppercase tracking-wide text-porcelain/40">
+        <div className="md:col-span-12 pt-6 border-t border-ink/10 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="font-display text-xl md:text-2xl text-ink">{trustPoints[3].label}</p>
+          <p className="text-xs uppercase tracking-wide text-ink/45">
             {trustPoints[3].detail}
           </p>
         </div>

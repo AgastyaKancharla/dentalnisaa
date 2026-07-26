@@ -4,7 +4,10 @@ import Icon from "./Icon";
 
 export default function StickyCTA() {
   return (
-    <div className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-porcelain border-t border-ink/10 shadow-[0_-8px_24px_rgba(33,30,26,0.12)]">
+    <div
+      className="fixed bottom-0 inset-x-0 z-50 md:hidden bg-porcelain border-t border-ink/10 shadow-[0_-8px_24px_rgba(33,30,26,0.12)]"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
       <div className="grid grid-cols-4 text-ink text-sm font-semibold">
         <a
           href={`tel:${clinic.phone.replace(/\s/g, "")}`}

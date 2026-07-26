@@ -48,7 +48,7 @@ export default function StepTreatment() {
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search treatments…"
           aria-label="Search treatments"
-          className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 pl-11 pr-4 py-3.5 text-sm"
+          className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 pl-11 pr-4 py-3.5 text-base"
         />
       </div>
 

@@ -9,7 +9,7 @@ import Magnetic from "./Magnetic";
 
 export default function Footer() {
   return (
-    <footer className="bg-ink text-porcelain/90 pb-16 md:pb-0 relative overflow-hidden">
+    <footer className="bg-ink text-porcelain/90 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 relative overflow-hidden">
       {/* Wave divider — curves the page's porcelain background into the
           footer's dark ink, instead of a flat hard edge between them. */}
       <div className="absolute -top-px left-0 right-0 -translate-y-full leading-[0] overflow-hidden">

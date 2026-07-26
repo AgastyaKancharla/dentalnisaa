@@ -47,7 +47,7 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search treatments — e.g. implants, braces, whitening"
-              className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 py-3 pl-11 pr-5 text-sm text-ink placeholder:text-ink/40"
+              className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 py-3 pl-11 pr-5 text-base text-ink placeholder:text-ink/40"
             />
           </div>
         </Reveal>
