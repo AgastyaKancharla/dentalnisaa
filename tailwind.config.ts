@@ -43,6 +43,18 @@ const config: Config = {
           light: "#DCC495",
           dark: "#93753F",
         },
+        // Added for the TrustBar / Transparency re-theme: these two sections
+        // were dark (bg-ink), which read as a jarring flip against the
+        // beige/cream base everywhere else. Converted to warm beige with
+        // sage accents instead, per exact hex values agreed on.
+        beige: {
+          deep: "#F4EFE6", // section background, warmer/deeper than porcelain
+        },
+        sage: {
+          DEFAULT: "#8CA68A", // accent — stars, numerals, dividers
+          pale: "#DCE3D8", // card fills
+          deep: "#5C6B5A", // body text on beige needing more contrast, hovers
+        },
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],

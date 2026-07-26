@@ -26,20 +26,20 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
   const [active, setActive] = useState(0);
 
   return (
-    <section className="bg-ink text-porcelain relative">
-      {topDivider && <SectionSeam tone="dark" />}
+    <section className="bg-beige-deep text-ink relative">
+      {topDivider && <SectionSeam tone="light" />}
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-10">
         <div className="relative">
-          <SignatureMark className="w-20 h-20 text-gold-dark absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
-          <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
+          <SignatureMark className="w-20 h-20 text-sage absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
+          <p className="text-sm font-semibold text-sage-deep uppercase tracking-wide mb-3">
             Our care philosophy
           </p>
-          <h2 className="font-display text-4xl md:text-5xl leading-[1.05]">
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-ink">
             Clear advice.
             <br />
             Calmer visits.
           </h2>
-          <p className="mt-6 text-porcelain/60 leading-relaxed max-w-sm">
+          <p className="mt-6 text-ink/65 leading-relaxed max-w-sm">
             Dental care feels easier when you understand the plan, the reason,
             and the next step before treatment begins.
           </p>
@@ -67,24 +67,24 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
                 onClick={() => setActive(i)}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className={`focus-ring group text-left border border-porcelain/10 transition-all duration-500 ease-out overflow-hidden ${
+                className={`focus-ring group text-left border transition-all duration-500 ease-out overflow-hidden ${
                   isActive
-                    ? "md:flex-[3] bg-white/[0.04]"
-                    : "md:flex-[1] bg-transparent hover:bg-white/[0.03]"
+                    ? "md:flex-[3] bg-sage-pale/60 border-sage/40"
+                    : "md:flex-[1] bg-transparent border-ink/10 hover:bg-sage-pale/30"
                 }`}
               >
                 <div className="h-full flex md:flex-col p-6 md:p-7 gap-4">
                   {/* Collapsed state: number + vertical label (desktop only) */}
                   <div
                     className={`flex md:flex-col items-center md:items-start gap-3 shrink-0 transition-opacity duration-300 ${
-                      isActive ? "md:opacity-40" : "opacity-100"
+                      isActive ? "md:opacity-60" : "opacity-100"
                     }`}
                   >
-                    <span className="font-display text-lg text-gold-light/70">
+                    <span className="font-display text-lg text-sage-deep">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3
-                      className={`font-display text-lg md:text-xl whitespace-nowrap ${
+                      className={`font-display text-lg md:text-xl whitespace-nowrap text-ink ${
                         !isActive ? "md:[writing-mode:vertical-rl] md:rotate-180" : ""
                       }`}
                     >
@@ -103,7 +103,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
                         : "opacity-0 hidden md:block md:pointer-events-none"
                     }`}
                   >
-                    <p className="text-porcelain/60 leading-relaxed text-sm max-w-xs mt-1 md:mt-8">
+                    <p className="text-ink/65 leading-relaxed text-sm max-w-xs mt-1 md:mt-8">
                       {p.detail}
                     </p>
                   </div>
@@ -113,7 +113,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
           })}
         </div>
       </div>
-      <SectionSeam tone="dark" />
+      <SectionSeam tone="light" />
     </section>
   );
 }
