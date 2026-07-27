@@ -37,13 +37,15 @@ function getSlotsForDay(): string[] {
     const hour12 = h % 12 === 0 ? 12 : h % 12;
     slots.push(`${hour12}:${m === 0 ? "00" : m} ${period}`);
   };
-  // 10am–2pm
-  for (let h = 10; h < 14; h++) {
+  // Morning session: 10:30 am – 2 pm (matches clinic.hours exactly)
+  push(10, 30);
+  for (let h = 11; h < 14; h++) {
     push(h, 0);
     push(h, 30);
   }
-  // 4pm–8pm
-  for (let h = 16; h < 20; h++) {
+  // Evening session: 4:30 – 8 pm
+  push(16, 30);
+  for (let h = 17; h < 20; h++) {
     push(h, 0);
     push(h, 30);
   }

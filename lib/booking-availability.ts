@@ -40,7 +40,7 @@ export function getUpcomingDays(count = 21): DayInfo[] {
 }
 
 /**
- * Slots across the clinic's actual published hours (10am-2pm, 4pm-8pm).
+ * Slots across the clinic's actual published hours (10:30am-2pm, 4:30pm-8pm).
  * `booked` is a deterministic pseudo-random mock — same approach as the
  * existing BookingWidget — so the flow demos realistically without a real
  * scheduling backend. Replace with a live availability check once
@@ -59,10 +59,12 @@ export function getSlotsForDay(dayIso: string, doctorName: string): TimeSlot[] {
     slots.push({ time, period, booked: hash % 5 === 0 });
   };
 
-  for (let h = 10; h < 12; h++) { push(h, 0, "Morning"); push(h, 30, "Morning"); }
+  push(10, 30, "Morning");
+  for (let h = 11; h < 12; h++) { push(h, 0, "Morning"); push(h, 30, "Morning"); }
   push(12, 0, "Morning"); push(12, 30, "Morning");
   for (let h = 13; h < 14; h++) { push(h, 0, "Afternoon"); push(h, 30, "Afternoon"); }
-  for (let h = 16; h < 18; h++) { push(h, 0, "Afternoon"); push(h, 30, "Afternoon"); }
+  push(16, 30, "Afternoon");
+  for (let h = 17; h < 18; h++) { push(h, 0, "Afternoon"); push(h, 30, "Afternoon"); }
   for (let h = 18; h < 20; h++) { push(h, 0, "Evening"); push(h, 30, "Evening"); }
 
   return slots;

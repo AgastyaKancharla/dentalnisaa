@@ -6,7 +6,9 @@ import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 import ConditionalChrome from "@/components/ConditionalChrome";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { clinic } from "@/lib/site-data";
+import { parseSlots, formatMinutesAsIsoTime } from "@/lib/clinic-status";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -92,12 +94,14 @@ function DentistSchema() {
     },
     openingHoursSpecification: clinic.hours
       .filter((h) => h.slots !== "Closed")
-      .map((h) => ({
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: h.day,
-        opens: "10:00",
-        closes: "20:00",
-      })),
+      .flatMap((h) =>
+        parseSlots(h.slots).map((range) => ({
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: h.day,
+          opens: formatMinutesAsIsoTime(range.start),
+          closes: formatMinutesAsIsoTime(range.end),
+        }))
+      ),
   };
 
   return (
@@ -132,6 +136,7 @@ export default function RootLayout({
           <StickyCTA />
         </ConditionalChrome>
         <AccessibilityWidget />
+        <GoogleAnalytics />
       </body>
     </html>
   );
