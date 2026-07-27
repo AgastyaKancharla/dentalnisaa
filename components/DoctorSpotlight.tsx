@@ -70,6 +70,11 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       {doctor.bio}
                     </p>
                   )}
+                  {doctor.quote && (
+                    <p className="mt-4 font-display italic text-gold-dark text-lg leading-snug">
+                      "{doctor.quote}"
+                    </p>
+                  )}
                 </div>
               );
             })}

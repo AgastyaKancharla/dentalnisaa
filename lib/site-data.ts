@@ -44,16 +44,18 @@ export type Doctor = {
   title: string;
   experience: string;
   bio: string;
+  quote?: string;
   photo: string | null;
 };
 
 export const doctors: Doctor[] = [
   {
-    name: "Dr. Neha",
-    title: "", // ⟦PLACEHOLDER⟧ e.g. BDS, MDS (specialization)
-    experience: "", // ⟦PLACEHOLDER⟧ years of experience
-    bio: "", // ⟦PLACEHOLDER⟧ in the doctor's own words
-    photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
+    name: "Dr. Neha Kulsum",
+    title: "Proprietor · Root Canal Specialist & Cosmetic Dentist",
+    experience: "12+ years experience",
+    bio: "Dr. Neha specialises in painless root canal treatments, smile designing, and cosmetic and restorative dentistry, with a strong emphasis on precision, comfort, and minimally invasive care. She takes the time to understand each patient's individual needs and builds a treatment plan around both oral health and confidence, integrating modern dental technology with evidence-based practice at every step.",
+    quote: "Your smile is our priority, and your trust is our greatest achievement.",
+    photo: "/doctor-neha.jpg",
   },
   {
     name: "Dr. Madhu",
