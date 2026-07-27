@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { clinic } from "@/lib/site-data";
 import Icon from "./Icon";
@@ -71,13 +70,9 @@ export default function Footer() {
             the old layout. */}
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-14 pt-12 pb-10">
           <div>
-            <Image
-              src="/logo-header.png"
-              alt={clinic.name}
-              width={970}
-              height={509}
-              className="h-14 md:h-16 w-auto"
-            />
+            <span className="font-display text-3xl md:text-4xl text-porcelain">
+              Dental<span className="italic text-gold-light">Nisaa</span>
+            </span>
             <p className="text-sm text-porcelain/55 max-w-xs mt-5">
               {clinic.tagline}.
             </p>
