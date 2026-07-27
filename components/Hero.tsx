@@ -20,7 +20,7 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   return (
-    <section ref={ref} className="relative -mt-14 md:-mt-16 h-[100dvh] min-h-[560px] overflow-hidden bg-ink">
+    <section ref={ref} className="relative -mt-14 md:-mt-16 min-h-[100dvh] overflow-hidden bg-ink">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
@@ -32,100 +32,63 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* No dark overlay of any kind — the photo stays fully bright. Text
-          legibility now comes entirely from weight and scale (bold/black
-          weights, larger sizes) rather than darkening the image or
-          shadowing the type. */}
+      {/* No overlay on the photo itself — it stays fully bright everywhere.
+          Legibility is solved structurally instead: the text sits inside a
+          genuine frosted-glass panel (translucent porcelain + blur), not
+          floating directly on the image. This guarantees contrast no
+          matter how bright or busy the photo is, without darkening
+          anything or relying on drop-shadows. */}
 
-      <div className="relative z-10 h-full flex items-end md:items-center justify-center px-5 md:px-10 lg:px-16 xl:px-24 pb-16 md:pb-0">
-        <div className="relative max-w-2xl pt-14 md:pt-16 text-center mx-auto flex flex-col items-center">
-          {/* One shared highlight glow behind the whole text stack (title
-              through tagline) — warm porcelain + sage tint, no black
-              anywhere. Absolutely positioned, so it adds zero layout
-              impact on the text or anything else in the hero. */}
-          <span
-            className="absolute -inset-x-6 -top-4 bottom-20 -z-10 blur-3xl"
-            style={{
-              background:
-                "radial-gradient(65% 75% at 50% 35%, rgba(250,246,238,0.35), rgba(124,148,131,0.28) 55%, transparent 78%)",
-            }}
-            aria-hidden
-          />
+      <div className="relative z-10 min-h-[100dvh] flex items-end md:items-center px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pt-28 pb-10 md:py-24">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+          className="w-full md:max-w-xl rounded-3xl border border-porcelain/60 bg-porcelain/80 backdrop-blur-xl shadow-[0_30px_80px_-20px_rgba(33,30,26,0.35)] px-6 py-8 sm:px-9 sm:py-10 md:px-10 md:py-11"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-dark mb-4">
+            Kadarenahalli, Bengaluru — Since {clinic.foundedYear}
+          </p>
 
-          <h1 className="text-porcelain">
-            <motion.span
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
-              className="relative inline-block font-display font-bold text-gold-light text-5xl md:text-7xl leading-tight"
-            >
-              {/* Extra, tighter glow right behind the title specifically,
-                  on top of the shared one above — still no black. */}
-              <span
-                className="absolute inset-0 -z-10 blur-2xl opacity-70"
-                style={{
-                  background:
-                    "radial-gradient(60% 80% at 50% 50%, rgba(124,148,131,0.6), transparent 70%)",
-                }}
-                aria-hidden
-              />
+          <h1 className="text-ink">
+            <span className="block font-display font-bold text-gold-dark text-4xl sm:text-5xl md:text-6xl leading-tight">
               Specialists,
-            </motion.span>
-            <motion.span
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.35, ease: "easeOut" }}
-              className="block font-display font-bold uppercase tracking-wide text-3xl md:text-5xl leading-snug mt-2"
-            >
+            </span>
+            <span className="block font-display font-bold uppercase tracking-wide text-xl sm:text-2xl md:text-3xl leading-snug mt-1.5">
               implants, cosmetic &amp; family dentistry under one roof
-            </motion.span>
+            </span>
           </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.56, ease: "easeOut" }}
-            className="mt-7 text-porcelain font-semibold text-xl leading-relaxed max-w-md"
-          >
+          <p className="mt-5 text-ink/70 font-medium text-base sm:text-lg leading-relaxed">
             {clinic.tagline}.
-          </motion.p>
+          </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.7, ease: "easeOut" }}
-            className="mt-9 flex flex-wrap items-center justify-center gap-4"
-          >
+          <div className="mt-7 flex flex-wrap items-center gap-3.5">
             <Link
               href="/booking"
-              className="focus-ring inline-flex items-center rounded-full bg-gold text-ink px-7 py-3.5 font-semibold shadow-[0_18px_45px_rgba(0,0,0,0.25)] hover:bg-gold-light transition-colors"
+              className="focus-ring inline-flex items-center rounded-full bg-gold text-ink px-6 py-3.5 font-semibold hover:bg-gold-light transition-colors"
             >
               Book Appointment
             </Link>
             <a
               href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-              className="focus-ring inline-flex items-center gap-2 rounded-full border-2 border-porcelain/70 text-porcelain px-7 py-3.5 font-semibold hover:bg-porcelain/10 transition-colors"
+              className="focus-ring inline-flex items-center gap-2 rounded-full border-2 border-ink/20 text-ink px-6 py-3.5 font-semibold hover:bg-ink/5 transition-colors"
             >
               Call Clinic
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.7, delay: 0.9, ease: "easeOut" }}
-            className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-porcelain font-semibold text-sm"
-          >
+          <div className="mt-8 pt-6 border-t border-ink/10 flex flex-wrap items-center gap-x-6 gap-y-2 text-ink/75 font-semibold text-sm">
             <span className="inline-flex items-center gap-2 font-semibold">
               <GoogleGIcon className="w-4 h-4" />
               {clinic.rating} Google Rating
             </span>
-            <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
+            <span className="h-1 w-1 rounded-full bg-ink/25" aria-hidden />
             <span>{clinic.reviewCount}+ Google Reviews</span>
-            <span className="h-1 w-1 rounded-full bg-porcelain/30" aria-hidden />
+            <span className="h-1 w-1 rounded-full bg-ink/25" aria-hidden />
             <span>Since {clinic.foundedYear}</span>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
