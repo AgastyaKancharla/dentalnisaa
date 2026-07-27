@@ -48,7 +48,7 @@ export default function TechnologySection() {
   const sterilization = gallerySpaces.find((s) => s.name === "Sterilization & Safety");
 
   return (
-    <section className="bg-ink text-porcelain overflow-hidden">
+    <section className="bg-gold-dark text-porcelain overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-16 md:mb-20">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">

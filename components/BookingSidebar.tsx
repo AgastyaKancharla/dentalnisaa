@@ -83,7 +83,7 @@ export default function BookingSidebar() {
 
       {/* One real patient quote */}
       {quote && (
-        <div className="rounded-2xl bg-ink text-porcelain p-6">
+        <div className="rounded-2xl bg-gold-dark text-porcelain p-6">
           <p className="font-display text-lg leading-snug">"{quote.quote}"</p>
           <p className="mt-3 text-sm text-porcelain/60">
             {quote.author} · {quote.context}

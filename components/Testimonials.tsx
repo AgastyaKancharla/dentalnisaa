@@ -32,7 +32,7 @@ export default function Testimonials() {
   const current = featured[active];
 
   return (
-    <section id="reviews" className="bg-ink text-porcelain relative overflow-hidden">
+    <section id="reviews" className="bg-teal-dark text-porcelain relative overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-14">
           <div className="max-w-xl">
