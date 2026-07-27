@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
 import ConditionalChrome from "@/components/ConditionalChrome";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { clinic } from "@/lib/site-data";
 import { parseSlots, formatMinutesAsIsoTime } from "@/lib/clinic-status";
 
@@ -135,6 +136,7 @@ export default function RootLayout({
           <StickyCTA />
         </ConditionalChrome>
         <AccessibilityWidget />
+        <GoogleAnalytics />
       </body>
     </html>
   );

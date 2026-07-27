@@ -166,7 +166,13 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-porcelain/10 py-5 text-center text-xs text-porcelain/40 relative">
-        © {new Date().getFullYear()} {clinic.name}. All rights reserved.
+        <span>
+          © {new Date().getFullYear()} {clinic.name}. All rights reserved.
+        </span>
+        <span className="mx-2">·</span>
+        <Link href="/privacy" className="focus-ring hover:text-porcelain/70 transition-colors">
+          Privacy Policy
+        </Link>
       </div>
     </footer>
   );

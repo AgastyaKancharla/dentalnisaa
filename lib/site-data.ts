@@ -1040,6 +1040,66 @@ export const blogPosts: BlogPost[] = [
       "Results aren't permanent — diet and habits like smoking or frequent coffee/tea will gradually affect the shade again over months. A touch-up now and then, rather than one-time whitening, is the realistic way most people maintain the result long-term.",
     ],
   },
+  {
+    slug: "are-dental-implants-worth-it",
+    title: "Are Dental Implants Worth It? What They Actually Cost You Long-Term",
+    excerpt:
+      "Implants have the highest upfront cost of any tooth-replacement option — here's what that number is actually buying you.",
+    date: "2026-06-22",
+    readTime: "5 min read",
+    category: "Restorative & Implants",
+    content: [
+      "When someone is missing a tooth, the sticker price of an implant is usually what stops the conversation before it starts. A bridge or a partial denture costs less upfront, so on paper it looks like the obvious choice. The comparison only gets complete once you look past year one.",
+      "A bridge relies on the teeth next to the gap for support, which usually means shaving down two healthy teeth to anchor it — and bridges typically need replacing every 10–15 years. A removable partial denture has no such trade-off on neighbouring teeth, but it sits on the gum and jawbone shrinks underneath it over time, so the fit loosens and needs adjustment or replacement. An implant replaces the root itself, so the jawbone underneath has something to hold onto — which is also why implants can last decades with ordinary care, often without ever needing to be redone.",
+      "The other cost that doesn't show up on a quote is what happens if you do nothing. A gap left unfilled lets neighbouring teeth drift into the space over months, which can throw off your bite and make a future implant more complicated — and more expensive — than it would have been at the start.",
+      "None of this means an implant is automatically the right call for every situation — bone density, budget, and overall health all factor in, which is exactly what a consultation is for. But the honest way to compare the options is total cost over 15–20 years, not the number on day one.",
+    ],
+  },
+  {
+    slug: "is-it-too-late-for-braces-as-an-adult",
+    title: "Is It Too Late for Braces as an Adult? Here's What Actually Changes",
+    excerpt:
+      "Adult orthodontics is more common than most people expect — and the biological difference from treating teenagers is smaller than you'd think.",
+    date: "2026-07-05",
+    readTime: "4 min read",
+    category: "Orthodontics",
+    content: [
+      "A surprising number of adults assume braces have a cut-off age, and put off a genuinely useful treatment for years because of it. Teeth can move at any age — the biology behind orthodontics (bone gently remodeling in response to steady pressure) doesn't switch off once you're past your teens.",
+      "What does change with age is context, not biology. Adult jaws have finished growing, so orthodontics can't guide jaw development the way it can in a child — treatment is working with the bite you already have, rather than shaping it. Gum health also matters more: any existing gum disease usually needs treating first, since moving teeth through unhealthy gum tissue isn't advisable. Neither of these rules braces out; they just mean the plan usually starts with a closer look at your gums and a realistic conversation about timeline.",
+      "The other real difference is simply what adults are choosing between. Clear aligners have made adult orthodontics far more discreet than it used to be, which is a big part of why more adults are doing this now than a decade ago — it's rarely a visible metal-braces-at-40 situation anymore unless the case specifically calls for it.",
+      "If you've been quietly self-conscious about crowding or a shifted bite for years and assumed it was too late to do anything about it, it almost certainly isn't. A consultation will tell you exactly what's realistic for your case and how long it would take.",
+    ],
+  },
+  {
+    slug: "do-wisdom-teeth-always-need-to-come-out",
+    title: "Do Wisdom Teeth Always Need to Come Out?",
+    excerpt:
+      "Not every wisdom tooth is a problem waiting to happen — here's how to tell the difference between 'monitor it' and 'remove it.'",
+    date: "2026-07-14",
+    readTime: "4 min read",
+    category: "Oral Surgery",
+    content: [
+      "Wisdom teeth have a reputation as something that automatically needs removing, but that's not quite accurate. A wisdom tooth that comes in fully, sits in a healthy position, and doesn't crowd its neighbours can simply stay — plenty of people keep all four for life without any issue.",
+      "The teeth that do need attention are the impacted ones: teeth that don't have room to erupt properly and end up angled against the tooth next to them, partially trapped under the gum, or pushing sideways instead of upright. That position creates a pocket where food and bacteria collect in a spot that's genuinely difficult to clean, which is what leads to the pain, swelling, and infection wisdom teeth are known for — not the tooth itself, but the position it's stuck in.",
+      "This is why an X-ray matters more than symptoms alone for this particular decision. A wisdom tooth can be quietly impacted for years with no pain at all, and by the time it does hurt, it's usually already causing some crowding or decay in the tooth next to it. Imaging shows the actual angle and position long before that happens, which is what a dentist is actually checking for at a routine review — not just whether it's erupted, but which direction it's heading.",
+      "So the honest answer is: some wisdom teeth are fine left alone, and monitoring them with periodic X-rays is a completely reasonable approach. Others are better addressed before they cause a problem rather than after. The only way to know which situation you're in is to have them looked at.",
+    ],
+  },
+  {
+    slug: "nervous-about-the-dentist-what-actually-helps",
+    title: "Nervous About the Dentist? Here's What Actually Helps",
+    excerpt:
+      "Dental anxiety is common, and it's manageable — not by ignoring it, but by telling your dentist about it before the appointment starts.",
+    date: "2026-07-21",
+    readTime: "3 min read",
+    category: "Patient Comfort",
+    content: [
+      "Feeling nervous before a dental visit is one of the most common forms of anxiety there is, and it isn't something to feel embarrassed about mentioning. Most of it traces back to a bad experience years ago, a fear of pain that modern dentistry has largely addressed, or simply not knowing what's about to happen — all three get easier to manage the moment they're actually said out loud to the person treating you.",
+      "The single most useful thing you can do is say something before the appointment starts, not push through in silence. Telling your dentist \"I get anxious about this\" changes how the whole visit is run — more explanation before anything touches your mouth, a hand signal you can raise at any point to pause, and a pace that's built around your comfort rather than a fixed schedule.",
+      "A lot of the fear is really about uncertainty rather than pain itself. Most routine procedures today are far less uncomfortable than their reputation suggests, largely because of better local anaesthesia and gentler technique than dentistry used a generation ago. Knowing what's about to happen, step by step, before it happens is often what turns a dreaded appointment into a manageable one.",
+      "If dental anxiety has kept you from a visit for years, the right first step isn't necessarily treatment at all — it's a low-pressure conversation to explain what's needed and agree on a pace, before anything is actually done.",
+    ],
+  },
 ];
 
 export type GallerySpace = {
