@@ -2,7 +2,7 @@ import { clinic } from "./site-data";
 
 const DAY_NAMES = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-type Range = { start: number; end: number }; // minutes since midnight
+export type Range = { start: number; end: number }; // minutes since midnight
 
 function parseTimeToken(token: string, fallbackPeriod?: "am" | "pm"): number | null {
   const match = token.trim().match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)?$/i);
@@ -22,7 +22,7 @@ function parseTimeToken(token: string, fallbackPeriod?: "am" | "pm"): number | n
  * its own end ("8 pm") — this borrows that period rather than requiring
  * every token to be fully written out.
  */
-function parseSlots(slots: string): Range[] {
+export function parseSlots(slots: string): Range[] {
   if (!slots || slots.toLowerCase() === "closed") return [];
   return slots
     .split(",")
@@ -45,6 +45,13 @@ function formatMinutes(minutes: number): string {
   const hour12 = h24 % 12 === 0 ? 12 : h24 % 12;
   const ampm = h24 >= 12 ? "PM" : "AM";
   return m === 0 ? `${hour12} ${ampm}` : `${hour12}:${String(m).padStart(2, "0")} ${ampm}`;
+}
+
+/** schema.org's OpeningHoursSpecification requires 24-hour "HH:MM", not "10:30 AM". */
+export function formatMinutesAsIsoTime(minutes: number): string {
+  const h24 = Math.floor(minutes / 60) % 24;
+  const m = minutes % 60;
+  return `${String(h24).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
 }
 
 export function getClinicLocalDayName(referenceDate: Date = new Date()): string {

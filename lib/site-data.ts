@@ -16,7 +16,7 @@ export const clinic = {
   email: "info.dentalnisaa@gmail.com", // confirmed via onboarding form
   instagram: "https://www.instagram.com/dentalnisaa", // confirmed via onboarding form
   address: {
-    line1: "No. 47, 2nd Main Road, J.H.B.C.S Layout, Subhash Chandra Bose Road, Kadarenahalli, Bendre Nagar",
+    line1: "No. 42, 2nd Main Road, J.H.B.C.S Layout, Subhash Chandra Bose Road, Kadarenahalli, Bendre Nagar",
     line2: "Bengaluru, Karnataka 560070",
     mapsUrl: "https://maps.app.goo.gl/jKjAwve7WWSpyM8X8?g_st=aw", // confirmed via onboarding form
   },
@@ -943,7 +943,7 @@ export const siteFaqs: { q: string; a: string }[] = [
   },
   {
     q: "What are your clinic hours?",
-    a: "We're open Monday to Saturday, 10am–2pm and 4pm–8pm, and closed on Sundays. See the Contact page for full details.",
+    a: "We're open Monday to Saturday, 10:30am–2pm and 4:30pm–8pm, and closed on Sundays. See the Contact page for full details.",
   },
   {
     q: "Do you treat dental emergencies?",
