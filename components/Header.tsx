@@ -20,10 +20,10 @@ export default function Header() {
         initial={{ y: -24, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 inset-x-0 z-50 bg-porcelain/95 backdrop-blur border-b border-ink/10 shadow-sm"
+        className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-ink/10 shadow-sm"
       >
-        <div className="px-5 md:px-10 lg:px-16 xl:px-24 h-16 md:h-20 flex items-center justify-between">
-          <Link href="/" className="flex items-center h-full py-1 md:py-1.5" onClick={() => setOpen(false)}>
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 h-20 md:h-24 flex items-center justify-between">
+          <Link href="/" className="flex items-center h-full py-1.5 md:py-2" onClick={() => setOpen(false)}>
             <Image
               src="/logo-header.png"
               alt={clinic.name}

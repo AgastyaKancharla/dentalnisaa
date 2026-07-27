@@ -126,7 +126,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
-        <main id="main-content" className="pt-14 md:pt-16">{children}</main>
+        <main id="main-content" className="pt-20 md:pt-24">{children}</main>
         <ConditionalChrome>
           <Footer />
           <StickyCTA />

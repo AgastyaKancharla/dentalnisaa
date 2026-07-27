@@ -20,7 +20,7 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   return (
-    <section ref={ref} className="relative -mt-14 md:-mt-16 min-h-[100dvh] overflow-hidden bg-ink">
+    <section ref={ref} className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-ink">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
