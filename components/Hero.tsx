@@ -44,8 +44,15 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="w-full md:max-w-xl rounded-3xl border border-porcelain/60 bg-porcelain/80 backdrop-blur-xl shadow-[0_30px_80px_-20px_rgba(33,30,26,0.35)] px-6 py-8 sm:px-9 sm:py-10 md:px-10 md:py-11"
+          className="relative w-full md:max-w-xl overflow-hidden rounded-3xl border border-porcelain/35 bg-porcelain/45 backdrop-blur-2xl shadow-[0_30px_80px_-20px_rgba(33,30,26,0.3)] px-6 py-8 sm:px-9 sm:py-10 md:px-10 md:py-11"
         >
+          {/* A thin light-catching line along the top edge — a standard
+              glass-panel cue that reinforces the translucent quality
+              without adding any dark shading. */}
+          <span
+            className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-porcelain to-transparent opacity-70"
+            aria-hidden
+          />
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-dark mb-4">
             Kadarenahalli, Bengaluru — Since {clinic.foundedYear}
           </p>
