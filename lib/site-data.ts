@@ -23,7 +23,7 @@ export const clinic = {
   rating: 4.8,
   reviewCount: 195,
   foundedYear: 1995, // confirmed via onboarding form
-  yearsActive: new Date().getFullYear() - 1995,
+  yearsActive: 17, // per direct instruction — not derived from foundedYear
   hours: [
     { day: "Monday", slots: "10:30 am–2 pm, 4:30–8 pm" },
     { day: "Tuesday", slots: "10:30 am–2 pm, 4:30–8 pm" },
