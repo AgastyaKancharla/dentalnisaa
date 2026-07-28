@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { testimonials, clinic } from "@/lib/site-data";
 import SignatureMark from "./SignatureMark";
 import SectionSeam from "./SectionSeam";
@@ -27,10 +27,37 @@ function GoogleStars() {
   );
 }
 
+// Small rotating set of tag treatments (border+background tint) so each
+// card's treatment context reads as a distinct pill rather than plain
+// gray caption text -- cycled by index, not tied to any taxonomy, so it
+// never risks mis-categorizing what a patient actually came in for.
+const tagStyles = [
+  "bg-porcelain/15 border-porcelain/25",
+  "bg-gold-light/20 border-gold-light/35",
+  "bg-teal-dark/25 border-teal-dark/40",
+];
+
 export default function Testimonials() {
   const featured = testimonials.slice(0, 6);
   const [active, setActive] = useState(0);
-  const current = featured[active];
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollToCard = (i: number) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[i] as HTMLElement | undefined;
+    card?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+    setActive(i);
+  };
+
+  const handleScroll = () => {
+    const track = trackRef.current;
+    if (!track) return;
+    const cardWidth = track.children[0]?.clientWidth ?? 1;
+    const gap = 24; // matches gap-6 below
+    const index = Math.round(track.scrollLeft / (cardWidth + gap));
+    setActive(Math.max(0, Math.min(index, featured.length - 1)));
+  };
 
   return (
     <section id="reviews" className="bg-gold-dark text-porcelain relative overflow-hidden">
@@ -55,44 +82,55 @@ export default function Testimonials() {
           </a>
         </div>
 
-        {current ? (
-          <div className="grid md:grid-cols-[1.4fr_0.6fr] gap-14 md:gap-16 items-start">
-            <div className="relative">
-              <SignatureMark
-                className="w-16 h-16 text-porcelain absolute -top-8 -left-3 hidden md:block"
-                strokeOpacity={0.15}
-              />
-              <GoogleStars />
-              <blockquote className="mt-4 font-display text-2xl md:text-[2rem] leading-[1.3]">
-                "{current.quote}"
-              </blockquote>
-              <p className="mt-7 font-semibold">{current.author}</p>
-              <p className="text-sm text-porcelain/45">{current.context}</p>
+        {featured.length > 0 ? (
+          <>
+            <SignatureMark
+              className="w-16 h-16 text-porcelain/20 mb-2 hidden md:block"
+              strokeOpacity={0.4}
+            />
+
+            {/* Swipeable card carousel -- native touch/trackpad scroll,
+                snap-aligned, instead of the old quote-plus-name-list split
+                that didn't translate to a mobile scroll. */}
+            <div
+              ref={trackRef}
+              onScroll={handleScroll}
+              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0"
+            >
+              {featured.map((t, i) => (
+                <div
+                  key={i}
+                  className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] border border-porcelain/10 bg-porcelain/[0.04] p-7 md:p-8 flex flex-col"
+                >
+                  <span
+                    className={`self-start text-xs font-semibold px-3 py-1 border ${tagStyles[i % tagStyles.length]}`}
+                  >
+                    {t.context}
+                  </span>
+                  <GoogleStars />
+                  <blockquote className="mt-4 font-display text-xl md:text-2xl leading-[1.35] flex-1">
+                    "{t.quote}"
+                  </blockquote>
+                  <p className="mt-6 font-semibold">{t.author}</p>
+                </div>
+              ))}
             </div>
 
-            <div className="border-t md:border-t-0 md:border-l border-porcelain/10 pt-6 md:pt-0 md:pl-8">
-              <p className="text-xs font-semibold text-porcelain/40 uppercase tracking-wide mb-4">
-                More reviews
-              </p>
-              <div className="space-y-1">
-                {featured.map((t, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    onClick={() => setActive(i)}
-                    className={`focus-ring block w-full text-left px-3 py-2.5 text-sm transition-colors ${
-                      i === active
-                        ? "bg-gold-light text-ink font-semibold"
-                        : "text-porcelain/60 hover:text-porcelain hover:bg-porcelain/5"
-                    }`}
-                  >
-                    {t.author}
-                    <span className="block text-xs opacity-70 font-normal">{t.context}</span>
-                  </button>
-                ))}
-              </div>
+            {/* Dot indicators -- tap to jump to a card */}
+            <div className="flex items-center gap-2 mt-8">
+              {featured.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  onClick={() => scrollToCard(i)}
+                  aria-label={`Show review ${i + 1}`}
+                  className={`focus-ring h-1.5 rounded-full transition-all duration-300 ${
+                    i === active ? "w-6 bg-gold-light" : "w-1.5 bg-porcelain/25 hover:bg-porcelain/40"
+                  }`}
+                />
+              ))}
             </div>
-          </div>
+          </>
         ) : (
           <div className="border border-porcelain/10 bg-porcelain/[0.03] p-8 text-center">
             <p className="text-porcelain/70">
