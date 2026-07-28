@@ -20,7 +20,7 @@ export default function Hero() {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.12]);
 
   return (
-    <section ref={ref} className="relative -mt-20 md:-mt-24 min-h-[80dvh] md:min-h-[100dvh] overflow-hidden bg-ink">
+    <section ref={ref} className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-ink">
       <motion.div style={{ y, scale }} className="absolute inset-0">
         <Image
           src="https://images.unsplash.com/photo-1728342057953-94bfad8f0e7e?fm=jpg&q=80&w=1800&auto=format&fit=crop"
@@ -39,7 +39,7 @@ export default function Hero() {
           matter how bright or busy the photo is, without darkening
           anything or relying on drop-shadows. */}
 
-      <div className="relative z-10 min-h-[80dvh] md:min-h-[100dvh] flex items-end md:items-center px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pt-24 pb-10 md:py-24">
+      <div className="relative z-10 min-h-[100dvh] flex items-center px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 py-24">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
