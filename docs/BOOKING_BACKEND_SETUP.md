@@ -3,6 +3,24 @@
 This connects the website's booking form to a real notification pipeline,
 no server or paid API required. It takes about 10 minutes.
 
+## Whose Google account to use
+
+Do every step below **logged into the clinic's own Google account**
+(`info.dentalnisaa@gmail.com`), not your own personal or agency account.
+
+The reason this matters: an Apps Script Web App deployment is permanently
+tied to whichever account clicked "Deploy" — it doesn't transfer if you
+later hand the Sheet to the client. If you build this under your own
+account, the clinic's booking pipeline keeps running under *your* Google
+identity indefinitely, even after they "own" the Sheet. Setting it up
+under the clinic's account from the start avoids that entirely — there's
+nothing to transfer later, and it matches what the site's privacy policy
+already says (bookings are stored somewhere "accessible only to clinic
+staff").
+
+If you don't have the login for that account, get it from the client (or
+do this step together, with them logged in) before continuing.
+
 ## 1. Create the Google Sheet
 
 1. Go to [sheets.new](https://sheets.new) and create a blank spreadsheet.
