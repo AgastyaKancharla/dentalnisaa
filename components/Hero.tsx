@@ -53,21 +53,22 @@ export default function Hero() {
             className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-porcelain to-transparent opacity-70"
             aria-hidden
           />
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-dark mb-4">
-            Kadarenahalli, Bengaluru — Since&nbsp;{clinic.foundedYear}
+          <p className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-teal-dark mb-4">
+            <GoogleGIcon className="w-4 h-4" />
+            {clinic.rating} · {clinic.reviewCount}+ Google Reviews
           </p>
 
           <h1 className="text-ink">
-            <span className="block font-display font-bold text-gold-dark text-4xl sm:text-5xl md:text-6xl leading-tight">
-              Specialists,
+            <span className="block font-display font-bold uppercase tracking-wide text-2xl sm:text-3xl md:text-4xl leading-snug">
+              Implants, Cosmetic &amp; Family Dentistry
             </span>
-            <span className="block font-display font-bold uppercase tracking-wide text-xl sm:text-2xl md:text-3xl leading-snug mt-1.5">
-              implants, cosmetic &amp; family dentistry under one roof
+            <span className="block font-display font-bold italic text-gold-dark text-3xl sm:text-4xl md:text-5xl leading-tight mt-1.5">
+              — All Under One Roof
             </span>
           </h1>
 
           <p className="mt-5 text-ink/70 font-medium text-base sm:text-lg leading-relaxed">
-            {clinic.tagline}.
+            {clinic.yearsActive}+ years caring for families in Kadarenahalli, Bengaluru.
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-3.5">
@@ -83,15 +84,6 @@ export default function Hero() {
             >
               Call Clinic
             </a>
-          </div>
-
-          <div className="mt-8 pt-6 border-t border-ink/10 flex flex-wrap items-center gap-x-6 gap-y-2 text-ink/75 font-semibold text-sm">
-            <span className="inline-flex items-center gap-2 font-semibold">
-              <GoogleGIcon className="w-4 h-4" />
-              {clinic.rating} Google Rating
-            </span>
-            <span className="h-1 w-1 rounded-full bg-ink/25" aria-hidden />
-            <span>{clinic.reviewCount}+ Google Reviews</span>
           </div>
         </motion.div>
       </div>
