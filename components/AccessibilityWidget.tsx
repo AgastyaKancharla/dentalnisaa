@@ -36,7 +36,7 @@ export default function AccessibilityWidget() {
   };
 
   return (
-    <div className="fixed bottom-24 right-5 md:bottom-8 md:right-8 z-40">
+    <div className="fixed bottom-32 right-5 md:bottom-8 md:right-8 z-40">
       {open && (
         <div className="absolute bottom-14 right-0 w-60 bg-white border border-ink/10 shadow-xl rounded-2xl p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-ink/40 mb-3">

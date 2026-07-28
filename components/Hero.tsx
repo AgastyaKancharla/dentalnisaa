@@ -54,7 +54,7 @@ export default function Hero() {
             aria-hidden
           />
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-dark mb-4">
-            Kadarenahalli, Bengaluru — Since {clinic.foundedYear}
+            Kadarenahalli, Bengaluru — Since&nbsp;{clinic.foundedYear}
           </p>
 
           <h1 className="text-ink">
@@ -92,8 +92,6 @@ export default function Hero() {
             </span>
             <span className="h-1 w-1 rounded-full bg-ink/25" aria-hidden />
             <span>{clinic.reviewCount}+ Google Reviews</span>
-            <span className="h-1 w-1 rounded-full bg-ink/25" aria-hidden />
-            <span>Since {clinic.foundedYear}</span>
           </div>
         </motion.div>
       </div>
