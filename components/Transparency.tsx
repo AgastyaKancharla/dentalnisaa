@@ -9,15 +9,21 @@ import AnimatedCounter from "./AnimatedCounter";
 const points = [
   {
     title: "Clear diagnosis",
-    detail: "We explain what we see and what it means, before treatment begins.",
+    before: "We explain what we see and what it means, ",
+    highlight: "before treatment begins",
+    after: ".",
   },
   {
     title: "Comfort-first care",
-    detail: "Gentle techniques for nervous patients and children alike.",
+    before: "Gentle techniques for ",
+    highlight: "nervous patients and children",
+    after: " alike.",
   },
   {
     title: "Long-term planning",
-    detail: "From check-ups to implants, we plan around lasting oral health.",
+    before: "From check-ups to implants, we plan around ",
+    highlight: "lasting oral health",
+    after: ".",
   },
 ];
 
@@ -100,7 +106,11 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
               </motion.span>
               <motion.div variants={pointText}>
                 <h3 className="font-display text-xl text-ink">{p.title}</h3>
-                <p className="text-ink/65 leading-relaxed text-sm mt-1.5 max-w-sm">{p.detail}</p>
+                <p className="text-ink/65 leading-relaxed text-sm mt-1.5 max-w-sm">
+                  {p.before}
+                  <span className="font-semibold text-sage-deep">{p.highlight}</span>
+                  {p.after}
+                </p>
               </motion.div>
             </div>
           ))}

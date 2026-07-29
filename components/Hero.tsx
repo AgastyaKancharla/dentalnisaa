@@ -44,7 +44,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="relative w-full md:max-w-xl overflow-hidden rounded-3xl border border-porcelain/35 bg-porcelain/45 backdrop-blur-2xl shadow-[0_30px_80px_-20px_rgba(33,30,26,0.3)] px-6 py-8 sm:px-9 sm:py-10 md:px-10 md:py-11"
+          className="relative w-full md:max-w-xl overflow-hidden rounded-3xl border border-porcelain/25 bg-porcelain/28 backdrop-blur-2xl shadow-[0_30px_80px_-20px_rgba(33,30,26,0.3)] px-6 py-8 sm:px-9 sm:py-10 md:px-10 md:py-11"
         >
           {/* A thin light-catching line along the top edge — a standard
               glass-panel cue that reinforces the translucent quality
