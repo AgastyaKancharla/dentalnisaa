@@ -42,22 +42,14 @@ export default function ClinicTourPreview() {
     <section className="bg-porcelain relative">
       <SectionSeam tone="light" />
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
-        <Reveal className="flex items-end justify-between flex-wrap gap-4 mb-14">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-              Inside the clinic
-            </p>
-            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
-              A look inside,
-              <span className="text-gold-dark italic"> before you arrive.</span>
-            </h2>
-          </div>
-          <Link
-            href="/gallery"
-            className="focus-ring text-sm font-semibold text-ink/60 hover:text-ink underline underline-offset-4"
-          >
-            See the full gallery →
-          </Link>
+        <Reveal className="max-w-xl mb-14">
+          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+            Inside the clinic
+          </p>
+          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
+            A look inside,
+            <span className="text-gold-dark italic"> before you arrive.</span>
+          </h2>
         </Reveal>
 
         <div className="grid sm:grid-cols-3 gap-6">
@@ -97,6 +89,15 @@ export default function ClinicTourPreview() {
             </Reveal>
           ))}
         </div>
+
+        <Reveal delay={200} className="mt-10">
+          <Link
+            href="/gallery"
+            className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-gold-dark transition-colors"
+          >
+            See the full gallery <span aria-hidden>→</span>
+          </Link>
+        </Reveal>
       </div>
 
       {active && active.image && (
