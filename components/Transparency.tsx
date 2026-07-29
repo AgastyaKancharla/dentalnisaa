@@ -1,7 +1,10 @@
-import { trustPoints } from "@/lib/site-data";
+"use client";
+
+import { motion } from "framer-motion";
+import { trustPoints, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
 import SignatureMark from "./SignatureMark";
-import Reveal from "./Reveal";
+import AnimatedCounter from "./AnimatedCounter";
 
 const points = [
   {
@@ -23,46 +26,85 @@ const points = [
 // care, multi-generational) carry over.
 const facts = [trustPoints[0], trustPoints[2], trustPoints[3]];
 
+// Parent variant staggers its children's entrance — each child animates
+// only once its turn in the sequence arrives, rather than everything
+// firing on the same flat delay ramp.
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.18, delayChildren: 0.05 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 22 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+// Points get a slightly different, more physical entrance than the plain
+// fade-up: the number scales in with a spring (a little overshoot, not a
+// flat ease) while the text content fades in a beat behind it.
+const pointNumber = {
+  hidden: { opacity: 0, scale: 0.5 },
+  show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 260, damping: 18 } },
+};
+
+const pointText = {
+  hidden: { opacity: 0, x: -16 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.12 } },
+};
+
 export default function Transparency({ topDivider = false }: { topDivider?: boolean }) {
   return (
     <section className="bg-beige-deep text-ink relative overflow-hidden">
       {topDivider && <SectionSeam tone="light" />}
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28 grid md:grid-cols-[0.85fr_1.15fr] gap-14 md:gap-10">
-        <div className="relative">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.3 }}
+          className="relative"
+        >
           <SignatureMark className="w-20 h-20 text-sage absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
-          <Reveal>
-            <p className="text-sm font-semibold text-sage-deep uppercase tracking-wide mb-3">
-              Our care philosophy
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] text-ink">
-              Clear advice.
-              <br />
-              Calmer visits.
-            </h2>
-          </Reveal>
 
-          <Reveal delay={150} className="flex flex-wrap gap-x-4 gap-y-2 text-sm font-semibold text-ink/70 mt-7">
-            <span>{facts[0].label} in Kadarenahalli</span>
+          <motion.p variants={fadeUp} className="text-sm font-semibold text-sage-deep uppercase tracking-wide mb-3">
+            Our care philosophy
+          </motion.p>
+          <motion.h2 variants={fadeUp} className="font-display text-4xl md:text-5xl leading-[1.05] text-ink">
+            Clear advice.
+            <br />
+            Calmer visits.
+          </motion.h2>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-x-4 gap-y-2 text-sm font-semibold text-ink/70 mt-7">
+            <span>
+              <AnimatedCounter value={clinic.yearsActive} suffix="+ years" /> in Kadarenahalli
+            </span>
             <span className="text-ink/25" aria-hidden>·</span>
             <span>{facts[1].label}</span>
             <span className="text-ink/25" aria-hidden>·</span>
             <span>{facts[2].label} care</span>
-          </Reveal>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="space-y-6 md:space-y-8">
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.2 }}
+          className="space-y-6 md:space-y-8"
+        >
           {points.map((p, i) => (
-            <Reveal key={p.title} delay={i * 120} className="flex gap-5 border-b border-ink/10 pb-6 last:border-b-0">
-              <span className="font-display text-2xl text-sage-deep shrink-0 w-8">
+            <div key={p.title} className="flex gap-5 border-b border-ink/10 pb-6 last:border-b-0">
+              <motion.span variants={pointNumber} className="font-display text-2xl text-sage-deep shrink-0 w-8">
                 {String(i + 1).padStart(2, "0")}
-              </span>
-              <div>
+              </motion.span>
+              <motion.div variants={pointText}>
                 <h3 className="font-display text-xl text-ink">{p.title}</h3>
                 <p className="text-ink/65 leading-relaxed text-sm mt-1.5 max-w-sm">{p.detail}</p>
-              </div>
-            </Reveal>
+              </motion.div>
+            </div>
           ))}
-        </div>
+        </motion.div>
       </div>
       <SectionSeam tone="light" />
     </section>
