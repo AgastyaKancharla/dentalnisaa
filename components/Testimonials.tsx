@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import {
   testimonials,
   practoTestimonials,
@@ -138,8 +139,12 @@ export default function Testimonials() {
               className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0"
             >
               {quotes.map((t, i) => (
-                <div
+                <motion.div
                   key={`${platform}-${i}`}
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.55, delay: Math.min(i, 3) * 0.12, ease: [0.22, 1, 0.36, 1] }}
                   className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] border border-porcelain/15 bg-porcelain/[0.06] p-7 md:p-8 flex flex-col"
                 >
                   <span
@@ -154,7 +159,7 @@ export default function Testimonials() {
                     "{t.quote}"
                   </blockquote>
                   <p className="mt-6 font-semibold">{t.author}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
 

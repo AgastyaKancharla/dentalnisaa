@@ -1,3 +1,6 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { doctors, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
 
@@ -9,6 +12,23 @@ function monogram(name: string) {
   const cleaned = name.replace(/^Dr\.?\s*/i, "").trim();
   return cleaned.charAt(0).toUpperCase() || "?";
 }
+
+// This section's animation signature: the photo/monogram frame reveals via
+// a clip-path wipe from the center outward, like a spotlight curtain
+// opening -- fitting for "Doctor Spotlight" specifically, and distinct
+// from the fade-up/stagger patterns used elsewhere on the page.
+const curtain = {
+  hidden: { clipPath: "inset(50% 50% 50% 50%)" },
+  show: {
+    clipPath: "inset(0% 0% 0% 0%)",
+    transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1] },
+  },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+};
 
 export default function DoctorSpotlight({ topDivider = true }: { topDivider?: boolean }) {
   return (
@@ -26,17 +46,20 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
         </div>
 
         {doctors.length > 0 ? (
-          // Asymmetric editorial pairing instead of a mirrored grid: the two
-          // cards are different widths and offset vertically from each
-          // other, so it reads as a profile spread rather than a personnel
-          // directory. Falls back to a plain stack on mobile.
           <div className="flex flex-col sm:flex-row sm:items-start gap-10 sm:gap-8 md:gap-12">
             {doctors.map((doctor, i) => {
               const offset = i % 2 === 1 ? "sm:mt-16" : "";
               const basis = i % 2 === 0 ? "sm:flex-[1.15]" : "sm:flex-[0.85]";
               return (
                 <div key={doctor.name} className={`${basis} ${offset} max-w-md`}>
-                  <div className="relative w-full aspect-[4/5] border border-ink/10 overflow-hidden bg-gold/10">
+                  <motion.div
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: i * 0.15 }}
+                    variants={curtain}
+                    className="relative w-full aspect-[4/5] border border-ink/10 overflow-hidden bg-gold/10"
+                  >
                     {doctor.photo ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -58,23 +81,31 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                         </span>
                       </>
                     )}
-                  </div>
-                  <h3 className="font-display text-2xl mt-5">{doctor.name}</h3>
-                  {(doctor.title || doctor.experience) && (
-                    <p className="mt-1 text-sm text-ink/55">
-                      {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
-                    </p>
-                  )}
-                  {doctor.bio && (
-                    <p className="mt-3 text-ink/70 leading-relaxed text-sm">
-                      {doctor.bio}
-                    </p>
-                  )}
-                  {doctor.quote && (
-                    <p className="mt-4 font-display italic text-gold-dark text-lg leading-snug">
-                      "{doctor.quote}"
-                    </p>
-                  )}
+                  </motion.div>
+                  <motion.div
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ delay: i * 0.15 + 0.5 }}
+                    variants={fadeUp}
+                  >
+                    <h3 className="font-display text-2xl mt-5">{doctor.name}</h3>
+                    {(doctor.title || doctor.experience) && (
+                      <p className="mt-1 text-sm text-ink/55">
+                        {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                    {doctor.bio && (
+                      <p className="mt-3 text-ink/70 leading-relaxed text-sm">
+                        {doctor.bio}
+                      </p>
+                    )}
+                    {doctor.quote && (
+                      <p className="mt-4 font-display italic text-gold-dark text-lg leading-snug">
+                        "{doctor.quote}"
+                      </p>
+                    )}
+                  </motion.div>
                 </div>
               );
             })}
