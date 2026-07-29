@@ -90,10 +90,7 @@ export default function TrustBar() {
           }}
         >
           <p className="font-display text-3xl sm:text-4xl md:text-5xl text-ink">
-            <AnimatedCounter value={clinic.yearsActive} suffix="+ years" />
-          </p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink/45">
-            {trustPoints[0].detail}
+            <AnimatedCounter value={clinic.yearsActive} suffix="+ years" /> in Kadarenahalli
           </p>
         </div>
 
@@ -110,17 +107,11 @@ export default function TrustBar() {
           <p className="font-display text-2xl sm:text-3xl md:text-4xl italic text-sage-deep">
             {trustPoints[2].label}
           </p>
-          <p className="mt-1 text-xs uppercase tracking-wide text-ink/45 max-w-xs">
-            {trustPoints[2].detail}
-          </p>
         </div>
 
         {/* Multi-generational — full-width footer line, ties the mural down */}
-        <div className="md:col-span-12 pt-6 border-t border-ink/10 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <p className="font-display text-xl md:text-2xl text-ink">{trustPoints[3].label}</p>
-          <p className="text-xs uppercase tracking-wide text-ink/45">
-            {trustPoints[3].detail}
-          </p>
+        <div className="md:col-span-12 pt-6 border-t border-ink/10">
+          <p className="font-display text-xl md:text-2xl text-ink">{trustPoints[3].label} care</p>
         </div>
       </div>
     </section>
