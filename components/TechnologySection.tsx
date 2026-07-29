@@ -13,25 +13,16 @@ function StepFlow({ steps }: { steps: Step[] }) {
         <div key={step.label} className="flex items-center">
           <div className="flex flex-col items-center text-center w-20 sm:w-24">
             <Tilt3D maxDeg={16}>
-              <div
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center"
-                style={{
-                  background:
-                    "radial-gradient(circle at 32% 28%, rgba(240,222,180,0.18), rgba(240,222,180,0.04) 60%)",
-                  boxShadow:
-                    "0 10px 22px -8px rgba(0,0,0,0.55), inset 0 1px 1px rgba(255,255,255,0.15), inset 0 -6px 10px rgba(0,0,0,0.25)",
-                  border: "1px solid rgba(240,222,180,0.3)",
-                }}
-              >
-                <Icon name={step.icon} className="w-5 h-5 sm:w-6 sm:h-6 text-gold-light" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center bg-gold/10 border border-gold/25">
+                <Icon name={step.icon} className="w-5 h-5 sm:w-6 sm:h-6 text-gold-dark" />
               </div>
             </Tilt3D>
-            <p className="mt-3 text-xs sm:text-sm text-porcelain/70 leading-snug">
+            <p className="mt-3 text-xs sm:text-sm text-ink/60 leading-snug">
               {step.label}
             </p>
           </div>
           {i < steps.length - 1 && (
-            <div className="w-6 sm:w-10 h-px bg-porcelain/15 shrink-0 -mt-6" aria-hidden />
+            <div className="w-6 sm:w-10 h-px bg-ink/10 shrink-0 -mt-6" aria-hidden />
           )}
         </div>
       ))}
@@ -43,39 +34,44 @@ function StepFlow({ steps }: { steps: Step[] }) {
 // paragraph describing it -- the process itself is the visual, not an
 // icon-plus-caption card. Two real, distinct processes; no third one
 // invented to fill a grid.
+//
+// Light background (was bg-gold-dark) -- sitting directly after
+// Testimonials, which is also solid sage, the two read as one merged
+// block. Light/dark/light rhythm instead of two darks in a row, sage
+// kept as accent color throughout rather than the section fill.
 export default function TechnologySection() {
   const xray = treatments.find((t) => t.id === "digital-xray");
   const sterilization = gallerySpaces.find((s) => s.name === "Sterilization & Safety");
 
   return (
-    <section className="bg-gold-dark text-porcelain overflow-hidden">
+    <section className="bg-porcelain text-ink overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-16 md:mb-20">
-          <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
+          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
             Modern dentistry
           </p>
-          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight">
+          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
             Precision you can see,
-            <span className="italic text-gold-light"> safety you can trust.</span>
+            <span className="italic text-gold-dark"> safety you can trust.</span>
           </h2>
         </Reveal>
 
         <div className="space-y-16 md:space-y-20">
           {/* Digital imaging, told as the moments it actually happens in */}
           <Reveal>
-            <div className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-10 pb-8 border-b border-porcelain/10">
+            <div className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-10 pb-8 border-b border-ink/10">
               <div>
-                <h3 className="font-display text-2xl md:text-3xl mb-2">
+                <h3 className="font-display text-2xl md:text-3xl mb-2 text-ink">
                   From scan to answer, one visit.
                 </h3>
-                <p className="text-porcelain/55 max-w-md text-sm leading-relaxed">
+                <p className="text-ink/60 max-w-md text-sm leading-relaxed">
                   {xray?.overview ??
                     "Digital X-rays use meaningfully less radiation than traditional film."}
                 </p>
               </div>
               <Link
                 href={xray ? `/treatments/${xray.id}` : "/treatments"}
-                className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-gold-light hover:text-porcelain transition-colors shrink-0"
+                className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-gold-dark hover:text-ink transition-colors shrink-0"
               >
                 How digital X-rays work <span aria-hidden>→</span>
               </Link>
@@ -93,19 +89,19 @@ export default function TechnologySection() {
 
           {/* Sterilization, told as the real cycle every instrument goes through */}
           <Reveal delay={100}>
-            <div className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-10 pb-8 border-b border-porcelain/10">
+            <div className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-10 pb-8 border-b border-ink/10">
               <div>
-                <h3 className="font-display text-2xl md:text-3xl mb-2">
+                <h3 className="font-display text-2xl md:text-3xl mb-2 text-ink">
                   Every instrument, the same cycle.
                 </h3>
-                <p className="text-porcelain/55 max-w-md text-sm leading-relaxed">
+                <p className="text-ink/60 max-w-md text-sm leading-relaxed">
                   {sterilization?.description ??
                     "Every instrument that touches your mouth goes through the same sterilization cycle, whether you're the first appointment of the morning or the last of the day."}
                 </p>
               </div>
               <Link
                 href="/gallery"
-                className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-gold-light hover:text-porcelain transition-colors shrink-0"
+                className="focus-ring inline-flex items-center gap-2 text-sm font-semibold text-gold-dark hover:text-ink transition-colors shrink-0"
               >
                 See the sterilization room <span aria-hidden>→</span>
               </Link>
