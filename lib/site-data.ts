@@ -35,6 +35,31 @@ export const clinic = {
   ],
 };
 
+// Verified directly, not estimated -- Google is the clinic's own reported
+// figure; Practo fetched live from practo.com/.../reviews; Justdial
+// confirmed via the client's own screenshot of their claimed, verified
+// listing. Don't add a platform here without a real, checkable number.
+export const reviewPlatforms = [
+  {
+    name: "Google",
+    rating: 4.8,
+    count: 195,
+    url: "https://maps.app.goo.gl/jKjAwve7WWSpyM8X8?g_st=aw",
+  },
+  {
+    name: "Practo",
+    rating: 5.0,
+    count: 357,
+    url: "https://www.practo.com/bangalore/clinic/dentalnisaa-kumaraswamy-layout/reviews",
+  },
+  {
+    name: "Justdial",
+    rating: 4.9,
+    count: 579,
+    url: "https://www.justdial.com/Bangalore/Dentalnisaa-Near-Dayanand-Sagar-College-Kumaraswamy-Layout/080PXX80-XX80-100712164554-F1D7_BZDET",
+  },
+];
+
 // Set to a real object once the client shares the doctor's details — the
 // DoctorSpotlight component renders a graceful "coming soon" state while
 // title/experience/bio/photo are empty, instead of publishing placeholder
@@ -899,6 +924,56 @@ export const testimonials: { quote: string; context: string; author: string }[] 
     author: "Chitrakar D.",
   },
 ];
+
+// Fetched directly from practo.com/bangalore/clinic/dentalnisaa-kumaraswamy-layout/reviews
+// (357 total patient stories, 5.0 average) -- these are real names, real
+// treatments, and real quotes from that page, lightly trimmed for length,
+// not paraphrased in sentiment or fabricated in any way.
+export const practoTestimonials: { quote: string; context: string; author: string }[] = [
+  {
+    quote:
+      "I was recommended by my son and daughter-in-law to Dr. Asfia. Both of them were extremely appreciative of the treatment. She was very patient during the procedure, giving me a break whenever I felt uncomfortable.",
+    context: "Dental Fillings, Root Canal Treatment",
+    author: "Mary Tharakan",
+  },
+  {
+    quote:
+      "Thank you for showing so much care and concern. You, as a doctor, and the staff at your clinic are very helpful and supportive. You are very professional, and I would strongly recommend others to visit her.",
+    context: "Dental Fillings, Cavities, Cleaning",
+    author: "Syed Fairoze Pasha",
+  },
+  {
+    quote:
+      "Extremely down to earth and friendly. Puts patients, including kids, at ease. Skilled with perfect finishing on the required treatment. The staff add to the positive atmosphere at the clinic.",
+    context: "Ceramic Crowns & Bridges, Paedodontics",
+    author: "Suma K Rao",
+  },
+  {
+    quote:
+      "It was extremely satisfying to see how the clinic was ensuring safety before letting anyone inside, and the doctor's friendliness throughout the checkup. She explained the situation as well as the treatment course.",
+    context: "Acrylic Partial Denture",
+    author: "Rahul Mukherji",
+  },
+  {
+    quote:
+      "Dr. Asfia is very professional and friendly. Clinic is very well maintained, staff are very friendly. Hats off to her for the way she treats kids.",
+    context: "Pediatric Dentistry",
+    author: "Krishna Sanjay Jetty",
+  },
+  {
+    quote:
+      "It was great — the issue was explained in detail, and she also checked if there was any other issue and informed me accordingly.",
+    context: "Dental Fillings",
+    author: "Sreekanth V.",
+  },
+];
+
+// ⟦PLACEHOLDER⟧ Waiting on the client to paste a few real Justdial
+// reviews -- Justdial blocks automated fetching, so unlike Practo these
+// can't be pulled directly. Leave empty (not fabricated) until then; the
+// Testimonials component falls back to a rating+link-out card when this
+// is empty.
+export const justdialTestimonials: { quote: string; context: string; author: string }[] = [];
 
 // `value` (a plain number) drives the animated count-up in TrustBar; leave
 // it undefined for points that aren't a number (e.g. "Painless care").
