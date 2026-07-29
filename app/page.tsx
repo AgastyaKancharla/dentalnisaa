@@ -1,5 +1,4 @@
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
 import Transparency from "@/components/Transparency";
 import TreatmentsDeckSection from "@/components/TreatmentsDeckSection";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
@@ -14,7 +13,6 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <TrustBar />
       <Transparency />
       <TreatmentsDeckSection limit={10} />
       <DoctorSpotlight />
