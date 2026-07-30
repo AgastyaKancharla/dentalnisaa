@@ -77,7 +77,24 @@ export async function POST(req: NextRequest) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        ...body,
+        // Field names here must match what the Apps Script's doPost()
+        // reads (fullName / timeSlot / appointmentType) — it doesn't
+        // share this file's internal naming (name / slot / treatment),
+        // so this is a deliberate rename, not a passthrough.
+        fullName: body.name,
+        phone: body.phone,
+        email: body.email || "",
+        appointmentType: body.treatment,
+        day: body.day,
+        timeSlot: body.slot,
+        notes: body.notes || "",
+        // Extra fields the /book multi-step flow can send, forwarded
+        // alongside in case the script is later extended to use them —
+        // harmless if it currently ignores them.
+        appointmentId: body.appointmentId,
+        doctor: body.doctor,
+        reasonForVisit: body.reasonForVisit,
+        patientType: body.patientType,
         submittedAt: new Date().toISOString(),
         source: "dentalnisaa.com",
       }),

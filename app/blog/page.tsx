@@ -1,68 +1,38 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { clinic, blogPosts } from "@/lib/site-data";
 import Reveal from "@/components/Reveal";
+import BlogExplorer from "@/components/BlogExplorer";
 
 export const metadata: Metadata = {
-  title: "Dental Health Blog — Bengaluru",
-  description: `Straightforward, honest advice on dental health topics from ${clinic.name}, Kadarenahalli, Bengaluru.`,
+  title: "Dental Knowledge Base",
+  description: `Straightforward, honest answers to common dental questions from ${clinic.name}, Kadarenahalli, Bengaluru.`,
   alternates: { canonical: "/blog" },
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-IN", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
-
 export default function BlogIndexPage() {
-  const posts = [...blogPosts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
-
   return (
     <>
       <section className="bg-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 md:pt-24 pb-10">
           <Reveal>
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-              Blog
+              Dental knowledge base
             </p>
             <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight">
-              Dental health,
-              <span className="italic text-gold-dark"> plainly explained.</span>
+              Answers to the questions
+              <span className="italic text-gold-dark"> patients actually ask.</span>
             </h1>
+            <p className="mt-5 text-ink/60 max-w-xl">
+              A growing resource of straightforward, honest guidance — search by topic
+              or browse by category below.
+            </p>
           </Reveal>
         </div>
       </section>
 
       <section className="bg-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28">
-          <div className="space-y-6 max-w-3xl">
-            {posts.map((post, i) => (
-              <Reveal key={post.slug} delay={i * 60}>
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group block rounded-2xl border border-ink/10 bg-white/60 p-7 hover:border-gold/40 hover:-translate-y-0.5 transition-all"
-                >
-                  <p className="text-xs font-semibold text-teal-dark uppercase tracking-wide">
-                    {post.category} · {formatDate(post.date)} · {post.readTime}
-                  </p>
-                  <h2 className="mt-3 font-display text-2xl text-ink group-hover:text-gold-dark transition-colors">
-                    {post.title}
-                  </h2>
-                  <p className="mt-3 text-ink/60 leading-relaxed">
-                    {post.excerpt}
-                  </p>
-                  <span className="mt-4 inline-flex items-center text-sm font-semibold text-gold-dark">
-                    Read more →
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
+          <BlogExplorer posts={blogPosts} />
         </div>
       </section>
     </>
