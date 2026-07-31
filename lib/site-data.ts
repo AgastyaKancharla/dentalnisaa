@@ -82,13 +82,6 @@ export const doctors: Doctor[] = [
     quote: "Your smile is our priority, and your trust is our greatest achievement.",
     photo: "/doctor-neha.jpg",
   },
-  {
-    name: "Dr. Madhu",
-    title: "", // ⟦PLACEHOLDER⟧ e.g. BDS, MDS (specialization)
-    experience: "", // ⟦PLACEHOLDER⟧ years of experience
-    bio: "", // ⟦PLACEHOLDER⟧ in the doctor's own words
-    photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
-  },
   // ⟦PLACEHOLDER⟧ — add once confirmed as currently active (reviews also
   // mention Dr. Shyama and Dr. Tasneem, but this needs the client's
   // confirmation before publishing):
@@ -874,12 +867,6 @@ export const testimonials: { quote: string; context: string; author: string }[] 
       "I am extremely glad to have had all my dental treatments done at Dental Nisaa. I had a tooth extraction, root canal procedure and finally the fixing of the crowns.",
     context: "Extraction, root canal & crowns",
     author: "Mary T.",
-  },
-  {
-    quote:
-      "Great Service for sure! Dr. Madhu and Ms. Ira both were very friendly and are great at what they do! The whole procedure was very smooth.",
-    context: "General treatment",
-    author: "Manasa H.",
   },
   {
     quote:
