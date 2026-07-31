@@ -15,33 +15,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-const milestones = [
-  {
-    year: `${clinic.foundedYear}`,
-    title: "Where it started",
-    detail:
-      "DentalNisaa Oral Care opens its doors in Bengaluru, built to feel like a family clinic first and a business second.",
-  },
-  {
-    year: "Today",
-    title: "A new home in Kadarenahalli",
-    detail:
-      "A relocated, purpose-built clinic — calmer, more modern, and designed around patient comfort from the waiting room in.",
-  },
-  {
-    year: "Ongoing",
-    title: "Three generations, one chair",
-    detail:
-      "Grandparents, parents, and children — many of our patients have trusted the same clinic across their whole family's life.",
-  },
-  {
-    year: "Always",
-    title: "Unhurried, honest care",
-    detail:
-      "Every visit runs on the same idea we started with: explain clearly, treat gently, and only recommend what's actually needed.",
-  },
-];
-
 // Same vetted, honestly-labelled representative photo already used in the
 // clinic gallery data — reused rather than introducing a new unverified
 // stock image for the hero/story sections.
@@ -90,29 +63,50 @@ export default function AboutPage() {
       {/* OUR STORY */}
       <section className="bg-porcelain-dim/50">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
-          <Reveal>
-            <h2 className="font-display text-2xl md:text-3xl text-ink mb-10">
+          <Reveal className="max-w-2xl">
+            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
               Our story
+            </p>
+            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
+              The same legacy,{" "}
+              <span className="italic text-gold-dark">still going.</span>
             </h2>
           </Reveal>
-          <div className="space-y-6 max-w-3xl">
-            {milestones.map((m, i) => (
-              <Reveal
-                key={m.title}
-                delay={i * 80}
-                className="flex gap-6 border border-ink/10 bg-white/60 p-6"
-              >
-                <span className="shrink-0 font-display text-xl text-gold-dark w-20">
-                  {m.year}
-                </span>
-                <div>
-                  <h3 className="font-semibold text-ink">{m.title}</h3>
-                  <p className="mt-1.5 text-sm text-ink/60 leading-relaxed max-w-md">
-                    {m.detail}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
+
+          <div className="mt-14 grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
+            <Reveal
+              delay={80}
+              className="flex items-center gap-4 md:flex-col md:items-start md:gap-3"
+            >
+              <span className="font-display text-4xl md:text-5xl text-ink">
+                {clinic.foundedYear}
+              </span>
+              <span
+                className="h-px w-12 md:h-16 md:w-px bg-ink/20 shrink-0"
+                aria-hidden
+              />
+              <span className="font-display text-4xl md:text-5xl italic text-gold-dark">
+                Today
+              </span>
+            </Reveal>
+
+            <Reveal delay={140} className="max-w-xl space-y-4">
+              <p className="text-ink/75 leading-relaxed text-lg">
+                DentalNisaa's legacy started in {clinic.foundedYear} — and
+                it's the same legacy today, not a different clinic that
+                happens to share a name. The same unhurried approach has
+                treated grandparents, then their children, then their
+                children's own kids, all from the same neighbourhood
+                clinic.
+              </p>
+              <p className="text-ink/75 leading-relaxed text-lg">
+                That continuity is carried forward today by Dr. Neha
+                Kulsum, the clinic's proprietor — leading with the same
+                values it was built on: clear explanations, gentle care,
+                and treatment plans built around what a patient actually
+                needs, not what's easiest to sell.
+              </p>
+            </Reveal>
           </div>
         </div>
       </section>

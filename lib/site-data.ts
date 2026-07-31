@@ -78,7 +78,7 @@ export const doctors: Doctor[] = [
     name: "Dr. Neha Kulsum",
     title: "Proprietor · Root Canal Specialist & Cosmetic Dentist",
     experience: "12+ years experience",
-    bio: "Dr. Neha specialises in painless root canal treatments, smile designing, and cosmetic and restorative dentistry, with a strong emphasis on precision, comfort, and minimally invasive care. She takes the time to understand each patient's individual needs and builds a treatment plan around both oral health and confidence, integrating modern dental technology with evidence-based practice at every step.",
+    bio: "Dr. Neha specialises in painless root canal treatments, smile designing, cosmetic dentistry, crowns and bridges, restorative procedures, and preventive oral healthcare — always with a strong emphasis on precision, comfort, and patient satisfaction. She believes every smile is unique, and takes the time to understand each patient's individual needs before building a treatment plan that prioritises both long-term oral health and aesthetics. As the clinic's proprietor, she carries forward a legacy that began in 1995 — integrating modern dental technology and evidence-based practice with the same gentle, unhurried approach that's kept generations of the same families coming back.",
     quote: "Your smile is our priority, and your trust is our greatest achievement.",
     photo: "/doctor-neha.jpg",
   },

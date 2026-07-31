@@ -52,7 +52,7 @@ export default function ClinicTourPreview() {
           </h2>
         </Reveal>
 
-        <div className="grid sm:grid-cols-3 gap-6">
+        <div className={`grid gap-6 ${preview.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 max-w-2xl"}`}>
           {preview.map((space, i) => (
             <Reveal key={space.name} delay={i * 60}>
               <button
