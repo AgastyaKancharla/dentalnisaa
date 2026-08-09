@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { clinic, gallerySpaces } from "@/lib/site-data";
+import { clinic, gallerySpaces, isStockImage } from "@/lib/site-data";
 import Reveal from "@/components/Reveal";
 
 export const metadata: Metadata = {
@@ -44,9 +44,11 @@ export default function GalleryPage() {
                           alt={space.name}
                           className="w-full h-full object-cover"
                         />
-                        <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
-                          Representative photo
-                        </span>
+                        {isStockImage(space.image) && (
+                          <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
+                            Representative photo
+                          </span>
+                        )}
                       </>
                     ) : (
                       <p className="text-ink/30 text-xs text-center px-6">

@@ -8,8 +8,28 @@ environment (network egress blocked), so nothing here is based on a crawl of pro
 no Lighthouse scores, no indexation check, no live Core Web Vitals. Everything below traces
 to a specific file in this repo.
 
-**This audit changes no code.** Every finding is written as problem → file → fix so it can
-be picked up directly.
+Every finding is written as problem → file → fix so it can be picked up directly.
+
+---
+
+## Changelog — what's been fixed since this audit was written
+
+**9 August 2026 — first real assets received from the clinic.** Three photographs of the actual
+premises, a headshot and credentials for the second doctor, and confirmation that Dr. Madhu no
+longer practises there. Acted on:
+
+| Finding | Status |
+|---|---|
+| §1.3 Second doctor published blank | **Fixed.** Dr. Madhu removed (confirmed no longer at the clinic). Dr. Shyama Pramod added — BDS, MDS, FPOS, orthodontist — with qualifications and awards displayed. |
+| §1.5 No clinical credentials anywhere | **Partly fixed.** A `credentials` field now renders discrete, checkable qualifications on the doctor card. Dr. Shyama's are published; Dr. Neha's are still outstanding. |
+| §1.2 Real photos labelled "Representative photo" | **Fixed.** The badge is gated on `isStockImage()`, so it appears only on stock imagery. The clinic's own photographs — including the four treatment photos already in the repo — no longer disown themselves. |
+| §1.2 Hero was stock, undisclosed, with misleading alt text | **Fixed.** The hero is now a real photograph of the clinic's waiting lounge, with alt text describing what's actually in frame. |
+| §4.1 Hero missing address and open-now status | **Fixed.** The hero panel now carries the live "Open now / closes 8 PM" status (reusing `ClinicOpenStatus`) and a Kadarenahalli directions link. |
+| §1.6 Homepage led with 195 Google reviews | **Fixed.** The hero now leads with 1,100+ reviews across all three platforms. |
+| §1.4 "17 years" vs "since 1995" | **Partly fixed.** The hero states both facts explicitly: "Caring for families in Kadarenahalli since 1995 — led by Dr. Neha Kulsum for the last 17 years." The About H1 and the TrustStats headline still need the same treatment. |
+| Gallery was 2 stock + 4 empty | **Improved** to 3 real + 1 stock + 2 empty. The About page's stock interior was replaced with a real one. |
+
+Everything else below still stands. §6 has been trimmed to what is genuinely still outstanding.
 
 ---
 
@@ -478,16 +498,17 @@ Worth stating plainly, because these are real and shouldn't be lost in a later r
 ## 6. Asset list — to send Dr. Neha
 
 Everything below is currently blocking a fix in this audit. Rough priority order.
+**Received on 9 Aug 2026 and now live:** waiting lounge, reception and consultation room
+photos; Dr. Shyama Pramod's headshot and credentials; confirmation on Dr. Madhu.
 
 ### Photography
 
 - [ ] **Before/after cases — 6 to 10, with written patient consent.** Whitening, braces or
       aligners, veneers/crowns, smile design, implants. *Highest-value item on this list.*
-- [ ] Reception / front desk
-- [ ] Waiting lounge
-- [ ] 2–3 treatment rooms (the actual rooms, as they look on a normal day)
-- [ ] Consultation room
-- [ ] Sterilization area — this one does real work; patients care about it more than clinics expect
+- [ ] **Treatment rooms** — the one remaining stock image in the gallery. The photos received
+      so far show the treatment room only through the glass partition.
+- [ ] Sterilization area — this one does real work; patients care about it more than clinics
+      expect, and the reception photo shows only the door
 - [ ] Kids' corner
 - [ ] Clinic exterior and signage — genuinely helps people find the door
 - [ ] Team group photo
@@ -500,13 +521,15 @@ Everything below is currently blocking a fix in this audit. Rough priority order
       registration number, any fellowships or certifications (implantology, laser, aligners),
       and one additional photo. Also: please confirm whether "12+ years experience" or "17+
       years leading the clinic" is the figure to lead with — both currently appear.
-- [ ] **Dr. Madhu:** full name, qualification, specialty, years of experience, a short bio,
-      and a headshot — **or confirm we should remove the entry.** Currently published blank
-      across the whole site.
-- [ ] **Dr. Shyama, Dr. Tasneem, Dr. Asfia** — all three are named in real patient reviews
-      shown on the site. Please confirm who currently practises at the clinic so they can be
-      added (or deliberately left out).
+- [ ] **Dr. Shyama Pramod:** years in practice, and **sign-off on her bio** — the two
+      sentences currently on the site were drafted from her credential list alone, and are
+      marked in the code as awaiting her approval. Her Dental Council registration number
+      would also strengthen the card.
+- [ ] **Dr. Tasneem and Dr. Asfia** — both are named in real patient reviews shown on the
+      site. Please confirm whether either currently practises at the clinic.
 - [ ] **Ms. Aira Fathima:** confirm her exact title, and whether a photo can be used.
+- [ ] One review on the site names **Dr. Madhu**, who has now left. It's genuine and was true
+      when written, so it stays for now — flag if you'd rather it came down.
 
 ### Commercial information
 
@@ -547,8 +570,8 @@ Everything below is currently blocking a fix in this audit. Rough priority order
 |---|---|---|
 | 1 | Remove fabricated slot availability and the "backend not connected" line | `components/BookingWidget.tsx:58`, `:195` |
 | 2 | Confirm the live domain — everything SEO depends on it | `lib/site-data.ts` `clinic.website` |
-| 3 | Fill in or remove the blank second doctor | `lib/site-data.ts` `doctors[1]` |
-| 4 | Rewrite the 17 / 30 years phrasing so both facts are stated | `app/about/page.tsx:36`, `components/TrustStats.tsx:28`, `components/FinalCTA.tsx:10` |
+| 3 | ~~Fill in or remove the blank second doctor~~ — **done**, Dr. Madhu removed and Dr. Shyama Pramod added | `lib/site-data.ts` |
+| 4 | Rewrite the 17 / 30 years phrasing so both facts are stated — **hero done**, About H1 and TrustStats still to do | `app/about/page.tsx:36`, `components/TrustStats.tsx:28`, `components/FinalCTA.tsx:10` |
 | 5 | Add `/reviews` to the sitemap | `app/sitemap.ts:5` |
 | 6 | Set the GA4 ID and verify Search Console | env + hosting |
 | 7 | Add booking conversion tracking and a real confirmation URL | `components/BookingWidget.tsx` |
@@ -567,7 +590,7 @@ Everything below is currently blocking a fix in this audit. Rough priority order
 | 15 | Publish price ranges and a consultation fee | new section or `/treatments` |
 | 16 | Add doctor credentials and a `Physician` schema node | `lib/site-data.ts`, `components/DoctorSpotlight.tsx` |
 | 17 | Build the before/after gallery once consented photos arrive | `/gallery` |
-| 18 | Lead the homepage with 1,100+ reviews across three platforms, not 195 | `components/Hero.tsx` |
+| 18 | ~~Lead the homepage with 1,100+ reviews across three platforms, not 195~~ — **done** | `components/Hero.tsx` |
 
 ### P2 — then
 
@@ -581,10 +604,10 @@ Everything below is currently blocking a fix in this audit. Rough priority order
 | 24 | Add "Not sure — I'd like a consultation" to the treatment picker | `components/BookingWidget.tsx` |
 | 25 | Fix the sitemap's `lastModified` so it reflects real changes | `app/sitemap.ts` |
 | 26 | Decide the `/book` wizard's fate — revive or delete | `next.config.js`, `app/book/`, `components/booking/` |
-| 27 | Surface `ClinicOpenStatus` in the hero | `components/Hero.tsx` |
+| 27 | ~~Surface `ClinicOpenStatus` in the hero~~ — **done**, via a `tone` prop so the footer is unchanged | `components/Hero.tsx` |
 | 28 | Rename "Smile Gallery" to "Clinic Gallery" until real cases exist | `components/FullScreenMenu.tsx:13` |
 | 29 | Move the accessibility widget clear of the mobile CTA bar | `components/AccessibilityWidget.tsx:39` |
-| 30 | Gate the "Representative photo" badge so real photos aren't labelled stock | `components/TreatmentMedia.tsx:47` |
+| 30 | ~~Gate the "Representative photo" badge so real photos aren't labelled stock~~ — **done**, via `isStockImage()` | `components/TreatmentMedia.tsx`, `app/gallery/page.tsx` |
 
 ---
 

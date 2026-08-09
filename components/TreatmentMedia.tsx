@@ -1,4 +1,5 @@
 import type { Treatment } from "@/lib/site-data";
+import { isStockImage } from "@/lib/site-data";
 import Icon from "./Icon";
 import SignatureMark from "./SignatureMark";
 
@@ -40,12 +41,15 @@ export default function TreatmentMedia({ treatment, variant = "card", className 
           }`}
           loading={variant === "hero" ? "eager" : "lazy"}
         />
-        {/* Same disclosure pattern as Hero/Gallery — these are stock photos,
-            not actual photos of this clinic, and the site is consistent
-            about saying so wherever a stock image appears. */}
-        <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
-          Representative photo
-        </span>
+        {/* Same disclosure pattern as the Gallery — but only on stock
+            imagery. Photographs actually taken at the clinic carry no
+            badge: labelling the clinic's own rooms "representative" would
+            disown the real thing. */}
+        {isStockImage(treatment.image) && (
+          <span className="absolute top-3 right-3 bg-ink/60 text-porcelain text-[10px] font-medium tracking-wide px-2.5 py-1 rounded-full backdrop-blur">
+            Representative photo
+          </span>
+        )}
       </div>
     );
   }

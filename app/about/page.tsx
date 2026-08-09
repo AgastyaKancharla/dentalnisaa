@@ -15,11 +15,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
 };
 
-// Same vetted, honestly-labelled representative photo already used in the
-// clinic gallery data — reused rather than introducing a new unverified
-// stock image for the hero/story sections.
-const REPRESENTATIVE_PHOTO =
-  "https://images.unsplash.com/photo-1704455306251-b4634215d98f?fm=jpg&q=80&w=1200&auto=format&fit=crop";
+// A real photograph of the clinic's own consultation room, the same one
+// used in the gallery — it replaced a stock interior here, so there's no
+// "representative photo" disclosure to make any more.
+const CLINIC_PHOTO = "/clinic/consultation-room.jpg";
 
 export default function AboutPage() {
   return (
@@ -48,14 +47,11 @@ export default function AboutPage() {
             <div className="aspect-[4/5] overflow-hidden border border-ink/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src={REPRESENTATIVE_PHOTO}
-                alt="Treatment room at DentalNisaa"
+                src={CLINIC_PHOTO}
+                alt="The consultation room at DentalNisaa Oral Care, with the treatment room visible through the glass partition"
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="absolute bottom-4 left-4 bg-ink/80 text-porcelain text-[10px] uppercase tracking-wide px-2.5 py-1">
-              Representative photo
-            </span>
           </Reveal>
         </div>
       </section>

@@ -65,6 +65,25 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
                     </p>
                   )}
+                  {doctor.credentials && doctor.credentials.length > 0 && (
+                    // Listed rather than run together into the title line:
+                    // these are the specific, checkable things a patient
+                    // scans for, and a comma-separated string buries them.
+                    <ul className="mt-4 space-y-1.5">
+                      {doctor.credentials.map((credential) => (
+                        <li
+                          key={credential}
+                          className="flex items-start gap-2.5 text-sm text-ink/70 leading-snug"
+                        >
+                          <span
+                            className="mt-[0.45rem] w-1 h-1 rounded-full bg-gold-dark shrink-0"
+                            aria-hidden
+                          />
+                          {credential}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {doctor.bio && (
                     <p className="mt-3 text-ink/70 leading-relaxed text-sm">
                       {doctor.bio}
