@@ -10,12 +10,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-// Until the client confirms an exact Google Maps pin (clinic.address.mapsUrl),
-// fall back to a search-based embed using the clinic name + known area. This
-// is still a working, functional map today — swap for the confirmed pin
-// once available for pinpoint accuracy.
+// clinic.address.mapsUrl is a maps.app.goo.gl share link — meant for
+// click-through navigation (used as an href elsewhere), not for embedding.
+// Google's share-link redirect pages refuse to render inside an iframe, so
+// the embedded map always uses a search-based embed URL instead.
 function getMapEmbedSrc() {
-  if (clinic.address.mapsUrl) return clinic.address.mapsUrl;
   const query = encodeURIComponent(
     `${clinic.name}, ${clinic.address.line1}, ${clinic.address.line2}`
   );
@@ -40,7 +39,7 @@ export default function ContactPage() {
           <Reveal className="surface-panel rounded-2xl p-7 space-y-6 h-fit">
             <div className="flex gap-4">
               <span className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal/10 text-teal-dark">
-                <Icon name="scan" className="w-5 h-5" />
+                <Icon name="pin" className="w-5 h-5" />
               </span>
               <div>
                 <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Address</p>
@@ -53,7 +52,7 @@ export default function ContactPage() {
 
             <div className="flex gap-4">
               <span className="shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-full bg-teal/10 text-teal-dark">
-                <Icon name="chat" className="w-5 h-5" />
+                <Icon name="phone" className="w-5 h-5" />
               </span>
               <div>
                 <p className="text-sm text-ink/50 uppercase tracking-wide mb-1">Phone</p>
