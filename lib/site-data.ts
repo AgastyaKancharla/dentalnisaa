@@ -8,7 +8,11 @@
 
 export const clinic = {
   name: "DentalNisaa Oral Care",
-  website: "https://dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm live domain before launch
+  // Confirmed by the client (Aug 2026) — the clinic owns dentalnisaa.com.
+  // Every canonical URL, the sitemap, the OG metadata and the Dentist
+  // structured data derive from this one value, so it must stay in sync
+  // with whatever domain actually serves the site.
+  website: "https://dentalnisaa.com",
   tagline: "Bengaluru's family dental clinic, trusted since 1995",
   brandLine: "Discover Back The Joy Of Smiling", // verbatim from client logo
   phone: "+91 97312 14949", // confirmed via onboarding form

@@ -427,9 +427,13 @@ real patient questions. Content isn't the weak link — attribution is.
 
 ### 3.12 Launch blockers
 
-- `clinic.website` is still marked `⟦PLACEHOLDER⟧ confirm live domain before launch`.
-  **Every canonical URL, the entire sitemap, all OG metadata, and all structured data derive
-  from this value.** If it's wrong at launch, the whole SEO layer points somewhere wrong.
+- ~~`clinic.website` is still marked `⟦PLACEHOLDER⟧ confirm live domain before launch`.~~
+  **Resolved Aug 2026** — the client confirmed the clinic owns `dentalnisaa.com`, and the
+  placeholder marker is gone. Every canonical URL, the entire sitemap, all OG metadata and all
+  structured data derive from this one value, so it has to stay in sync with whatever domain
+  actually serves the site. Note the production Vercel alias currently serves an older
+  deployment than the branch head — worth confirming which build `dentalnisaa.com` points at
+  once DNS is attached.
 - No Google Search Console verification is present anywhere in the repo. Without it there's
   no visibility into indexing, crawl errors, or search performance.
 - `NEXT_PUBLIC_GA_MEASUREMENT_ID` and `BOOKING_WEBHOOK_URL` both need to be set in the
@@ -569,7 +573,7 @@ photos; Dr. Shyama Pramod's headshot and credentials; confirmation on Dr. Madhu.
 | # | Action | Where |
 |---|---|---|
 | 1 | Remove fabricated slot availability and the "backend not connected" line | `components/BookingWidget.tsx:58`, `:195` |
-| 2 | Confirm the live domain — everything SEO depends on it | `lib/site-data.ts` `clinic.website` |
+| 2 | ~~Confirm the live domain — everything SEO depends on it~~ — **done**, client owns dentalnisaa.com | `lib/site-data.ts` `clinic.website` |
 | 3 | ~~Fill in or remove the blank second doctor~~ — **done**, Dr. Madhu removed and Dr. Shyama Pramod added | `lib/site-data.ts` |
 | 4 | Rewrite the 17 / 30 years phrasing so both facts are stated — **hero done**, About H1 and TrustStats still to do | `app/about/page.tsx:36`, `components/TrustStats.tsx:28`, `components/FinalCTA.tsx:10` |
 | 5 | Add `/reviews` to the sitemap | `app/sitemap.ts:5` |

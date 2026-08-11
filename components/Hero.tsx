@@ -56,24 +56,29 @@ export default function Hero() {
       <motion.div
         variants={container}
         {...motionProps}
-        className="relative px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pt-10 pb-16 md:pt-14 md:pb-20 lg:min-h-[calc(100dvh-6rem)] grid lg:grid-cols-[1.05fr_0.95fr] gap-10 lg:gap-16 xl:gap-20 items-center"
+        className="relative px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pt-10 pb-16 md:pt-14 md:pb-20 lg:min-h-[calc(100dvh-6rem)] grid lg:grid-cols-[1.12fr_0.88fr] gap-10 lg:gap-14 xl:gap-20 items-center"
       >
         {/* ── Left: the argument ─────────────────────────────────── */}
         <div className="max-w-2xl">
-          <h1 className="text-ink">
-            <motion.span
-              variants={rise}
-              className="block font-body text-[0.78rem] sm:text-sm font-semibold uppercase tracking-[0.2em] text-sage-deep"
-            >
-              Implants, cosmetic &amp; family dentistry
+          {/* One continuous statement at hero scale, rather than a small
+              tracked-out label sitting above an oversized fragment — that
+              split read as two disconnected objects, and breaking "all
+              under one roof" after "under" cut a single idiom in half.
+              The specialisms now carry the type weight themselves, which
+              also puts the page's keywords at hero size instead of in a
+              grey caption. Phrases are inline-block so they wrap naturally
+              on small screens and take the composed break only from lg up
+              (transforms don't apply to plain inline elements, so the
+              entrance would silently break with `inline`). */}
+          <h1 className="font-display font-semibold text-ink text-[2.05rem] leading-[1.07] tracking-[-0.022em] sm:text-[2.6rem] lg:text-[3.4rem] xl:text-[3.9rem]">
+            <motion.span variants={rise} className="inline-block lg:block">
+              Implants, cosmetic&nbsp;
             </motion.span>
-            <motion.span
-              variants={rise}
-              className="block font-display font-semibold text-[2.9rem] leading-[0.98] tracking-[-0.02em] mt-4 sm:text-6xl lg:text-[4.6rem] xl:text-[5.2rem] text-balance"
-            >
-              All under
-              <br />
-              one roof.
+            <motion.span variants={rise} className="inline-block lg:block">
+              &amp; family dentistry —&nbsp;
+            </motion.span>
+            <motion.span variants={rise} className="inline-block lg:block text-gold-dark">
+              all under one roof.
             </motion.span>
           </h1>
 
