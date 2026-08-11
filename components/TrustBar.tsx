@@ -3,29 +3,7 @@
 import { useRef } from "react";
 import { trustPoints, clinic } from "@/lib/site-data";
 import AnimatedCounter from "./AnimatedCounter";
-
-// Renders "4.8" as ★★★★★-with-a-partial-star, built from clinic.rating —
-// no invented rating graphic, just a visual read of the real number.
-function Stars({ rating }: { rating: number }) {
-  return (
-    <span className="inline-flex gap-0.5 text-sage" aria-hidden>
-      {Array.from({ length: 5 }).map((_, i) => {
-        const fill = Math.max(0, Math.min(1, rating - i));
-        return (
-          <span key={i} className="relative inline-block w-4 h-4">
-            <span className="absolute inset-0 text-ink/15">★</span>
-            <span
-              className="absolute inset-0 overflow-hidden"
-              style={{ width: `${fill * 100}%` }}
-            >
-              ★
-            </span>
-          </span>
-        );
-      })}
-    </span>
-  );
-}
+import Stars from "./Stars";
 
 // Typographic mural: one dominant stat (the rating, largest, anchoring the
 // whole composition) with the others placed around it at varying scale and

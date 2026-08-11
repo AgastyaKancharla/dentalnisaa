@@ -11,6 +11,9 @@ type AnimatedCounterProps = {
   duration?: number;
   /** Decimal places to keep, e.g. 1 for a 4.8 rating. Defaults to 0. */
   decimals?: number;
+  /** Group thousands, e.g. 1131 -> "1,131". Off by default so existing
+   *  small counters (years, treatment counts) render exactly as before. */
+  grouped?: boolean;
   className?: string;
 };
 
@@ -23,6 +26,7 @@ export default function AnimatedCounter({
   suffix = "",
   duration = 1200,
   decimals = 0,
+  grouped = false,
   className = "",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
@@ -67,10 +71,17 @@ export default function AnimatedCounter({
     return () => observer.disconnect();
   }, [value, duration]);
 
+  const shown = grouped
+    ? display.toLocaleString("en-IN", {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      })
+    : display;
+
   return (
     <span ref={ref} className={className}>
       {prefix}
-      {display}
+      {shown}
       {suffix}
     </span>
   );
