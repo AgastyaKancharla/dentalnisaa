@@ -186,7 +186,7 @@ export default function ReviewsPageContent() {
                 {group.entries.length > 0 ? (
                   <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
                     {group.entries.map((t, i) => (
-                      <Reveal key={`${t.platform}-${i}`} delay={(i % 6) * 60}>
+                      <Reveal key={`${t.platform}-${i}`} delay={(i % 6) * 90}>
                         <p className="text-[11px] font-semibold text-teal-dark uppercase tracking-wide mb-2">
                           {t.context}
                         </p>

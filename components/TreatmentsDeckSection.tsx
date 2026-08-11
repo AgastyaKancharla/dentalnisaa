@@ -19,7 +19,7 @@ export default function TreatmentsDeckSection({ limit }: { limit?: number }) {
           </h2>
         </Reveal>
 
-        <Reveal delay={60}>
+        <Reveal delay={90}>
           <TreatmentDeck treatments={list} />
         </Reveal>
 

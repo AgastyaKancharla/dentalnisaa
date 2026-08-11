@@ -43,7 +43,7 @@ export default function AboutPage() {
               since childhood.
             </p>
           </Reveal>
-          <Reveal delay={100} className="relative">
+          <Reveal delay={90} variant="media" className="relative">
             <div className="aspect-[4/5] overflow-hidden border border-ink/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
@@ -71,7 +71,7 @@ export default function AboutPage() {
 
           <div className="mt-14 grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-start">
             <Reveal
-              delay={80}
+              delay={90}
               className="flex items-center gap-4 md:flex-col md:items-start md:gap-3"
             >
               <span className="font-display text-4xl md:text-5xl text-ink">
@@ -86,7 +86,7 @@ export default function AboutPage() {
               </span>
             </Reveal>
 
-            <Reveal delay={140} className="max-w-xl space-y-4">
+            <Reveal delay={180} className="max-w-xl space-y-4">
               <p className="text-ink/75 leading-relaxed text-lg">
                 DentalNisaa's legacy started in {clinic.foundedYear} — and
                 it's the same legacy today, not a different clinic that

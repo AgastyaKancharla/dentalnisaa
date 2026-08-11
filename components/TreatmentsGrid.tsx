@@ -29,7 +29,7 @@ export default function TreatmentsGrid({ limit }: { limit?: number }) {
             const row = Math.floor(i / cols);
             const dark = (row + i) % 2 === 0;
             return (
-              <Reveal key={t.id} delay={(i % 6) * 40} className="h-full">
+              <Reveal key={t.id} delay={(i % 6) * 90} className="h-full">
                 <Link
                   href={`/treatments/${t.id}`}
                   className={`group relative flex flex-col justify-between h-full min-h-[170px] sm:min-h-[220px] p-4 sm:p-7 md:p-8 transition-colors duration-300 ${

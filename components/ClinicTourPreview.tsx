@@ -61,7 +61,7 @@ export default function ClinicTourPreview() {
 
         <div className={`grid gap-6 ${preview.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 max-w-2xl"}`}>
           {preview.map((space, i) => (
-            <Reveal key={space.name} delay={i * 60}>
+            <Reveal key={space.name} delay={i * 90} variant="media">
               <button
                 type="button"
                 onClick={(e) => {
@@ -97,7 +97,7 @@ export default function ClinicTourPreview() {
           ))}
         </div>
 
-        <Reveal delay={200} className="mt-10">
+        <Reveal delay={180} className="mt-10">
           <Link
             href="/gallery"
             className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-gold-dark transition-colors"

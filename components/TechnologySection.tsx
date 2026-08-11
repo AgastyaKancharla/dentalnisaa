@@ -88,7 +88,7 @@ export default function TechnologySection() {
           </Reveal>
 
           {/* Sterilization, told as the real cycle every instrument goes through */}
-          <Reveal delay={100}>
+          <Reveal delay={90}>
             <div className="grid md:grid-cols-[1fr_auto] md:items-end gap-6 md:gap-10 pb-8 border-b border-ink/10">
               <div>
                 <h3 className="font-display text-2xl md:text-3xl mb-2 text-ink">

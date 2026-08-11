@@ -33,7 +33,7 @@ export default function GalleryPage() {
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28">
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {gallerySpaces.map((space, i) => (
-              <Reveal key={space.name} delay={i * 60}>
+              <Reveal key={space.name} delay={i * 90} variant="media">
                 <div className="rounded-2xl overflow-hidden border border-ink/10 bg-white/60 h-full">
                   <div className="aspect-[4/3] bg-gradient-to-br from-gold/15 via-porcelain-dim to-teal/10 flex items-center justify-center relative">
                     {space.image ? (
