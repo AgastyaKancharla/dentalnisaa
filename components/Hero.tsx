@@ -106,8 +106,11 @@ export default function Hero() {
                 className="w-3.5 h-3.5 mt-2"
                 filled="text-sage-deep"
               />
+              {/* Named precisely: 4.8 is the Google figure, and it sits
+                  beside a count that spans three platforms. "Average
+                  rating" would quietly imply it averaged all of them. */}
               <dt className="mt-1.5 text-[0.68rem] sm:text-xs uppercase tracking-wider text-ink/45">
-                Average rating
+                Google rating
               </dt>
             </div>
 

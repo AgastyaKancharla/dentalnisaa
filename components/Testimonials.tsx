@@ -11,7 +11,6 @@ import {
 } from "@/lib/site-data";
 import SignatureMark from "./SignatureMark";
 import SectionSeam from "./SectionSeam";
-import { GoogleGIcon } from "./Icon";
 
 type Quote = { quote: string; context: string; author: string };
 
@@ -20,6 +19,10 @@ const platformData: Record<string, Quote[]> = {
   Practo: practoTestimonials,
   Justdial: justdialTestimonials,
 };
+
+// Every review across all three listings — the same figure the Hero leads
+// with, computed from the same source so the two can never drift apart.
+const totalReviews = reviewPlatforms.reduce((sum, p) => sum + p.count, 0);
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -84,10 +87,21 @@ export default function Testimonials() {
             <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
               What families say
             </p>
-            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight flex items-center gap-3 flex-wrap">
-              {platform === "Google" && <GoogleGIcon className="w-8 h-8 md:w-9 md:h-9" />}
-              {activePlatform.rating.toFixed(1)}★ from {activePlatform.count}+ patients.
+            {/* Leads with the figure that spans every platform. Headlining
+                whichever tab happened to be selected meant this section
+                opened with Google's 195 while the Hero two screens above
+                had already said 1,131 — the page appeared to lose 900
+                reviews as you scrolled. Each platform's own real rating
+                still sits on its switcher button below; nothing here
+                blends them into an average the clinic couldn't point at
+                on a real listing. */}
+            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight">
+              {totalReviews.toLocaleString("en-IN")} patient reviews.
             </h2>
+            <p className="mt-3 text-porcelain/70 leading-relaxed">
+              Verified on Google, Practo and Justdial — all of them, not
+              just the ones we'd have picked.
+            </p>
           </div>
           <div className="flex flex-col items-end gap-2">
             <Link
