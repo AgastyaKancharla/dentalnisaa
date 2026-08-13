@@ -8,7 +8,11 @@
 
 export const clinic = {
   name: "DentalNisaa Oral Care",
-  website: "https://dentalnisaa.com", // ⟦PLACEHOLDER⟧ confirm live domain before launch
+  // Confirmed by the client (Aug 2026) — the clinic owns dentalnisaa.com.
+  // Every canonical URL, the sitemap, the OG metadata and the Dentist
+  // structured data derive from this one value, so it must stay in sync
+  // with whatever domain actually serves the site.
+  website: "https://dentalnisaa.com",
   tagline: "Bengaluru's family dental clinic, trusted since 1995",
   brandLine: "Discover Back The Joy Of Smiling", // verbatim from client logo
   phone: "+91 97312 14949", // confirmed via onboarding form
@@ -64,11 +68,17 @@ export const reviewPlatforms = [
 // DoctorSpotlight component renders a graceful "coming soon" state while
 // title/experience/bio/photo are empty, instead of publishing placeholder
 // text to real visitors.
+//
+// `credentials` holds the discrete, checkable qualifications — degrees,
+// fellowships, awards, rank — as separate items rather than one run-on
+// title string. Kept separate from `bio` because these are verifiable
+// facts a patient scans for, not prose.
 export type Doctor = {
   name: string;
   title: string;
   experience: string;
   bio: string;
+  credentials?: string[];
   quote?: string;
   photo: string | null;
 };
@@ -83,22 +93,27 @@ export const doctors: Doctor[] = [
     photo: "/doctor-neha.jpg",
   },
   {
-    name: "Dr. Madhu",
-    title: "", // ⟦PLACEHOLDER⟧ e.g. BDS, MDS (specialization)
-    experience: "", // ⟦PLACEHOLDER⟧ years of experience
-    bio: "", // ⟦PLACEHOLDER⟧ in the doctor's own words
-    photo: null, // ⟦PLACEHOLDER⟧ headshot image path once received
+    name: "Dr. Shyama Pramod",
+    title: "BDS, MDS, FPOS · Orthodontist",
+    experience: "", // ⟦PLACEHOLDER⟧ years in practice — not yet supplied
+    // ⟦AWAITING SIGN-OFF⟧ Drafted from the credentials the clinic supplied
+    // and nothing else — no years, technique, or manner has been inferred.
+    // Replace with her own wording once she's reviewed it.
+    bio: "Dr. Shyama plans and manages orthodontic treatment — braces and clear aligners — including cases that need a combined surgical and orthodontic approach. She holds an MDS in orthodontics alongside a Fellowship in Surgical Orthodontics, graduated as a rank holder from RGUHS, and has been recognised by the Pierre Fauchard Academy for its South Asia division.",
+    credentials: [
+      "MDS — Orthodontics & Dentofacial Orthopaedics",
+      "Fellowship in Surgical Orthodontics",
+      "RGUHS rank holder",
+      "Pierre Fauchard Academy award recipient (South Asia Division)",
+      "Braces & clear aligner treatment planning",
+    ],
+    photo: "/doctor-shyama.jpg",
   },
-  // ⟦PLACEHOLDER⟧ — add once confirmed as currently active (reviews also
-  // mention Dr. Shyama and Dr. Tasneem, but this needs the client's
-  // confirmation before publishing):
-  // {
-  //   name: "Dr. Full Name",
-  //   title: "BDS, MDS (Prosthodontics)",
-  //   experience: "XX years",
-  //   bio: "In the doctor's own words.",
-  //   photo: "/doctor.jpg",
-  // },
+  // Dr. Madhu was removed in Aug 2026 — confirmed by the clinic as no
+  // longer practising here. One Google review below still names him
+  // (Manasa H.); it's genuine and was true when written, so it stays.
+  // Dr. Tasneem and Dr. Asfia are also named in reviews and still need
+  // the clinic's confirmation before either is published.
 ];
 
 // Support staff — confirmed via onboarding form.
@@ -1183,6 +1198,16 @@ export type GallerySpace = {
   image: string | null;
 };
 
+// Distinguishes a stock photo from one actually taken at the clinic, so the
+// "Representative photo" disclosure lands only on the former. This isn't a
+// guess: every stock image on the site is a remote images.unsplash.com URL,
+// and every real clinic photograph is a local path under /public. Keeping it
+// as one predicate means the badge can never drift out of sync with the data
+// the way a hand-maintained boolean per entry would.
+export function isStockImage(src: string | null | undefined): boolean {
+  return !!src && /^https?:\/\//i.test(src);
+}
+
 // Descriptions of real clinic spaces — swap `image` from null to a real
 // photo path once available. Kept factual and non-superlative so nothing
 // here overstates what a photo would actually show. Temporary stock photos
@@ -1193,7 +1218,7 @@ export const gallerySpaces: GallerySpace[] = [
     name: "Waiting Lounge",
     description:
       "A calm space to sit before your appointment, ask questions, and settle in before treatment begins.",
-    image: null,
+    image: "/clinic/waiting-lounge.jpg",
   },
   {
     name: "Treatment Rooms",
@@ -1206,8 +1231,7 @@ export const gallerySpaces: GallerySpace[] = [
     name: "Consultation Room",
     description:
       "Where every treatment plan starts — a private space for an honest conversation about what you need and why.",
-    image:
-      "https://images.unsplash.com/photo-1704455306251-b4634215d98f?fm=jpg&q=80&w=1200&auto=format&fit=crop",
+    image: "/clinic/consultation-room.jpg",
   },
   {
     name: "Sterilization & Safety",
@@ -1219,7 +1243,7 @@ export const gallerySpaces: GallerySpace[] = [
     name: "Reception",
     description:
       "The first stop for check-in, questions, and scheduling your next visit.",
-    image: null,
+    image: "/clinic/reception.jpg",
   },
   {
     name: "Kids' Corner",

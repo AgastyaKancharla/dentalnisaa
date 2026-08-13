@@ -197,7 +197,7 @@ export default function TreatmentPage({ params }: Props) {
               </ul>
             </Reveal>
 
-            <Reveal delay={80}>
+            <Reveal delay={90}>
               <h2 className="font-display text-2xl md:text-3xl text-ink mb-8">
                 Signs to watch for
               </h2>
@@ -229,7 +229,7 @@ export default function TreatmentPage({ params }: Props) {
             {treatment.benefits.map((benefit, i) => (
               <Reveal
                 key={benefit}
-                delay={i * 70}
+                delay={i * 90}
                 className={`py-7 ${i > 0 ? "sm:border-l border-ink/10 sm:pl-8" : ""}`}
               >
                 <span className="text-gold-dark text-xl" aria-hidden>
@@ -269,14 +269,14 @@ export default function TreatmentPage({ params }: Props) {
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={70}>
+            <Reveal delay={90}>
               <h2 className="font-display text-xl text-ink mb-5">Treatment duration</h2>
               <p className="font-display text-2xl text-ink mb-2">{treatment.duration}</p>
               <p className="text-ink/60 text-sm leading-relaxed">
                 Exact timing depends on your specific case — confirmed at consultation.
               </p>
             </Reveal>
-            <Reveal delay={140}>
+            <Reveal delay={180}>
               <h2 className="font-display text-xl text-ink mb-5">Recovery</h2>
               <p className="text-ink/75 leading-relaxed">{treatment.recovery}</p>
             </Reveal>
@@ -292,7 +292,7 @@ export default function TreatmentPage({ params }: Props) {
               Common questions
             </h2>
           </Reveal>
-          <Reveal delay={60} className="max-w-2xl">
+          <Reveal delay={90} className="max-w-2xl">
             <FaqAccordion items={treatment.faqs} />
           </Reveal>
         </div>
@@ -312,7 +312,7 @@ export default function TreatmentPage({ params }: Props) {
             </Reveal>
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 md:gap-7">
               {related.map((r, i) => (
-                <Reveal key={r.id} delay={i * 60}>
+                <Reveal key={r.id} delay={i * 90}>
                   <TreatmentCard treatment={r} />
                 </Reveal>
               ))}

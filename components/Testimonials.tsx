@@ -10,8 +10,8 @@ import {
   clinic,
 } from "@/lib/site-data";
 import SignatureMark from "./SignatureMark";
+import Reveal, { RevealGroup } from "./Reveal";
 import SectionSeam from "./SectionSeam";
-import { GoogleGIcon } from "./Icon";
 
 type Quote = { quote: string; context: string; author: string };
 
@@ -20,6 +20,10 @@ const platformData: Record<string, Quote[]> = {
   Practo: practoTestimonials,
   Justdial: justdialTestimonials,
 };
+
+// Every review across all three listings — the same figure the Hero leads
+// with, computed from the same source so the two can never drift apart.
+const totalReviews = reviewPlatforms.reduce((sum, p) => sum + p.count, 0);
 
 function StarRow({ rating }: { rating: number }) {
   return (
@@ -80,15 +84,32 @@ export default function Testimonials() {
     <section id="reviews" className="bg-gold-dark text-porcelain relative overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
-          <div className="max-w-xl">
-            <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
-              What families say
-            </p>
-            <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight flex items-center gap-3 flex-wrap">
-              {platform === "Google" && <GoogleGIcon className="w-8 h-8 md:w-9 md:h-9" />}
-              {activePlatform.rating.toFixed(1)}★ from {activePlatform.count}+ patients.
-            </h2>
-          </div>
+          <RevealGroup className="max-w-xl">
+            <Reveal>
+              <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
+                What families say
+              </p>
+            </Reveal>
+            {/* Leads with the figure that spans every platform. Headlining
+                whichever tab happened to be selected meant this section
+                opened with Google's 195 while the Hero two screens above
+                had already said 1,131 — the page appeared to lose 900
+                reviews as you scrolled. Each platform's own real rating
+                still sits on its switcher button below; nothing here
+                blends them into an average the clinic couldn't point at
+                on a real listing. */}
+            <Reveal>
+              <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight">
+                {totalReviews.toLocaleString("en-IN")} patient reviews.
+              </h2>
+            </Reveal>
+            <Reveal>
+              <p className="mt-3 text-porcelain/70 leading-relaxed">
+                Verified on Google, Practo and Justdial — all of them, not
+                just the ones we'd have picked.
+              </p>
+            </Reveal>
+          </RevealGroup>
           <div className="flex flex-col items-end gap-2">
             <Link
               href="/reviews"
@@ -132,11 +153,16 @@ export default function Testimonials() {
               strokeOpacity={0.4}
             />
 
-            <div
-              ref={trackRef}
-              onScroll={handleScroll}
-              className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0"
-            >
+            {/* Revealed as one unit rather than card-by-card: the cards
+                past the first live inside a horizontal scroller, so they
+                may never intersect the viewport and would sit at zero
+                opacity until swiped to. */}
+            <Reveal>
+              <div
+                ref={trackRef}
+                onScroll={handleScroll}
+                className="flex gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-5 px-5 md:mx-0 md:px-0"
+              >
               {quotes.map((t, i) => (
                 <div
                   key={`${platform}-${i}`}
@@ -156,7 +182,8 @@ export default function Testimonials() {
                   <p className="mt-6 font-semibold">{t.author}</p>
                 </div>
               ))}
-            </div>
+              </div>
+            </Reveal>
 
             <div className="flex items-center gap-2 mt-8">
               {quotes.map((_, i) => (

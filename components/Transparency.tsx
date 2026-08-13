@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { MOTION, group, rise } from "@/lib/motion";
 import { trustPoints, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
 import SignatureMark from "./SignatureMark";
@@ -32,31 +33,15 @@ const points = [
 // care, multi-generational) carry over.
 const facts = [trustPoints[0], trustPoints[2], trustPoints[3]];
 
-// Parent variant staggers its children's entrance — each child animates
-// only once its turn in the sequence arrives, rather than everything
-// firing on the same flat delay ramp.
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.18, delayChildren: 0.05 } },
-};
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
-};
-
-// Points get a slightly different, more physical entrance than the plain
-// fade-up: the number scales in with a spring (a little overshoot, not a
-// flat ease) while the text content fades in a beat behind it.
-const pointNumber = {
-  hidden: { opacity: 0, scale: 0.5 },
-  show: { opacity: 1, scale: 1, transition: { type: "spring", stiffness: 260, damping: 18 } },
-};
-
-const pointText = {
-  hidden: { opacity: 0, x: -16 },
-  show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.12 } },
-};
+// Timings now come from lib/motion, so this section moves at exactly the
+// same speed and on the same curve as every other one. It previously
+// carried four bespoke variant sets — including a spring nothing else on
+// the site used — which is why it read as its own effect rather than as
+// part of one continuous sequence.
+const container = group();
+const fadeUp = rise;
+const pointNumber = rise;
+const pointText = rise;
 
 export default function Transparency({ topDivider = false }: { topDivider?: boolean }) {
   return (
@@ -67,7 +52,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={MOTION.viewport}
           className="relative"
         >
           <SignatureMark className="w-20 h-20 text-sage absolute -top-6 -left-2 hidden md:block" strokeOpacity={0.4} />
@@ -96,7 +81,7 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={MOTION.viewport}
           className="space-y-6 md:space-y-8"
         >
           {points.map((p, i) => (

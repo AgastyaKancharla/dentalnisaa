@@ -1,19 +1,24 @@
 import Link from "next/link";
 import { clinic } from "@/lib/site-data";
+import Reveal, { RevealGroup } from "./Reveal";
 
 export default function FinalCTA() {
   return (
     <section className="bg-mist-soft">
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-24 text-center">
-        <h2 className="font-display text-3xl md:text-4xl text-ink max-w-2xl mx-auto leading-tight">
-          Your next appointment could be the start of{" "}
-          <span className="italic text-gold-dark">30 more years</span> of
-          trusted care.
-        </h2>
-        <p className="mt-4 text-ink/60">
-          Kadarenahalli, Bengaluru · {clinic.phone}
-        </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
+      <RevealGroup className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-24 text-center">
+        <Reveal>
+          <h2 className="font-display text-3xl md:text-4xl text-ink max-w-2xl mx-auto leading-tight">
+            Your next appointment could be the start of{" "}
+            <span className="italic text-gold-dark">30 more years</span> of
+            trusted care.
+          </h2>
+        </Reveal>
+        <Reveal>
+          <p className="mt-4 text-ink/60">
+            Kadarenahalli, Bengaluru · {clinic.phone}
+          </p>
+        </Reveal>
+        <Reveal className="mt-8 flex flex-wrap justify-center gap-4">
           <Link
             href="/booking"
             className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
@@ -26,8 +31,8 @@ export default function FinalCTA() {
           >
             Call the clinic
           </a>
-        </div>
-      </div>
+        </Reveal>
+      </RevealGroup>
     </section>
   );
 }

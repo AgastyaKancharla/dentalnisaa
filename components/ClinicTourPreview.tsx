@@ -2,15 +2,22 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { gallerySpaces } from "@/lib/site-data";
+import { gallerySpaces, isStockImage } from "@/lib/site-data";
 import Reveal from "./Reveal";
 import SectionSeam from "./SectionSeam";
 
 // Homepage teaser for the full /gallery page — same data, condensed to the
-// spaces that currently have a real photo so the preview never shows an
-// empty "coming soon" tile above the fold.
+// spaces that currently have a photo so the preview never shows an empty
+// "coming soon" tile above the fold.
+//
+// Actual photographs of the clinic are preferred over the stock stand-ins:
+// this section's whole claim is "a look inside, before you arrive", which
+// only holds if what's shown is genuinely inside. Stock only fills in if
+// there aren't yet three real photos to show.
 export default function ClinicTourPreview() {
-  const withPhotos = gallerySpaces.filter((s) => s.image);
+  const real = gallerySpaces.filter((s) => s.image && !isStockImage(s.image));
+  const stock = gallerySpaces.filter((s) => isStockImage(s.image));
+  const withPhotos = [...real, ...stock];
   const preview = (withPhotos.length ? withPhotos : gallerySpaces).slice(0, 3);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const active = openIndex !== null ? preview[openIndex] : null;
@@ -54,7 +61,7 @@ export default function ClinicTourPreview() {
 
         <div className={`grid gap-6 ${preview.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 max-w-2xl"}`}>
           {preview.map((space, i) => (
-            <Reveal key={space.name} delay={i * 60}>
+            <Reveal key={space.name} delay={i * 90} variant="media">
               <button
                 type="button"
                 onClick={(e) => {
@@ -90,7 +97,7 @@ export default function ClinicTourPreview() {
           ))}
         </div>
 
-        <Reveal delay={200} className="mt-10">
+        <Reveal delay={180} className="mt-10">
           <Link
             href="/gallery"
             className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-gold-dark transition-colors"

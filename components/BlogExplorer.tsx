@@ -84,7 +84,7 @@ export default function BlogExplorer({ posts }: { posts: BlogPost[] }) {
       ) : (
         <div className="space-y-6 max-w-3xl">
           {filtered.map((post, i) => (
-            <Reveal key={post.slug} delay={i * 60}>
+            <Reveal key={post.slug} delay={i * 90}>
               <Link
                 href={`/blog/${post.slug}`}
                 className="group block rounded-2xl border border-ink/10 bg-white/60 p-7 hover:border-gold/40 hover:-translate-y-0.5 transition-all"

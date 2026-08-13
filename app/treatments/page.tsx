@@ -51,7 +51,7 @@ export default function TreatmentsPage() {
             </p>
           </Reveal>
 
-          <Reveal delay={80} className="mt-10 flex items-center gap-8 border-t border-ink/10 pt-6">
+          <Reveal delay={90} className="mt-10 flex items-center gap-8 border-t border-ink/10 pt-6">
             <div>
               <p className="font-display text-3xl text-ink">{treatments.length}</p>
               <p className="text-xs uppercase tracking-wide text-ink/50 mt-1">

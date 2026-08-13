@@ -31,7 +31,7 @@ export default function TrustStats() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-ink/10 border border-ink/10">
           {stats.map((stat, i) => (
-            <Reveal key={stat.label} delay={i * 80} className="bg-porcelain-dim/40">
+            <Reveal key={stat.label} delay={i * 90} className="bg-porcelain-dim/40">
               <div className="p-8 h-full">
                 <p className="font-display text-3xl md:text-4xl text-ink">
                   {typeof stat.value === "number" ? (

@@ -29,7 +29,7 @@ export default function FaqPreview() {
           </Link>
         </Reveal>
 
-        <Reveal delay={80}>
+        <Reveal delay={90}>
           <FaqAccordion items={preview} />
         </Reveal>
       </div>

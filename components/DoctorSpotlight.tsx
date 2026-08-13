@@ -1,5 +1,6 @@
 import { doctors, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
+import Reveal, { RevealGroup } from "./Reveal";
 
 // A doctor's initial letter, used as a signature monogram when there's no
 // photo yet -- e.g. "Dr. Neha" -> "N". Deliberately not a generic person
@@ -15,15 +16,19 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
     <section className="bg-porcelain-dim/40 text-ink relative">
       {topDivider && <SectionSeam tone="light" />}
       <div className={`px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
-        <div className="max-w-2xl mb-14 md:mb-20">
-          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
-            Meet our doctors
-          </p>
-          <h2 className="font-display text-3xl md:text-4xl">
-            A team our patients have trusted for {clinic.yearsActive}{" "}
-            years.
-          </h2>
-        </div>
+        {/* Same eyebrow → heading cascade every other section opens with. */}
+        <RevealGroup className="max-w-2xl mb-14 md:mb-20">
+          <Reveal>
+            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+              Meet our doctors
+            </p>
+          </Reveal>
+          <Reveal>
+            <h2 className="font-display text-3xl md:text-4xl">
+              A team our patients have trusted for {clinic.yearsActive} years.
+            </h2>
+          </Reveal>
+        </RevealGroup>
 
         {doctors.length > 0 ? (
           // Asymmetric editorial pairing instead of a mirrored grid: the two
@@ -35,7 +40,14 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
               const offset = i % 2 === 1 ? "sm:mt-16" : "";
               const basis = i % 2 === 0 ? "sm:flex-[1.15]" : "sm:flex-[0.85]";
               return (
-                <div key={doctor.name} className={`${basis} ${offset} max-w-md`}>
+                // Media variant: the portrait settles into its frame rather
+                // than sliding, matching how photographs enter everywhere else.
+                <Reveal
+                  key={doctor.name}
+                  variant="media"
+                  delay={i * 90}
+                  className={`${basis} ${offset} max-w-md`}
+                >
                   <div className="relative w-full aspect-[4/5] border border-ink/10 overflow-hidden bg-gold/10">
                     {doctor.photo ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -65,6 +77,25 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
                     </p>
                   )}
+                  {doctor.credentials && doctor.credentials.length > 0 && (
+                    // Listed rather than run together into the title line:
+                    // these are the specific, checkable things a patient
+                    // scans for, and a comma-separated string buries them.
+                    <ul className="mt-4 space-y-1.5">
+                      {doctor.credentials.map((credential) => (
+                        <li
+                          key={credential}
+                          className="flex items-start gap-2.5 text-sm text-ink/70 leading-snug"
+                        >
+                          <span
+                            className="mt-[0.45rem] w-1 h-1 rounded-full bg-gold-dark shrink-0"
+                            aria-hidden
+                          />
+                          {credential}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                   {doctor.bio && (
                     <p className="mt-3 text-ink/70 leading-relaxed text-sm">
                       {doctor.bio}
@@ -75,7 +106,7 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       "{doctor.quote}"
                     </p>
                   )}
-                </div>
+                </Reveal>
               );
             })}
           </div>

@@ -30,7 +30,7 @@ export default function AppointmentProcess() {
           />
           <div className="grid gap-10 md:grid-cols-5 md:gap-6">
             {appointmentSteps.map((step, i) => (
-              <Reveal key={step.title} delay={i * 80}>
+              <Reveal key={step.title} delay={i * 90}>
                 <div className="relative flex md:flex-col gap-5 md:gap-0">
                   <div className="relative shrink-0 md:mb-6">
                     <div className="w-12 h-12 rounded-full bg-ink text-porcelain flex items-center justify-center relative z-10">

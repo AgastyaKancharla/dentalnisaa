@@ -97,7 +97,7 @@ export default function ContactPage() {
             </div>
           </Reveal>
 
-          <Reveal delay={100} className="rounded-2xl overflow-hidden border border-ink/10 aspect-[4/3]">
+          <Reveal delay={90} className="rounded-2xl overflow-hidden border border-ink/10 aspect-[4/3]">
             <iframe
               src={getMapEmbedSrc()}
               title={`Map to ${clinic.name}`}

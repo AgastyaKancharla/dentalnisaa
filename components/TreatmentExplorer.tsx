@@ -53,7 +53,7 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
         </Reveal>
 
         {/* Category filters */}
-        <Reveal delay={40} className="mb-12">
+        <Reveal delay={90} className="mb-12">
           <div
             className="flex flex-wrap gap-2.5"
             role="group"
@@ -93,7 +93,7 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
         {filtered.length > 0 ? (
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-7">
             {filtered.map((t, i) => (
-              <Reveal key={t.id} delay={(i % 8) * 40}>
+              <Reveal key={t.id} delay={(i % 8) * 90}>
                 <TreatmentCard treatment={t} />
               </Reveal>
             ))}
