@@ -29,11 +29,11 @@ export default function BookingPage({
           phone or WhatsApp shortly after.
         </p>
 
-        <div className="grid lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
-          <div className="order-1">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
+          <div className="order-1 min-w-0">
             <BookingWidget initialTreatment={searchParams.treatment} />
           </div>
-          <div className="order-2">
+          <div className="order-2 min-w-0">
             <BookingSidebar />
           </div>
         </div>
