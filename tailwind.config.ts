@@ -69,9 +69,52 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(16px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        heroSpin: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        orbDriftA: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(40px, -30px) scale(1.05)" },
+        },
+        orbDriftB: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(-35px, 25px) scale(1.04)" },
+        },
+        orbPulse: {
+          "0%, 100%": { transform: "translate(0, 0) scale(1)" },
+          "50%": { transform: "translate(15px, -10px) scale(1.08)" },
+        },
+        particleDriftA: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "25%": { transform: "translate(15px, -20px)" },
+          "50%": { transform: "translate(-10px, -35px)" },
+          "75%": { transform: "translate(20px, -15px)" },
+        },
+        particleDriftB: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "33%": { transform: "translate(-20px, -25px)" },
+          "66%": { transform: "translate(10px, -30px)" },
+        },
+        particleDriftC: {
+          "0%, 100%": { transform: "translate(0, 0)" },
+          "50%": { transform: "translate(-15px, 20px)" },
+        },
+        toothFloat: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
       },
       animation: {
         fadeUp: "fadeUp 0.7s ease-out forwards",
+        heroSpin: "heroSpin 25s linear infinite",
+        orbDriftA: "orbDriftA 24s ease-in-out infinite",
+        orbDriftB: "orbDriftB 29s ease-in-out infinite",
+        orbPulse: "orbPulse 20s ease-in-out infinite",
+        particleDriftA: "particleDriftA 22s ease-in-out infinite",
+        particleDriftB: "particleDriftB 27s ease-in-out infinite",
+        particleDriftC: "particleDriftC 19s ease-in-out infinite",
+        toothFloat: "toothFloat 7s ease-in-out infinite",
       },
     },
   },
