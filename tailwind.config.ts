@@ -11,15 +11,9 @@ const config: Config = {
         // Real brand colors from the client's onboarding form: sage green,
         // beige, brown, black. Neutral token names keep the visual system focused on sage, beige,
         // brown, and black without tying components to a retired story.
-        //
-        // The base ground was cream (#FAF6EE) through the audit and hero
-        // redesign rounds; the client asked to drop that cream cast and go
-        // white sitewide. `dim` moves from a beige tint to a near-white warm
-        // grey so alternating section fills still read as a deliberate
-        // rhythm rather than disappearing into a single flat white page.
         porcelain: {
-          DEFAULT: "#FFFFFF", // white base
-          dim: "#F3F3F1", // faint warm-grey for section fills, no cream cast
+          DEFAULT: "#FAF6EE", // beige base
+          dim: "#EDE4D2", // deeper beige for section fills
         },
         ink: {
           DEFAULT: "#211E1A", // near-black
@@ -50,12 +44,11 @@ const config: Config = {
           dark: "#93753F",
         },
         // Added for the TrustBar / Transparency re-theme: these two sections
-        // were dark (bg-ink), which read as a jarring flip against the base
-        // everywhere else. Converted to a warm-neutral fill with sage
-        // accents instead. Matches `porcelain.dim` now that the cream base
-        // is gone — both play the same "slightly deeper than white" role.
+        // were dark (bg-ink), which read as a jarring flip against the
+        // beige/cream base everywhere else. Converted to warm beige with
+        // sage accents instead, per exact hex values agreed on.
         beige: {
-          deep: "#F3F3F1", // section background, warmer/deeper than porcelain
+          deep: "#F4EFE6", // section background, warmer/deeper than porcelain
         },
         sage: {
           DEFAULT: "#8CA68A", // accent — stars, numerals, dividers
