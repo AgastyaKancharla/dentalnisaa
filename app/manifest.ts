@@ -8,7 +8,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: clinic.tagline,
     start_url: "/",
     display: "standalone",
-    background_color: "#FAF6EE",
+    background_color: "#FFFFFF",
     theme_color: "#211E1A",
     icons: [
       { src: "/icon.png", sizes: "512x512", type: "image/png" },

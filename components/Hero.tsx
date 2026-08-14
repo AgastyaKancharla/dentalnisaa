@@ -122,7 +122,7 @@ export default function Hero() {
         />
         <div
           className="absolute top-[35%] left-1/2 -translate-x-1/2 w-[350px] h-[350px] md:w-[700px] md:h-[700px] rounded-full blur-[60px] md:blur-[80px] animate-orbPulse"
-          style={{ backgroundColor: "#EDE4D2", opacity: 0.35 }}
+          style={{ backgroundColor: "#F3F3F1", opacity: 0.7 }}
         />
       </div>
 
