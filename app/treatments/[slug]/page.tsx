@@ -10,6 +10,7 @@ import {
 } from "@/lib/schema";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
+import Magnetic from "@/components/Magnetic";
 import TreatmentMedia from "@/components/TreatmentMedia";
 import TreatmentCard from "@/components/TreatmentCard";
 import TreatmentProcessTimeline from "@/components/TreatmentProcessTimeline";
@@ -136,12 +137,14 @@ export default function TreatmentPage({ params }: Props) {
                 </div>
 
                 <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link
-                    href={`/booking?treatment=${treatment.id}`}
-                    className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
-                  >
-                    Book a consultation
-                  </Link>
+                  <Magnetic pull={0.25}>
+                    <Link
+                      href={`/booking?treatment=${treatment.id}`}
+                      className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
+                    >
+                      Book a consultation
+                    </Link>
+                  </Magnetic>
                   <a
                     href={`https://wa.me/${clinic.whatsapp}`}
                     target="_blank"

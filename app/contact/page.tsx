@@ -3,6 +3,7 @@ import Link from "next/link";
 import { clinic } from "@/lib/site-data";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
+import Stars from "@/components/Stars";
 
 export const metadata: Metadata = {
   title: "Contact Us — Kadarenahalli, Bengaluru",
@@ -23,16 +24,43 @@ function getMapEmbedSrc() {
 
 export default function ContactPage() {
   return (
-    <section className="bg-porcelain min-h-[70vh]">
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-16 pb-24 md:pt-24">
+    <section className="bg-gradient-to-b from-beige-deep to-porcelain min-h-[70vh]">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-20 pb-16 md:pt-24">
         <Reveal>
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
             Contact — Kadarenahalli, Bengaluru
           </p>
-          <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight mb-10">
+          <h1 className="font-display text-4xl md:text-5xl text-ink leading-tight">
             Find us,{" "}
             <span className="italic text-gold-dark">reach us.</span>
           </h1>
+          <p className="mt-5 text-lg text-ink/70 max-w-xl leading-relaxed">
+            Kadarenahalli's own dental clinic — call, WhatsApp, or book
+            online, and we'll take it from there.
+          </p>
+        </Reveal>
+
+        <Reveal delay={90} className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 mb-10">
+          <span className="inline-flex items-center gap-2 text-sm text-ink/70">
+            <Stars rating={clinic.rating} className="w-4 h-4" />
+            {clinic.rating} · {clinic.reviewCount}+ reviews
+          </span>
+          <a
+            href={`tel:${clinic.phone.replace(/\s/g, "")}`}
+            className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
+          >
+            Call now
+            <span aria-hidden>→</span>
+          </a>
+          <a
+            href={`https://wa.me/${clinic.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
+          >
+            WhatsApp us
+            <span aria-hidden>→</span>
+          </a>
         </Reveal>
 
         <div className="grid md:grid-cols-2 gap-10">
