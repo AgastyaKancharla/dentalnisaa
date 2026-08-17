@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 import DoctorSpotlight from "@/components/DoctorSpotlight";
 import Transparency from "@/components/Transparency";
 import TrustStats from "@/components/TrustStats";
@@ -7,6 +9,7 @@ import OurValues from "@/components/OurValues";
 import FinalCTA from "@/components/FinalCTA";
 import Reveal from "@/components/Reveal";
 import Breadcrumb from "@/components/Breadcrumb";
+import Magnetic from "@/components/Magnetic";
 import { clinic } from "@/lib/site-data";
 
 export const metadata: Metadata = {
@@ -24,9 +27,9 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO */}
-      <section className="bg-porcelain relative overflow-hidden">
-        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-8 pb-14 md:pt-10 md:pb-20 grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-center">
-          <Reveal>
+      <section className="bg-beige-deep relative overflow-hidden">
+        <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-8 pb-14 md:pt-10 md:pb-20 md:min-h-[560px] grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 md:items-stretch">
+          <Reveal className="flex flex-col justify-center">
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "About" }]} />
             <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mt-6 mb-3">
               About DentalNisaa
@@ -42,15 +45,43 @@ export default function AboutPage() {
               brings families back — including ones who've been coming
               since childhood.
             </p>
+            <div className="mt-8 flex flex-wrap items-center gap-4">
+              <Magnetic pull={0.25}>
+                <Link
+                  href="/booking"
+                  className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
+                >
+                  Book a consultation
+                </Link>
+              </Magnetic>
+              <a
+                href="#doctors"
+                className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
+              >
+                Meet Dr. Neha
+                <span aria-hidden>↓</span>
+              </a>
+            </div>
           </Reveal>
-          <Reveal delay={90} variant="media" className="relative">
-            <div className="aspect-[4/5] overflow-hidden border border-ink/10">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={CLINIC_PHOTO}
-                alt="The consultation room at DentalNisaa Oral Care, with the treatment room visible through the glass partition"
-                className="w-full h-full object-cover"
-              />
+          <Reveal
+            delay={90}
+            variant="media"
+            className="relative h-[320px] md:h-auto overflow-hidden"
+          >
+            <Image
+              src={CLINIC_PHOTO}
+              alt="The consultation room at DentalNisaa Oral Care, with the treatment room visible through the glass partition"
+              fill
+              sizes="(min-width: 768px) 45vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute bottom-6 left-6 surface-panel rounded-2xl px-6 py-5 z-10">
+              <p className="font-display text-4xl text-ink leading-none">
+                {clinic.yearsActive}
+              </p>
+              <p className="mt-1.5 text-xs uppercase tracking-wide text-ink/60 max-w-[8rem] leading-snug">
+                Years of family trust
+              </p>
             </div>
           </Reveal>
         </div>

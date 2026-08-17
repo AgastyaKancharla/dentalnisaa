@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { clinic, treatments, treatmentCategories } from "@/lib/site-data";
 import { buildTreatmentsCollectionSchema } from "@/lib/schema";
 import TreatmentExplorer from "@/components/TreatmentExplorer";
 import FinalCTA from "@/components/FinalCTA";
 import Reveal from "@/components/Reveal";
 import SignatureMark from "@/components/SignatureMark";
+import Magnetic from "@/components/Magnetic";
+import Icon from "@/components/Icon";
+import { TONES } from "@/components/TreatmentMedia";
 
 export const metadata: Metadata = {
   title: "Dental Treatments in Kadarenahalli",
@@ -21,6 +25,11 @@ export default function TreatmentsPage() {
   const categoriesInUse = treatmentCategories.filter((c) =>
     treatments.some((t) => t.category === c)
   );
+  // One representative icon per category — the first treatment filed under
+  // it — so the mosaic previews the exact palette the treatment cards below
+  // use, without inventing a second category→icon mapping.
+  const categoryIcon = (category: string) =>
+    treatments.find((t) => t.category === category)?.icon ?? "tooth";
 
   return (
     <>
@@ -30,7 +39,7 @@ export default function TreatmentsPage() {
       />
 
       {/* Premium hero */}
-      <section className="relative bg-porcelain overflow-hidden">
+      <section className="relative bg-gradient-to-br from-porcelain to-beige-deep overflow-hidden">
         <SignatureMark
           className="absolute -right-6 -top-6 w-40 h-40 text-ink/[0.06] hidden md:block"
         />
@@ -72,6 +81,45 @@ export default function TreatmentsPage() {
                 {clinic.reviewCount}+ reviews
               </p>
             </div>
+          </Reveal>
+
+          {/* Category mosaic — previews the exact tone palette the
+              treatment cards below use, so the hero reads as one system
+              with the grid rather than a disconnected banner. */}
+          <div className="mt-8 flex flex-wrap gap-3 max-w-lg">
+            {categoriesInUse.map((category, i) => {
+              const tone = TONES[category] ?? TONES["Preventive Care"];
+              return (
+                <Reveal key={category} delay={220 + i * 70}>
+                  <div
+                    title={category}
+                    className={`w-14 h-14 rounded-xl flex items-center justify-center ${tone.bg}`}
+                  >
+                    <Icon name={categoryIcon(category)} className={`w-6 h-6 ${tone.fg}`} />
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+
+          <Reveal delay={220 + categoriesInUse.length * 70 + 90} className="mt-10 flex flex-wrap items-center gap-4">
+            <Magnetic pull={0.25}>
+              <Link
+                href="/booking"
+                className="focus-ring inline-flex items-center rounded-full bg-ink text-porcelain px-7 py-3.5 font-semibold hover:bg-teal-dark transition-colors"
+              >
+                Book a consultation
+              </Link>
+            </Magnetic>
+            <a
+              href={`https://wa.me/${clinic.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring inline-flex items-center gap-1.5 font-semibold text-ink hover:text-gold-dark transition-colors"
+            >
+              Ask on WhatsApp
+              <span aria-hidden>→</span>
+            </a>
           </Reveal>
         </div>
       </section>

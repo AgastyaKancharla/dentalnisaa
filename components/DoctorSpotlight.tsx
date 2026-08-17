@@ -13,7 +13,7 @@ function monogram(name: string) {
 
 export default function DoctorSpotlight({ topDivider = true }: { topDivider?: boolean }) {
   return (
-    <section className="bg-porcelain-dim/40 text-ink relative">
+    <section id="doctors" className="bg-porcelain-dim/40 text-ink relative">
       {topDivider && <SectionSeam tone="light" />}
       <div className={`px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
         {/* Same eyebrow → heading cascade every other section opens with. */}
