@@ -29,7 +29,16 @@ export default function BookingPage({
           phone or WhatsApp shortly after.
         </p>
 
-        <div className="grid lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
+        {/* `grid-cols-1` is load-bearing on mobile, not decorative: without
+            an explicit base track, this grid cell has no width ceiling, so
+            its `min-width: auto` default lets deep content (the day-picker
+            and time-slot grid inside BookingWidget) size the whole column
+            to its own max-content width instead of the viewport — the page
+            visibly overflows right, hidden by `overflow-x: hidden` on
+            desktop's mouse-wheel scroll but still reachable by touch-panning
+            on real mobile browsers. `minmax(0, 1fr)` (what `grid-cols-1`
+            compiles to) is what actually clamps it. */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
           <div className="order-1">
             <BookingWidget initialTreatment={searchParams.treatment} />
           </div>
