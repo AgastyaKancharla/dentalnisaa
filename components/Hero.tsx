@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { clinic, reviewPlatforms } from "@/lib/site-data";
 import ClinicOpenStatus from "./ClinicOpenStatus";
@@ -9,6 +8,7 @@ import AnimatedCounter from "./AnimatedCounter";
 import Magnetic from "./Magnetic";
 import Stars from "./Stars";
 import Icon from "./Icon";
+import DentalChairIllustration from "./DentalChairIllustration";
 
 // Every review the clinic can actually point at — 195 Google + 357 Practo +
 // 579 Justdial. Computed, never hardcoded, so it stays true as counts move.
@@ -28,40 +28,36 @@ const container = {
 export default function Hero() {
   return (
     <>
-      <section className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-porcelain">
-        {/* No scrim, no tint, no darkening — the photograph is shown exactly
-            as shot. Legibility is bought with framing instead.
-
-            Anchored right-top at every width, which pins the clinic's plain
-            cream wall — the one genuinely quiet part of this photograph — to
-            the top-right of the frame on any viewport, and that's where the
-            type sits. Anchoring to the centre instead drops the subheading
-            onto the green reception desk, where measured contrast against
-            ink falls to 1.7:1 (4.5:1 is the readable threshold).
-
-            The text column is deliberately narrow because that clean wall is
-            only about a quarter of the frame wide. When the real entrance
-            photograph is shot, compose it with one side left plain and this
-            layout can open up without any other change. */}
-        <Image
-          src="/clinic/waiting-lounge.jpg"
-          alt="The entrance and waiting lounge at DentalNisaa Oral Care, looking through to the reception desk"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-right-top"
-        />
-
-        <div className="relative z-10 min-h-[100dvh] pt-24 md:pt-28 flex items-start justify-end px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+      <section className="relative -mt-20 md:-mt-24 pt-24 md:pt-28 overflow-hidden bg-gradient-to-b from-porcelain via-porcelain to-beige-deep">
+        <div className="relative z-10 flex flex-col items-center px-5 sm:px-8 pt-8 sm:pt-12 md:pt-16 pb-14 md:pb-20 text-center">
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="w-full max-w-[19rem] sm:max-w-[21rem] lg:max-w-[23rem]"
+            className="w-full flex flex-col items-center"
           >
+            {/* The hero's visual: an original line illustration of a premium
+                exam chair, not a photograph, so it needs no "Representative
+                photo" disclosure — see DentalChairIllustration.tsx. It sits
+                above the headline, and its own soft glow doubles as the
+                warm wash the type below needs for contrast against the page. */}
+            <motion.div
+              variants={rise}
+              className="w-[15rem] sm:w-[19rem] md:w-[23rem] lg:w-[26rem] -mb-4 sm:-mb-6"
+            >
+              <DentalChairIllustration />
+            </motion.div>
+
+            <motion.p
+              variants={rise}
+              className="text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] text-gold-dark"
+            >
+              Bengaluru's family dental clinic
+            </motion.p>
+
             <motion.h1
               variants={rise}
-              className="font-display font-semibold text-ink text-[1.95rem] leading-[1.09] tracking-[-0.02em] sm:text-[2.2rem] lg:text-[2.5rem]"
+              className="mt-3 max-w-xl font-display font-semibold text-ink text-[2rem] leading-[1.1] tracking-[-0.02em] sm:text-[2.6rem] lg:text-[3rem]"
             >
               The dentist Kadarenahalli{" "}
               <span className="text-gold-dark">grew up with.</span>
@@ -69,13 +65,13 @@ export default function Hero() {
 
             <motion.p
               variants={rise}
-              className="mt-4 text-ink/80 text-[0.95rem] sm:text-base leading-relaxed font-medium"
+              className="mt-4 max-w-md text-ink/70 text-[0.95rem] sm:text-base leading-relaxed font-medium"
             >
               Implants, cosmetic and family dentistry — all under one roof in
               Bengaluru, since {clinic.foundedYear}.
             </motion.p>
 
-            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center gap-3">
+            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center justify-center gap-3">
               <Magnetic pull={0.25}>
                 <Link
                   href="/booking"
@@ -95,8 +91,9 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Proof sits on the page ground directly beneath the photograph, so
-          nothing has to be laid over the image to carry it. */}
+      {/* Proof sits on the page ground directly beneath the hero, carrying
+          the open-now status and directions link that used to overlay the
+          photograph. */}
       <section className="bg-porcelain">
         <div className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 py-10 md:py-14">
           <div className="mx-auto max-w-6xl">
