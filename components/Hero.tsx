@@ -58,7 +58,7 @@ export default function Hero() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pb-14 md:pb-20 max-w-4xl"
+            className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pb-20 sm:pb-24 md:pb-28 max-w-4xl"
           >
             <motion.p
               variants={rise}
