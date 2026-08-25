@@ -36,7 +36,7 @@ export default function StickyCTA() {
         </a>
         <Link
           href="/booking"
-          className="focus-ring flex flex-col items-center justify-center py-3 gap-1 bg-gold text-ink active:bg-gold-light"
+          className="focus-ring flex flex-col items-center justify-center py-3 gap-1 bg-gold text-ink-soft active:bg-gold-light"
         >
           <Icon name="calendar" className="w-5 h-5" />
           Book

@@ -13,7 +13,12 @@ import { parseSlots, formatMinutesAsIsoTime } from "@/lib/clinic-status";
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  weight: ["400", "500", "600"],
+  // 300 for the huge hero display size (Fraunces gets noticeably more
+  // characterful — softer curves, ink-trap-like details — at low
+  // weight/very large size than at the 500/600 this page used everywhere
+  // before), up through 600 for section heads and 700 for the rare
+  // moment that needs real display weight.
+  weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
 });
 
@@ -61,7 +66,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#211E1A",
+  themeColor: "#0F402C",
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",

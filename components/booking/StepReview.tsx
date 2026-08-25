@@ -132,7 +132,7 @@ export default function StepReview() {
         type="button"
         onClick={handleConfirm}
         disabled={submitting}
-        className="focus-ring mt-8 w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gold text-ink px-8 py-3.5 font-semibold hover:bg-gold-light transition-colors disabled:opacity-50 min-h-[48px]"
+        className="focus-ring mt-8 w-full sm:w-auto inline-flex items-center justify-center rounded-full bg-gold text-ink-soft px-8 py-3.5 font-semibold hover:bg-gold-light transition-colors disabled:opacity-50 min-h-[48px]"
       >
         {submitting ? "Confirming…" : "Confirm appointment"}
       </button>

@@ -11,7 +11,7 @@ const values = [
 
 export default function OurValues() {
   return (
-    <section className="bg-gold-dark text-porcelain">
+    <section className="bg-ink text-porcelain">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-14">
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
@@ -42,7 +42,7 @@ export default function OurValues() {
             </span>
             "
           </p>
-          <p className="mt-4 text-xs uppercase tracking-wide text-porcelain/40">
+          <p className="mt-4 text-xs uppercase tracking-wide text-porcelain/55">
             How every consultation at DentalNisaa starts
           </p>
         </Reveal>

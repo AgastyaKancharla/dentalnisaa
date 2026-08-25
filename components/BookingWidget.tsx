@@ -181,7 +181,7 @@ export default function BookingWidget({ initialTreatment }: { initialTreatment?:
                   booked
                     ? "bg-ink/5 text-ink/25 border-ink/5 cursor-not-allowed line-through"
                     : selected
-                    ? "bg-gold text-ink border-gold"
+                    ? "bg-gold text-ink-soft border-gold"
                     : "bg-white/60 text-ink/70 border-ink/10 hover:border-gold/50"
                 }`}
               >

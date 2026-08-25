@@ -71,7 +71,7 @@ export default function ClinicTourPreview() {
                 }}
                 className="focus-ring group block w-full text-left border border-ink/10 overflow-hidden"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-gradient-to-br from-glass/50 via-porcelain-dim to-glass/20">
+                <div className="aspect-[4/3] overflow-hidden bg-mist-soft">
                   {space.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img

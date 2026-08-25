@@ -137,7 +137,7 @@ export default function ConfirmationPage() {
             href={`https://wa.me/${clinic.whatsapp}?text=${whatsappText}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink px-6 py-3.5 font-semibold hover:bg-gold-light transition-colors min-h-[48px]"
+            className="focus-ring inline-flex items-center justify-center gap-2 rounded-full bg-gold text-ink-soft px-6 py-3.5 font-semibold hover:bg-gold-light transition-colors min-h-[48px]"
           >
             <Icon name="chat" className="w-4 h-4" />
             Confirm on WhatsApp

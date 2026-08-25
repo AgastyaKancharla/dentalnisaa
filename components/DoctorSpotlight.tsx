@@ -13,19 +13,20 @@ function monogram(name: string) {
 
 export default function DoctorSpotlight({ topDivider = true }: { topDivider?: boolean }) {
   return (
-    <section className="bg-porcelain-dim/40 text-ink relative">
+    <section className="bg-porcelain text-ink relative">
       {topDivider && <SectionSeam tone="light" />}
       <div className={`px-5 md:px-10 lg:px-16 xl:px-24 pb-20 md:pb-28 ${topDivider ? "pt-16 md:pt-20" : "pt-16 md:pt-20"}`}>
         {/* Same eyebrow → heading cascade every other section opens with. */}
         <RevealGroup className="max-w-2xl mb-14 md:mb-20">
           <Reveal>
-            <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+            <p className="text-sm font-semibold text-gold-dark uppercase tracking-[0.14em] mb-4">
               Meet our doctors
             </p>
           </Reveal>
           <Reveal>
-            <h2 className="font-display text-3xl md:text-4xl">
-              A team our patients have trusted for {clinic.yearsActive} years.
+            <h2 className="font-display font-light text-4xl md:text-6xl leading-[1.03]">
+              A team our patients have trusted for{" "}
+              <span className="italic text-gold-dark font-normal">{clinic.yearsActive} years.</span>
             </h2>
           </Reveal>
         </RevealGroup>
@@ -48,7 +49,7 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                   delay={i * 90}
                   className={`${basis} ${offset} max-w-md`}
                 >
-                  <div className="relative w-full aspect-[4/5] border border-ink/10 overflow-hidden bg-gold/10">
+                  <div className="relative w-full aspect-[4/5] rounded-2xl border border-ink/10 overflow-hidden bg-gold/10">
                     {doctor.photo ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img
@@ -60,20 +61,20 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       <>
                         <span
                           aria-hidden
-                          className="absolute inset-0 flex items-center justify-center font-display leading-none text-gold-dark/15 select-none"
+                          className="absolute inset-0 flex items-center justify-center font-display leading-none text-gold-dark/20 select-none"
                           style={{ fontSize: "min(40vw, 11rem)" }}
                         >
                           {monogram(doctor.name)}
                         </span>
-                        <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-ink/35">
+                        <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-ink/60">
                           Photo coming soon
                         </span>
                       </>
                     )}
                   </div>
-                  <h3 className="font-display text-2xl mt-5">{doctor.name}</h3>
+                  <h3 className="font-display text-3xl mt-6">{doctor.name}</h3>
                   {(doctor.title || doctor.experience) && (
-                    <p className="mt-1 text-sm text-ink/55">
+                    <p className="mt-1.5 text-sm text-ink/70">
                       {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
                     </p>
                   )}
@@ -85,10 +86,10 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                       {doctor.credentials.map((credential) => (
                         <li
                           key={credential}
-                          className="flex items-start gap-2.5 text-sm text-ink/70 leading-snug"
+                          className="flex items-start gap-2.5 text-sm text-ink/80 leading-snug"
                         >
                           <span
-                            className="mt-[0.45rem] w-1 h-1 rounded-full bg-gold-dark shrink-0"
+                            className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-gold shrink-0"
                             aria-hidden
                           />
                           {credential}
@@ -97,12 +98,12 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                     </ul>
                   )}
                   {doctor.bio && (
-                    <p className="mt-3 text-ink/70 leading-relaxed text-sm">
+                    <p className="mt-3 text-ink/80 leading-relaxed text-sm">
                       {doctor.bio}
                     </p>
                   )}
                   {doctor.quote && (
-                    <p className="mt-4 font-display italic text-gold-dark text-lg leading-snug">
+                    <p className="mt-4 font-display italic text-gold-dark text-xl leading-snug">
                       "{doctor.quote}"
                     </p>
                   )}

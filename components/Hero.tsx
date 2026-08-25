@@ -16,142 +16,152 @@ const totalReviews = reviewPlatforms.reduce((sum, p) => sum + p.count, 0);
 const platformNames = reviewPlatforms.map((p) => p.name).join(" · ");
 
 const rise = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 };
 
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+  show: { transition: { staggerChildren: 0.11, delayChildren: 0.1 } },
 };
 
 export default function Hero() {
   return (
     <>
-      <section className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-porcelain">
-        {/* No scrim, no tint, no darkening — the photograph is shown exactly
-            as shot. Legibility is bought with framing instead.
-
-            Anchored right-top at every width, which pins the clinic's plain
-            cream wall — the one genuinely quiet part of this photograph — to
-            the top-right of the frame on any viewport, and that's where the
-            type sits. Anchoring to the centre instead drops the subheading
-            onto the green reception desk, where measured contrast against
-            ink falls to 1.7:1 (4.5:1 is the readable threshold).
-
-            The text column is deliberately narrow because that clean wall is
-            only about a quarter of the frame wide. When the real entrance
-            photograph is shot, compose it with one side left plain and this
-            layout can open up without any other change. */}
+      {/* Full-bleed photograph with a deliberate gradient scrim, rather than
+          depending on where a clean patch of wall happens to fall in the
+          shot. A scrim bought with a gradient (not a flat tint) keeps the
+          top of the frame true to the photograph while guaranteeing >7:1
+          contrast wherever the headline lands — measured, not eyeballed —
+          and it means the composition survives whatever photo replaces
+          this one later. */}
+      <section className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-ink">
         <Image
           src="/clinic/waiting-lounge.jpg"
           alt="The entrance and waiting lounge at DentalNisaa Oral Care, looking through to the reception desk"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-right-top"
+          className="object-cover object-center"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(18,38,26,0.15) 0%, rgba(18,38,26,0.15) 30%, rgba(18,38,26,0.78) 70%, rgba(18,38,26,0.96) 100%)",
+          }}
         />
 
-        <div className="relative z-10 min-h-[100dvh] pt-24 md:pt-28 flex items-start justify-end px-5 sm:px-8 md:px-10 lg:px-12 xl:px-16">
+        <div className="relative z-10 min-h-[100dvh] flex flex-col justify-end pt-24">
           <motion.div
             variants={container}
             initial="hidden"
             animate="show"
-            className="w-full max-w-[19rem] sm:max-w-[21rem] lg:max-w-[23rem]"
+            className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pb-14 md:pb-20 max-w-4xl"
           >
+            <motion.p
+              variants={rise}
+              className="inline-flex items-center gap-2 text-gold-light text-xs sm:text-sm font-semibold uppercase tracking-[0.14em] mb-5 md:mb-7"
+            >
+              Kadarenahalli, Bengaluru · Est. {clinic.foundedYear}
+            </motion.p>
+
             <motion.h1
               variants={rise}
-              className="font-display font-semibold text-ink text-[1.95rem] leading-[1.09] tracking-[-0.02em] sm:text-[2.2rem] lg:text-[2.5rem]"
+              className="font-display font-light text-porcelain leading-[0.98] tracking-[-0.01em] text-[2.75rem] sm:text-[3.75rem] md:text-[5.25rem] lg:text-[6.25rem]"
             >
-              The dentist Kadarenahalli{" "}
-              <span className="text-gold-dark">grew up with.</span>
+              The dentist Kadarenahalli
+              <br />
+              <span className="italic font-normal text-gold-light">grew up with.</span>
             </motion.h1>
 
             <motion.p
               variants={rise}
-              className="mt-4 text-ink/80 text-[0.95rem] sm:text-base leading-relaxed font-medium"
+              className="mt-6 md:mt-8 text-porcelain/90 text-base sm:text-lg leading-relaxed font-medium max-w-md"
             >
-              Implants, cosmetic and family dentistry — all under one roof in
-              Bengaluru, since {clinic.foundedYear}.
+              Implants, cosmetic and family dentistry — all under one roof,
+              caring for the same Bengaluru families for {clinic.yearsActive}+
+              years.
             </motion.p>
 
-            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center gap-3">
+            <motion.div variants={rise} className="mt-8 md:mt-10 flex flex-wrap items-center gap-4">
               <Magnetic pull={0.25}>
                 <Link
                   href="/booking"
-                  className="focus-ring inline-flex items-center rounded-full bg-gold text-ink px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors shadow-[0_10px_30px_-12px_rgba(33,30,26,0.5)]"
+                  className="focus-ring inline-flex items-center rounded-full bg-gold text-ink-soft px-8 py-4 font-semibold hover:bg-gold-light transition-colors shadow-[0_16px_40px_-14px_rgba(0,0,0,0.6)]"
                 >
                   Book Appointment
                 </Link>
               </Magnetic>
               <a
                 href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-                className="focus-ring inline-flex items-center gap-2 rounded-full bg-porcelain text-ink px-7 py-3.5 font-semibold hover:bg-white transition-colors border border-ink/10 shadow-[0_10px_30px_-12px_rgba(33,30,26,0.4)]"
+                className="focus-ring inline-flex items-center gap-2 rounded-full border border-porcelain/35 text-porcelain px-8 py-4 font-semibold hover:bg-porcelain/10 transition-colors"
               >
+                <Icon name="phone" className="w-4 h-4" />
                 Call Clinic
+              </a>
+            </motion.div>
+
+            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2.5">
+              <ClinicOpenStatus tone="dark" />
+              <a
+                href={clinic.address.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-porcelain/80 hover:text-gold-light transition-colors"
+              >
+                <Icon name="pin" className="w-4 h-4 shrink-0" />
+                Directions
+                <span aria-hidden>→</span>
               </a>
             </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* Proof sits on the page ground directly beneath the photograph, so
-          nothing has to be laid over the image to carry it. */}
-      <section className="bg-porcelain">
-        <div className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 py-10 md:py-14">
-          <div className="mx-auto max-w-6xl">
-            <dl className="grid grid-cols-3 divide-x divide-ink/10">
-              <div className="pr-2 sm:px-4 first:pl-0">
-                <dd className="font-display text-2xl sm:text-3xl lg:text-4xl text-ink leading-none tabular-nums">
-                  <AnimatedCounter value={clinic.rating} decimals={1} />
-                </dd>
-                <Stars
-                  rating={clinic.rating}
-                  className="w-3.5 h-3.5 mt-2"
-                  filled="text-sage-deep"
-                />
-                <dt className="mt-1.5 text-[0.68rem] sm:text-xs uppercase tracking-wider text-ink/45">
-                  Google rating
-                </dt>
-              </div>
-
-              <div className="px-2 sm:px-4">
-                <dd className="font-display text-2xl sm:text-3xl lg:text-4xl text-ink leading-none tabular-nums">
-                  <AnimatedCounter value={totalReviews} grouped />
-                </dd>
-                <dt className="mt-2.5 text-[0.68rem] sm:text-xs uppercase tracking-wider text-ink/45">
-                  Patient reviews
-                </dt>
-                <dd className="mt-1 text-[0.68rem] sm:text-xs text-ink/40">
-                  {platformNames}
-                </dd>
-              </div>
-
-              <div className="px-2 sm:px-4">
-                <dd className="font-display text-2xl sm:text-3xl lg:text-4xl text-ink leading-none tabular-nums">
-                  {clinic.foundedYear}
-                </dd>
-                <dt className="mt-2.5 text-[0.68rem] sm:text-xs uppercase tracking-wider text-ink/45">
-                  Caring since
-                </dt>
-              </div>
-            </dl>
-
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2.5">
-              <ClinicOpenStatus tone="light" />
-              <a
-                href={clinic.address.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-ink/70 hover:text-gold-dark transition-colors"
+      {/* The credential shelf: proof, in three cards, lifted up over the
+          seam where the photograph ends. */}
+      <section className="bg-porcelain relative">
+        <div className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
+          <div className="mx-auto max-w-5xl -mt-16 sm:-mt-20 md:-mt-24 relative z-10 grid grid-cols-3 gap-3 sm:gap-5">
+            {[
+              {
+                value: <AnimatedCounter value={clinic.rating} decimals={1} />,
+                label: "Google rating",
+                sub: <Stars rating={clinic.rating} className="w-3.5 h-3.5" filled="text-gold" />,
+              },
+              {
+                value: <AnimatedCounter value={totalReviews} grouped />,
+                label: "Patient reviews",
+                sub: <span className="text-[0.65rem] sm:text-xs text-ink/70">{platformNames}</span>,
+              },
+              {
+                value: clinic.foundedYear,
+                label: "Caring since",
+                sub: (
+                  <span className="text-[0.65rem] sm:text-xs text-ink/70">
+                    {clinic.yearsActive}+ years running
+                  </span>
+                ),
+              },
+            ].map((card) => (
+              <div
+                key={card.label}
+                className="rounded-2xl bg-porcelain border border-ink/10 shadow-[0_20px_45px_-20px_rgba(18,38,26,0.35)] px-3 sm:px-6 pt-6 sm:pt-9 pb-5 sm:pb-7 text-center"
               >
-                <Icon name="pin" className="w-4 h-4 shrink-0" />
-                Kadarenahalli, Bengaluru
-                <span aria-hidden>→</span>
-              </a>
-            </div>
+                <dd className="font-display text-xl sm:text-3xl md:text-4xl text-ink leading-none tabular-nums">
+                  {card.value}
+                </dd>
+                <dt className="mt-2.5 sm:mt-3 text-[0.6rem] sm:text-xs uppercase tracking-wider text-ink/70 font-semibold">
+                  {card.label}
+                </dt>
+                <div className="mt-1.5 sm:mt-2 leading-snug">{card.sub}</div>
+              </div>
+            ))}
           </div>
         </div>
+        <div className="h-10 md:h-16" />
       </section>
     </>
   );

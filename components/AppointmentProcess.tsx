@@ -11,21 +11,24 @@ export const appointmentSteps = [
 
 export default function AppointmentProcess() {
   return (
-    <section className="bg-porcelain-dim/40">
+    <section className="bg-porcelain-dim/60">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-16">
-          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+          <p className="text-sm font-semibold text-gold-dark uppercase tracking-[0.14em] mb-4">
             What to expect
           </p>
-          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
-            From first call to <span className="text-gold-dark italic">follow-up.</span>
+          <h2 className="font-display font-light text-4xl md:text-6xl leading-[1.03] text-ink">
+            From first call to <span className="text-gold-dark italic font-normal">follow-up.</span>
           </h2>
         </Reveal>
 
-        {/* Desktop: horizontal timeline. Mobile: vertical, connected by a rail. */}
+        {/* This one is a real sequence — the actual order a visit runs in —
+            so the numbering earns its place here, unlike the philosophy
+            section above. Desktop: horizontal timeline. Mobile: vertical,
+            connected by a rail. */}
         <div className="relative">
           <div
-            className="hidden md:block absolute top-6 left-0 right-0 h-px bg-ink/10"
+            className="hidden md:block absolute top-6 left-0 right-0 h-px bg-gold/40"
             aria-hidden
           />
           <div className="grid gap-10 md:grid-cols-5 md:gap-6">
@@ -33,19 +36,19 @@ export default function AppointmentProcess() {
               <Reveal key={step.title} delay={i * 90}>
                 <div className="relative flex md:flex-col gap-5 md:gap-0">
                   <div className="relative shrink-0 md:mb-6">
-                    <div className="w-12 h-12 rounded-full bg-ink text-porcelain flex items-center justify-center relative z-10">
+                    <div className="w-12 h-12 rounded-full bg-gold text-ink flex items-center justify-center relative z-10">
                       <Icon name={step.icon} className="w-5 h-5" />
                     </div>
                     {i !== appointmentSteps.length - 1 && (
-                      <div className="md:hidden absolute top-12 left-1/2 -translate-x-1/2 w-px h-full bg-ink/10" aria-hidden />
+                      <div className="md:hidden absolute top-12 left-1/2 -translate-x-1/2 w-px h-full bg-gold/40" aria-hidden />
                     )}
                   </div>
                   <div>
-                    <span className="font-display text-sm text-ink/30">
+                    <span className="font-display text-sm text-gold-dark">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <h3 className="font-display text-xl text-ink mt-1">{step.title}</h3>
-                    <p className="mt-2 text-sm text-ink/55 leading-relaxed max-w-[220px]">
+                    <p className="mt-2 text-sm text-ink/75 leading-relaxed max-w-[220px]">
                       {step.detail}
                     </p>
                   </div>

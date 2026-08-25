@@ -243,7 +243,7 @@ export default function TreatmentPage({ params }: Props) {
       </section>
 
       {/* ================= PROCESS (timeline) ================= */}
-      <section className="bg-gold-dark text-porcelain">
+      <section className="bg-ink text-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-16 md:py-20">
           <Reveal>
             <h2 className="font-display text-2xl md:text-3xl mb-12">What to expect</h2>

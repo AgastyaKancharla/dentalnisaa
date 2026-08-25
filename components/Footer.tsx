@@ -8,7 +8,7 @@ import Magnetic from "./Magnetic";
 
 export default function Footer() {
   return (
-    <footer className="bg-gold-dark text-porcelain/90 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 relative overflow-hidden">
+    <footer className="bg-ink-soft text-porcelain/90 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 relative overflow-hidden">
       {/* Wave divider — curves the page's porcelain background into the
           footer's dark ink, instead of a flat hard edge between them. */}
       <div className="absolute -top-px left-0 right-0 -translate-y-full leading-[0] overflow-hidden">
@@ -20,7 +20,7 @@ export default function Footer() {
         >
           <path
             d="M0,40 C240,90 480,0 720,20 C960,40 1200,90 1440,40 L1440,90 L0,90 Z"
-            className="fill-gold-dark"
+            className="fill-ink-soft"
           />
         </svg>
       </div>
@@ -36,7 +36,7 @@ export default function Footer() {
             sit right beneath it since that's the natural next action for
             anyone who reads "come say hello." */}
         <div className="pb-14 md:pb-16 border-b border-porcelain/10">
-          <p className="text-xs uppercase tracking-wide text-porcelain/40 mb-5">
+          <p className="text-xs uppercase tracking-wide text-porcelain/50 mb-5">
             Ready when you are
           </p>
           <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] leading-[1.05] max-w-3xl">
@@ -155,7 +155,7 @@ export default function Footer() {
               </div>
 
               <details className="group mt-6 pt-5 border-t border-porcelain/10">
-                <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/40">
+                <summary className="focus-ring cursor-pointer list-none [&::-webkit-details-marker]:hidden flex items-center justify-between text-xs uppercase tracking-wide text-porcelain/50">
                   Full weekly hours
                   <span aria-hidden className="transition-transform group-open:rotate-180">⌄</span>
                 </summary>
@@ -165,7 +165,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-porcelain/10 py-5 text-center text-xs text-porcelain/40 relative">
+      <div className="border-t border-porcelain/10 py-5 text-center text-xs text-porcelain/50 relative">
         <span>
           © {new Date().getFullYear()} {clinic.name}. All rights reserved.
         </span>

@@ -85,7 +85,7 @@ export default function FullScreenMenu({
                 <Link
                   href="/booking"
                   onClick={onClose}
-                  className="focus-ring inline-flex items-center rounded-full bg-gold text-ink px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors"
+                  className="focus-ring inline-flex items-center rounded-full bg-gold text-ink-soft px-7 py-3.5 font-semibold hover:bg-gold-light transition-colors"
                 >
                   Book Appointment
                 </Link>

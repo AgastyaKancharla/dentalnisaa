@@ -27,8 +27,8 @@ export default function Header() {
             <Image
               src="/logo-header.png"
               alt={clinic.name}
-              width={970}
-              height={509}
+              width={1154}
+              height={545}
               className="h-full w-auto object-contain"
               priority
             />

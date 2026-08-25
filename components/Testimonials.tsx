@@ -9,7 +9,6 @@ import {
   reviewPlatforms,
   clinic,
 } from "@/lib/site-data";
-import SignatureMark from "./SignatureMark";
 import Reveal, { RevealGroup } from "./Reveal";
 import SectionSeam from "./SectionSeam";
 
@@ -33,8 +32,8 @@ function StarRow({ rating }: { rating: number }) {
           key={i}
           viewBox="0 0 20 20"
           className="w-4 h-4"
-          fill={i < Math.round(rating) ? "#FBBC05" : "none"}
-          stroke="#FBBC05"
+          fill={i < Math.round(rating) ? "#DDB273" : "none"}
+          stroke="#DDB273"
           strokeWidth={i < Math.round(rating) ? 0 : 1}
         >
           <path d="M10 1.5l2.6 5.6 6.1.7-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.3 7.8l6.1-.7L10 1.5z" />
@@ -44,9 +43,8 @@ function StarRow({ rating }: { rating: number }) {
   );
 }
 
-// Punchier tag pills than the previous low-opacity-tint version -- solid
-// fill so they actually read as distinct tags against the dark card,
-// alternating between the two lightest tones in the palette.
+// Solid-fill tag pills so they read as distinct tags against the dark
+// card — white and gold-light both clear 8:1+ against forest text.
 const tagStyles = ["bg-porcelain text-ink", "bg-gold-light text-ink"];
 
 export default function Testimonials() {
@@ -81,12 +79,12 @@ export default function Testimonials() {
   };
 
   return (
-    <section id="reviews" className="bg-gold-dark text-porcelain relative overflow-hidden">
+    <section id="reviews" className="bg-ink text-porcelain relative overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
           <RevealGroup className="max-w-xl">
             <Reveal>
-              <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mb-3">
+              <p className="text-sm font-semibold text-gold-light uppercase tracking-[0.14em] mb-4">
                 What families say
               </p>
             </Reveal>
@@ -99,12 +97,12 @@ export default function Testimonials() {
                 blends them into an average the clinic couldn't point at
                 on a real listing. */}
             <Reveal>
-              <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight">
+              <h2 className="font-display font-light text-4xl md:text-6xl leading-[1.03]">
                 {totalReviews.toLocaleString("en-IN")} patient reviews.
               </h2>
             </Reveal>
             <Reveal>
-              <p className="mt-3 text-porcelain/70 leading-relaxed">
+              <p className="mt-4 text-porcelain/90 leading-relaxed">
                 Verified on Google, Practo and Justdial — all of them, not
                 just the ones we'd have picked.
               </p>
@@ -121,7 +119,7 @@ export default function Testimonials() {
               href={activePlatform.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-ring text-sm font-semibold text-porcelain/60 hover:text-porcelain underline underline-offset-4"
+              className="focus-ring text-sm font-semibold text-porcelain/80 hover:text-porcelain underline underline-offset-4"
             >
               See all reviews on {platform} →
             </a>
@@ -135,10 +133,11 @@ export default function Testimonials() {
               key={p.name}
               type="button"
               onClick={() => switchPlatform(p.name as "Google" | "Practo" | "Justdial")}
+              aria-pressed={platform === p.name}
               className={`focus-ring px-4 py-2 text-sm font-semibold border transition-colors ${
                 platform === p.name
                   ? "bg-porcelain text-ink border-porcelain"
-                  : "border-porcelain/25 text-porcelain/70 hover:border-porcelain/50 hover:text-porcelain"
+                  : "border-porcelain/30 text-porcelain/90 hover:border-porcelain/60 hover:text-porcelain"
               }`}
             >
               {p.name} · {p.rating.toFixed(1)}★ ({p.count}+)
@@ -148,10 +147,9 @@ export default function Testimonials() {
 
         {quotes.length > 0 ? (
           <>
-            <SignatureMark
-              className="w-16 h-16 text-porcelain/20 mb-2 hidden md:block"
-              strokeOpacity={0.4}
-            />
+            <span className="sr-only" role="status" aria-live="polite">
+              Showing review {active + 1} of {quotes.length} on {platform}
+            </span>
 
             {/* Revealed as one unit rather than card-by-card: the cards
                 past the first live inside a horizontal scroller, so they
@@ -166,10 +164,10 @@ export default function Testimonials() {
               {quotes.map((t, i) => (
                 <div
                   key={`${platform}-${i}`}
-                  className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] border border-porcelain/15 bg-porcelain/[0.06] p-7 md:p-8 flex flex-col"
+                  className="snap-start shrink-0 w-[85%] sm:w-[60%] md:w-[45%] lg:w-[38%] rounded-2xl border border-porcelain/15 bg-porcelain/[0.07] p-7 md:p-9 flex flex-col"
                 >
                   <span
-                    className={`self-start text-xs font-semibold px-3 py-1 ${tagStyles[i % tagStyles.length]}`}
+                    className={`self-start text-xs font-semibold px-3 py-1 rounded-full ${tagStyles[i % tagStyles.length]}`}
                   >
                     {t.context}
                   </span>
@@ -179,7 +177,7 @@ export default function Testimonials() {
                   <blockquote className="mt-4 font-display text-xl md:text-2xl leading-[1.35] flex-1">
                     "{t.quote}"
                   </blockquote>
-                  <p className="mt-6 font-semibold">{t.author}</p>
+                  <p className="mt-6 font-semibold text-gold-light">{t.author}</p>
                 </div>
               ))}
               </div>
@@ -192,17 +190,18 @@ export default function Testimonials() {
                   type="button"
                   onClick={() => scrollToCard(i)}
                   aria-label={`Show review ${i + 1}`}
+                  aria-current={i === active}
                   className={`focus-ring h-1.5 rounded-full transition-all duration-300 ${
-                    i === active ? "w-6 bg-gold-light" : "w-1.5 bg-porcelain/25 hover:bg-porcelain/40"
+                    i === active ? "w-6 bg-gold-light" : "w-1.5 bg-porcelain/30 hover:bg-porcelain/50"
                   }`}
                 />
               ))}
             </div>
           </>
         ) : (
-          <div className="border border-porcelain/15 bg-porcelain/[0.06] p-8 text-center">
+          <div className="rounded-2xl border border-porcelain/15 bg-porcelain/[0.07] p-8 text-center">
             <StarRow rating={activePlatform.rating} />
-            <p className="mt-4 text-porcelain/70">
+            <p className="mt-4 text-porcelain/90">
               {activePlatform.rating.toFixed(1)}★ from {activePlatform.count}+ reviews on{" "}
               {platform} — individual quotes coming soon.
             </p>

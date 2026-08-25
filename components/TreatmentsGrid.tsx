@@ -34,7 +34,7 @@ export default function TreatmentsGrid({ limit }: { limit?: number }) {
                   href={`/treatments/${t.id}`}
                   className={`group relative flex flex-col justify-between h-full min-h-[170px] sm:min-h-[220px] p-4 sm:p-7 md:p-8 transition-colors duration-300 ${
                     dark
-                      ? "bg-ink text-porcelain hover:bg-[#2a2521]"
+                      ? "bg-ink text-porcelain hover:bg-[#0a3222]"
                       : "bg-porcelain text-ink hover:bg-white"
                   }`}
                 >

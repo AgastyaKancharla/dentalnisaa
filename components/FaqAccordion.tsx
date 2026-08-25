@@ -36,8 +36,8 @@ export default function FaqAccordion({ items }: { items: FaqItem[] }) {
               <span
                 className={`absolute left-0 top-4 w-[31px] h-[31px] rounded-full border flex items-center justify-center text-xs font-display transition-colors duration-300 ${
                   isVisited
-                    ? "bg-gold border-gold text-ink"
-                    : "bg-porcelain border-ink/15 text-ink/40"
+                    ? "bg-gold border-gold text-ink-soft"
+                    : "bg-porcelain border-ink/20 text-ink/70"
                 }`}
                 aria-hidden
               >

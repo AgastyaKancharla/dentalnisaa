@@ -45,17 +45,17 @@ export default function Stepper() {
                 <span
                   className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold border-2 transition-colors ${
                     isComplete
-                      ? "bg-gold border-gold text-ink"
+                      ? "bg-gold border-gold text-ink-soft"
                       : isActive
                       ? "border-ink bg-ink text-porcelain"
-                      : "border-ink/15 text-ink/30"
+                      : "border-ink/25 text-ink/55"
                   }`}
                 >
                   {isComplete ? "✓" : i + 1}
                 </span>
                 <span
                   className={`hidden md:inline text-sm font-medium transition-colors ${
-                    isActive ? "text-ink" : isComplete ? "text-ink/70" : "text-ink/30"
+                    isActive ? "text-ink" : isComplete ? "text-ink/70" : "text-ink/55"
                   }`}
                 >
                   {STEP_LABELS[step]}

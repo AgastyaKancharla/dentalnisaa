@@ -94,9 +94,9 @@ export default function ReviewsPageContent() {
 
   return (
     <>
-      <section className="bg-gold-dark text-porcelain">
+      <section className="bg-ink text-porcelain">
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 pt-8 pb-16 md:pt-10 md:pb-20">
-          <div className="text-porcelain/50">
+          <div className="text-porcelain/55">
             <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Patient Reviews" }]} />
           </div>
           <p className="text-sm font-semibold text-gold-light uppercase tracking-wide mt-6 mb-3">
@@ -124,7 +124,7 @@ export default function ReviewsPageContent() {
                 rel="noopener noreferrer"
                 className="focus-ring group border-r border-b border-porcelain/15 p-6 hover:bg-porcelain/5 transition-colors"
               >
-                <dt className="text-xs uppercase tracking-wide text-porcelain/50 flex items-center justify-between">
+                <dt className="text-xs uppercase tracking-wide text-porcelain/55 flex items-center justify-between">
                   {p.name}
                   <span aria-hidden className="group-hover:translate-x-0.5 transition-transform">
                     ↗

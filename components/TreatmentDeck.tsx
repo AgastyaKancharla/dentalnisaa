@@ -16,6 +16,14 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
   // a narrow phone's edge and get clipped by the section's overflow-hidden
   // — the arc effectively disappears rather than looking clipped-on-purpose.
   // Scale the whole geometry down on narrow viewports instead.
+  //
+  // Must default to false (matching what the server always renders, since
+  // `window` doesn't exist there) rather than reading window.innerWidth in
+  // the initializer — VISIBLE_SIDE below changes how many <article> cards
+  // render, so seeding this from the client's real width made the client's
+  // hydration pass build a different tree than the server sent, which
+  // React reports as a hydration mismatch. The one-frame flash of desktop
+  // geometry this reintroduces on mobile is the correct trade against that.
   const [isNarrow, setIsNarrow] = useState(false);
   useEffect(() => {
     const check = () => setIsNarrow(window.innerWidth < 640);
@@ -93,19 +101,18 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
           return (
             <article
               key={t.id}
-              aria-hidden={!isFront}
               style={style}
               className="absolute left-1/2 top-0 w-[280px] sm:w-[320px] transition-[transform,opacity] duration-500 ease-out"
             >
               {isFront ? (
-                <div className="rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-15px_rgba(33,30,26,0.25)] overflow-hidden">
+                <div className="rounded-2xl border border-ink/10 bg-porcelain shadow-[0_24px_55px_-18px_rgba(18,38,26,0.35)] overflow-hidden">
                   <TreatmentMedia treatment={t} variant="card" className="rounded-t-2xl" />
                   <div className="p-6">
-                    <p className="text-[11px] font-semibold text-teal-dark uppercase tracking-wide mb-2">
+                    <p className="text-[11px] font-semibold text-gold-dark uppercase tracking-wide mb-2">
                       {t.category}
                     </p>
                     <h3 className="font-display text-xl text-ink leading-snug">{t.name}</h3>
-                    <p className="mt-2 text-sm text-ink/60 leading-relaxed">{t.tagline}</p>
+                    <p className="mt-2 text-sm text-ink/70 leading-relaxed">{t.tagline}</p>
                     <div className="mt-5 flex items-center justify-between gap-3">
                       <Link
                         href={`/treatments/${t.id}`}
@@ -123,15 +130,19 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
                   </div>
                 </div>
               ) : (
+                // A real navigation control, not decorative — it stays in
+                // the accessibility tree at every offset (previously
+                // aria-hidden while still focusable, which hid a reachable
+                // control from assistive tech).
                 <button
                   type="button"
                   onClick={() => goTo(i)}
                   aria-label={`Show ${t.name}`}
-                  className="focus-ring block w-full rounded-2xl border border-ink/10 bg-white shadow-[0_20px_50px_-15px_rgba(33,30,26,0.25)] overflow-hidden text-left"
+                  className="focus-ring block w-full rounded-2xl border border-ink/10 bg-porcelain shadow-[0_24px_55px_-18px_rgba(18,38,26,0.35)] overflow-hidden text-left"
                 >
                   <TreatmentMedia treatment={t} variant="card" className="rounded-t-2xl" />
                   <div className="p-6">
-                    <p className="text-[11px] font-semibold text-teal-dark uppercase tracking-wide mb-2">
+                    <p className="text-[11px] font-semibold text-gold-dark uppercase tracking-wide mb-2">
                       {t.category}
                     </p>
                     <h3 className="font-display text-xl text-ink leading-snug">{t.name}</h3>
@@ -149,18 +160,18 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
           type="button"
           onClick={() => go(-1)}
           aria-label="Previous treatment"
-          className="focus-ring flex items-center justify-center w-11 h-11 rounded-full border border-ink/15 text-ink hover:border-ink/30 hover:bg-ink/5 transition-colors"
+          className="focus-ring flex items-center justify-center w-11 h-11 rounded-full border border-ink/20 text-ink hover:border-gold hover:bg-gold/10 transition-colors"
         >
           <Icon name="arrow-left" className="w-4 h-4" />
         </button>
-        <p className="text-sm text-ink/50 tabular-nums w-16 text-center">
+        <p className="text-sm text-ink/70 tabular-nums w-16 text-center" aria-live="polite">
           {String(active + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
         </p>
         <button
           type="button"
           onClick={() => go(1)}
           aria-label="Next treatment"
-          className="focus-ring flex items-center justify-center w-11 h-11 rounded-full border border-ink/15 text-ink hover:border-ink/30 hover:bg-ink/5 transition-colors"
+          className="focus-ring flex items-center justify-center w-11 h-11 rounded-full border border-ink/20 text-ink hover:border-gold hover:bg-gold/10 transition-colors"
         >
           <Icon name="arrow-right" className="w-4 h-4" />
         </button>

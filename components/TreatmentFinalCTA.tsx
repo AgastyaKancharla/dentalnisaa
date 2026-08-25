@@ -16,7 +16,7 @@ export default function TreatmentFinalCTA({
           Ready to talk about{" "}
           <span className="italic">{treatmentName.toLowerCase()}</span>?
         </h2>
-        <p className="mt-4 text-ink/70 max-w-md mx-auto">
+        <p className="mt-4 text-ink-soft/85 max-w-md mx-auto">
           Book a consultation, or call the clinic directly — Kadarenahalli,
           Bengaluru · {clinic.phone}
         </p>
@@ -30,7 +30,7 @@ export default function TreatmentFinalCTA({
           </Link>
           <a
             href={`tel:${clinic.phone.replace(/\s/g, "")}`}
-            className="focus-ring inline-flex items-center gap-2 rounded-full border border-ink/25 text-ink px-7 py-3.5 font-semibold hover:bg-ink/5 transition-colors"
+            className="focus-ring inline-flex items-center gap-2 rounded-full border border-ink-soft/30 text-ink-soft px-7 py-3.5 font-semibold hover:bg-ink-soft/10 transition-colors"
           >
             <Icon name="phone" className="w-4 h-4" />
             Call the clinic

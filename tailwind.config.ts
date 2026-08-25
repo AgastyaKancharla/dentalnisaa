@@ -8,61 +8,56 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Real brand colors from the client's onboarding form: sage green,
-        // beige, brown, black. Neutral token names keep the visual system focused on sage, beige,
-        // brown, and black without tying components to a retired story.
+        // Rebrand, Aug 2026 — colors sampled directly from the client's own
+        // logo file (public/logo.png): the dark green and gold are exact
+        // pixel reads off the artwork (see contrast2.py in that PR), not
+        // hand-typed approximations. Every existing token *name* is kept so
+        // every page that already reads bg-ink, text-gold, bg-sand etc.
+        // picks up the new identity automatically; only the hex values
+        // changed. Every text/background pairing is checked against WCAG AA
+        // (4.5:1 body, 3:1 large-text-or-icon).
         porcelain: {
-          DEFAULT: "#FAF6EE", // beige base
-          dim: "#EDE4D2", // deeper beige for section fills
+          DEFAULT: "#FFFFFF", // white — primary light surface
+          dim: "#F1E4C8", // light tan cream, gold-shaded — alternate section fill
         },
         ink: {
-          DEFAULT: "#211E1A", // near-black
-          soft: "#37322B", // brown-black for secondary dark surfaces
+          DEFAULT: "#0F402C", // logo green — primary text color AND primary dark surface
+          soft: "#082416", // near-black green — deepest dark surface (footer-weight sections)
         },
         gold: {
-          DEFAULT: "#7C9483", // sage green (primary accent)
-          light: "#A8BCA3",
-          dark: "#546B57",
+          DEFAULT: "#D1A057", // logo gold — buttons, large display type, icons, dividers.
+          // 2.4:1 on white: reserve for large/bold text (18px+/14px-bold)
+          // and non-text UI, never small body copy on a light surface.
+          light: "#DDB273", // gold on dark green — 6:1, safe for running text on ink
+          dark: "#835D28", // deep gold-brown — 5.9:1 on white / 4.8:1 on cream, the
+          // only gold safe for small text (eyebrows, links) on a light surface
         },
         mist: {
-          DEFAULT: "#E1DCC8", // pale sage-beige tint
-          soft: "#F1EEE1",
+          DEFAULT: "#E4D6B0", // soft tan-gold divider tint
+          soft: "#F6EEDC", // lightest cream, alternate section fill
         },
         teal: {
-          DEFAULT: "#8A6A4E", // brown (secondary accent)
-          dark: "#5E4531",
+          DEFAULT: "#3E6B52", // mid forest green — secondary dark accent
+          dark: "#0C3524", // deep forest — hover state for dark-green buttons
         },
-        // A deeper, more saturated warm beige/tan than porcelain (which is
-        // intentionally pale, for backgrounds). This is beige's turn to
-        // carry real visual weight — used as the solid-fill color for
-        // secondary buttons sitewide, paired next to sage-green primary
-        // buttons, so beige reads as an equally deliberate accent choice
-        // rather than just "the page background."
         sand: {
-          DEFAULT: "#C9A66B",
-          light: "#DCC495",
-          dark: "#93753F",
+          DEFAULT: "#C79A5B", // tan-gold — secondary button fill
+          light: "#DDBB84",
+          dark: "#8A6530",
         },
-        // Added for the TrustBar / Transparency re-theme: these two sections
-        // were dark (bg-ink), which read as a jarring flip against the
-        // beige/cream base everywhere else. Converted to warm beige with
-        // sage accents instead, per exact hex values agreed on.
         beige: {
-          deep: "#F4EFE6", // section background, warmer/deeper than porcelain
+          deep: "#F3E6C9", // light tan cream section fill (matches porcelain.dim)
         },
         sage: {
-          DEFAULT: "#8CA68A", // accent — stars, numerals, dividers
-          pale: "#DCE3D8", // card fills
-          deep: "#5C6B5A", // body text on beige needing more contrast, hovers
+          DEFAULT: "#D1A057", // alias to gold — stars, dividers, numerals
+          pale: "#F1E4C8", // light cream card fill
+          deep: "#835D28", // deep gold — highlighted accent text, AA-safe on light bg
         },
       },
       fontFamily: {
         display: ["var(--font-fraunces)", "Georgia", "serif"],
         body: ["var(--font-public-sans)", "system-ui", "sans-serif"],
         script: ["var(--font-script)", "cursive"],
-      },
-      borderRadius: {
-        arch: "999px 999px 0 0",
       },
       keyframes: {
         fadeUp: {

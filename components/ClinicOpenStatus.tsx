@@ -23,8 +23,8 @@ const TONES: Record<
     open: "bg-gold-light",
     closed: "bg-porcelain/25",
     loading: "bg-porcelain/10",
-    text: "font-display text-xl md:text-2xl leading-none",
-    muted: "text-porcelain/50",
+    text: "font-display text-xl md:text-2xl leading-none text-porcelain",
+    muted: "text-porcelain/70",
     gap: "gap-3",
   },
   light: {

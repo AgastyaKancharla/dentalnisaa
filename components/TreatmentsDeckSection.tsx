@@ -10,12 +10,12 @@ export default function TreatmentsDeckSection({ limit }: { limit?: number }) {
     <section id="treatments" className="bg-porcelain overflow-hidden">
       <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
         <Reveal className="max-w-xl mb-14">
-          <p className="text-sm font-semibold text-gold-dark uppercase tracking-wide mb-3">
+          <p className="text-sm font-semibold text-gold-dark uppercase tracking-[0.14em] mb-4">
             Dental Treatments in Kadarenahalli, Bengaluru
           </p>
-          <h2 className="font-display text-3xl md:text-[2.75rem] leading-tight text-ink">
+          <h2 className="font-display font-light text-4xl md:text-6xl leading-[1.03] text-ink">
             Everything a family's teeth ask for,
-            <span className="text-gold-dark italic"> under one roof.</span>
+            <span className="text-gold-dark italic font-normal"> under one roof.</span>
           </h2>
         </Reveal>
 
