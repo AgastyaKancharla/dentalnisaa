@@ -19,6 +19,7 @@ const TONES: Record<
     muted: string;
     gap: string;
     timeClass: string;
+    timeText: string;
   }
 > = {
   dark: {
@@ -29,6 +30,7 @@ const TONES: Record<
     muted: "text-porcelain/70",
     gap: "gap-3",
     timeClass: "block md:inline",
+    timeText: "text-sm",
   },
   light: {
     open: "bg-sage-deep",
@@ -38,11 +40,12 @@ const TONES: Record<
     muted: "text-ink/50",
     gap: "gap-2",
     timeClass: "block md:inline",
+    timeText: "text-sm",
   },
   // Universal green/red status dot (not a brand token) — the header is the
   // one place this needs to read "open vs. closed" at a glance, like any
-  // other live-status indicator. Time detail only appears once there's
-  // room for it (sm+); mobile keeps just the dot and the one word.
+  // other live-status indicator. Kept to two compact lines (label, then
+  // time) so it fits the slim header strip at every width.
   header: {
     open: "bg-green-500",
     closed: "bg-red-500",
@@ -50,7 +53,8 @@ const TONES: Record<
     text: "font-semibold text-xs sm:text-sm leading-none text-ink",
     muted: "text-ink/50",
     gap: "gap-2",
-    timeClass: "hidden sm:inline",
+    timeClass: "block sm:inline",
+    timeText: "text-[0.7rem] sm:text-xs",
   },
 };
 
@@ -77,7 +81,7 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
           <>
             Open now
             <span
-              className={`${t.timeClass} font-body text-sm sm:ml-2 ${t.muted}`}
+              className={`${t.timeClass} font-body ${t.timeText} sm:ml-2 ${t.muted}`}
             >
               closes {status.closesAt}
             </span>
@@ -86,7 +90,7 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
           <>
             Closed now
             <span
-              className={`${t.timeClass} font-body text-sm sm:ml-2 ${t.muted}`}
+              className={`${t.timeClass} font-body ${t.timeText} sm:ml-2 ${t.muted}`}
             >
               opens {status.opensDay} at {status.opensAt}
             </span>

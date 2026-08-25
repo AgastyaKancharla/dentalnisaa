@@ -24,22 +24,20 @@ export default function Header() {
         className="fixed top-0 inset-x-0 z-50 bg-white/95 backdrop-blur border-b border-ink/10 shadow-sm"
       >
         <div className="px-5 md:px-10 lg:px-16 xl:px-24 h-20 md:h-24 flex items-center justify-between">
-          <div className="flex items-center gap-3 h-full min-w-0">
-            <Link href="/" className="flex items-center h-full py-1.5 md:py-2 shrink-0" onClick={() => setOpen(false)}>
-              <Image
-                src="/logo-header.png"
-                alt={clinic.name}
-                width={1154}
-                height={545}
-                className="h-full w-auto object-contain"
-                priority
-              />
-            </Link>
-            <div className="hidden sm:block h-6 w-px bg-ink/10 shrink-0" aria-hidden />
-            <ClinicOpenStatus tone="header" />
-          </div>
+          <Link href="/" className="flex items-center h-full py-1.5 md:py-2 shrink-0" onClick={() => setOpen(false)}>
+            <Image
+              src="/logo-header.png"
+              alt={clinic.name}
+              width={1154}
+              height={545}
+              className="h-full w-auto object-contain"
+              priority
+            />
+          </Link>
 
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-3 md:gap-4 shrink-0">
+            <ClinicOpenStatus tone="header" />
+            <div className="hidden md:block h-6 w-px bg-ink/10 shrink-0" aria-hidden />
             <Link
               href="/booking"
               className="focus-ring hidden md:inline-flex items-center rounded-full bg-ink text-porcelain px-5 py-2.5 text-sm font-semibold hover:bg-teal-dark transition-colors"
