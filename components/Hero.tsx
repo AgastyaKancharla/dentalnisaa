@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { clinic, reviewPlatforms } from "@/lib/site-data";
-import ClinicOpenStatus from "./ClinicOpenStatus";
 import AnimatedCounter from "./AnimatedCounter";
 import Magnetic from "./Magnetic";
 import Stars from "./Stars";
@@ -100,20 +99,6 @@ export default function Hero() {
               >
                 <Icon name="phone" className="w-4 h-4" />
                 Call Clinic
-              </a>
-            </motion.div>
-
-            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2.5">
-              <ClinicOpenStatus tone="dark" />
-              <a
-                href={clinic.address.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-porcelain/80 hover:text-gold-light transition-colors"
-              >
-                <Icon name="pin" className="w-4 h-4 shrink-0" />
-                Directions
-                <span aria-hidden>→</span>
               </a>
             </motion.div>
           </motion.div>

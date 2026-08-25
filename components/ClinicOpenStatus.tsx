@@ -4,9 +4,10 @@ import { useEffect, useState } from "react";
 import { getClinicStatus, type ClinicStatus } from "@/lib/clinic-status";
 
 // The footer sits on dark gold, the Hero's status line sits inside a light
-// frosted panel — same live data, two grounds. `tone` swaps only the colour
-// and scale tokens so neither copy nor the timing logic is duplicated.
-type Tone = "dark" | "light";
+// frosted panel, the header is a slim always-on strip — same live data,
+// three grounds. `tone` swaps only the colour and scale tokens so neither
+// copy nor the timing logic is duplicated.
+type Tone = "dark" | "light" | "header";
 
 const TONES: Record<
   Tone,
@@ -17,6 +18,7 @@ const TONES: Record<
     text: string;
     muted: string;
     gap: string;
+    timeClass: string;
   }
 > = {
   dark: {
@@ -26,6 +28,7 @@ const TONES: Record<
     text: "font-display text-xl md:text-2xl leading-none text-porcelain",
     muted: "text-porcelain/70",
     gap: "gap-3",
+    timeClass: "block md:inline",
   },
   light: {
     open: "bg-sage-deep",
@@ -34,6 +37,20 @@ const TONES: Record<
     text: "font-semibold text-sm leading-none text-ink",
     muted: "text-ink/50",
     gap: "gap-2",
+    timeClass: "block md:inline",
+  },
+  // Universal green/red status dot (not a brand token) — the header is the
+  // one place this needs to read "open vs. closed" at a glance, like any
+  // other live-status indicator. Time detail only appears once there's
+  // room for it (sm+); mobile keeps just the dot and the one word.
+  header: {
+    open: "bg-green-500",
+    closed: "bg-red-500",
+    loading: "bg-ink/15",
+    text: "font-semibold text-xs sm:text-sm leading-none text-ink",
+    muted: "text-ink/50",
+    gap: "gap-2",
+    timeClass: "hidden sm:inline",
   },
 };
 
@@ -60,7 +77,7 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
           <>
             Open now
             <span
-              className={`block md:inline font-body text-sm md:ml-2 ${t.muted}`}
+              className={`${t.timeClass} font-body text-sm sm:ml-2 ${t.muted}`}
             >
               closes {status.closesAt}
             </span>
@@ -69,7 +86,7 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
           <>
             Closed now
             <span
-              className={`block md:inline font-body text-sm md:ml-2 ${t.muted}`}
+              className={`${t.timeClass} font-body text-sm sm:ml-2 ${t.muted}`}
             >
               opens {status.opensDay} at {status.opensAt}
             </span>
