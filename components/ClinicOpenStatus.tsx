@@ -44,19 +44,27 @@ const TONES: Record<
   },
   // Universal green/red status dot (not a brand token) — the header is the
   // one place this needs to read "open vs. closed" at a glance, like any
-  // other live-status indicator. Kept to two compact lines (label, then
-  // time) so it fits the slim header strip at every width.
+  // other live-status indicator. Copy stays to a single compact line (no
+  // "now"/"today" filler) so it never competes for space in the slim strip.
   header: {
     open: "bg-green-500",
     closed: "bg-red-500",
     loading: "bg-ink/15",
-    text: "font-semibold text-xs sm:text-sm leading-none text-ink",
+    text: "font-semibold text-xs sm:text-sm leading-none text-ink whitespace-nowrap",
     muted: "text-ink/50",
     gap: "gap-2",
-    timeClass: "block sm:inline",
+    timeClass: "",
     timeText: "text-[0.7rem] sm:text-xs",
   },
 };
+
+// "today" is implied and dropped; "tomorrow" and weekday names are kept
+// (abbreviated to 3 letters) since those actually change what to expect.
+function dayPrefix(day: string): string {
+  if (day === "today") return "";
+  if (day === "tomorrow") return "Tomorrow ";
+  return `${day.slice(0, 3)} `;
+}
 
 export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
   const [status, setStatus] = useState<ClinicStatus | null>(null);
@@ -70,6 +78,34 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
   }, []);
 
   const dot = !status ? t.loading : status.open ? t.open : t.closed;
+
+  if (tone === "header") {
+    return (
+      <div className={`flex items-center ${t.gap}`}>
+        <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${dot}`} aria-hidden />
+        <p className={t.text}>
+          {!status ? (
+            <span className={t.muted}>Checking hours…</span>
+          ) : status.open ? (
+            <>
+              Open
+              <span className={`font-body ${t.timeText} ml-1.5 ${t.muted}`}>
+                · Closes {status.closesAt}
+              </span>
+            </>
+          ) : (
+            <>
+              Closed
+              <span className={`font-body ${t.timeText} ml-1.5 ${t.muted}`}>
+                · Opens {dayPrefix(status.opensDay)}
+                {status.opensAt}
+              </span>
+            </>
+          )}
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex items-center ${t.gap}`}>

@@ -5,21 +5,25 @@ import { MOTION, group, rise } from "@/lib/motion";
 import { trustPoints, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
 import AnimatedCounter from "./AnimatedCounter";
+import Icon from "./Icon";
 
 const points = [
   {
+    icon: "scan",
     title: "Clear diagnosis",
     before: "We explain what we see and what it means, ",
     highlight: "before treatment begins",
     after: ".",
   },
   {
+    icon: "droplet",
     title: "Comfort-first care",
     before: "Gentle techniques for ",
     highlight: "nervous patients and children",
     after: " alike.",
   },
   {
+    icon: "calendar",
     title: "Long-term planning",
     before: "From check-ups to implants, we plan around ",
     highlight: "lasting oral health",
@@ -68,23 +72,27 @@ export default function Transparency({ topDivider = false }: { topDivider?: bool
         </motion.div>
 
         {/* Three tenets of how a visit is run — not a sequence a patient
-            moves through, so no 01/02/03 numbering. Divided instead by a
-            thin gold rule. */}
+            moves through, so no 01/02/03 numbering. Each reads as its own
+            quiet card rather than a list item, echoing the icon-badge
+            treatment on the Hero's stat cards just above this section. */}
         <motion.div
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={MOTION.viewport}
-          className="mt-16 md:mt-20 grid md:grid-cols-3 gap-x-10 gap-y-10"
+          className="mt-16 md:mt-20 grid md:grid-cols-3 gap-5 md:gap-6"
         >
           {points.map((p) => (
             <motion.div
               key={p.title}
               variants={fadeUp}
-              className="pt-6 border-t-2 border-gold/40"
+              className="group rounded-[1.75rem] border border-porcelain/12 bg-porcelain/[0.04] p-6 sm:p-7 transition-colors duration-300 hover:bg-porcelain/[0.07] hover:border-gold/30"
             >
-              <h3 className="font-display text-2xl text-porcelain">{p.title}</h3>
-              <p className="text-porcelain/75 leading-relaxed text-[0.95rem] mt-3 max-w-xs">
+              <div className="flex h-11 w-11 items-center justify-center rounded-full bg-gold/15 text-gold-light transition-colors duration-300 group-hover:bg-gold/25">
+                <Icon name={p.icon} className="w-5 h-5" />
+              </div>
+              <h3 className="font-display text-2xl text-porcelain mt-5">{p.title}</h3>
+              <p className="text-porcelain/75 leading-relaxed text-[0.95rem] mt-3">
                 {p.before}
                 <span className="font-semibold text-gold-light">{p.highlight}</span>
                 {p.after}
