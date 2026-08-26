@@ -8,8 +8,8 @@ export default function TreatmentsDeckSection({ limit }: { limit?: number }) {
 
   return (
     <section id="treatments" className="bg-porcelain overflow-hidden">
-      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-20 md:py-28">
-        <Reveal className="max-w-xl mb-14">
+      <div className="px-5 md:px-10 lg:px-16 xl:px-24 py-8 md:py-28">
+        <Reveal className="max-w-xl mb-6 md:mb-14">
           <p className="text-sm font-semibold text-gold-dark uppercase tracking-[0.14em] mb-4">
             Dental Treatments in Kadarenahalli, Bengaluru
           </p>
@@ -24,7 +24,7 @@ export default function TreatmentsDeckSection({ limit }: { limit?: number }) {
         </Reveal>
 
         {limit && treatments.length > limit && (
-          <Reveal className="mt-12 text-center">
+          <Reveal className="mt-8 md:mt-12 text-center">
             <Link
               href="/treatments"
               className="focus-ring inline-flex items-center gap-2 font-semibold text-ink hover:text-gold-dark transition-colors"
