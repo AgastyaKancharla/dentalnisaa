@@ -83,26 +83,20 @@ export default function ClinicOpenStatus({ tone = "dark" }: { tone?: Tone }) {
     return (
       <div className={`flex items-center ${t.gap}`}>
         <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${dot}`} aria-hidden />
-        <p className={t.text}>
-          {!status ? (
+        {!status ? (
+          <p className={t.text}>
             <span className={t.muted}>Checking hours…</span>
-          ) : status.open ? (
-            <>
-              Open
-              <span className={`font-body ${t.timeText} ml-1.5 ${t.muted}`}>
-                · Closes {status.closesAt}
-              </span>
-            </>
-          ) : (
-            <>
-              Closed
-              <span className={`font-body ${t.timeText} ml-1.5 ${t.muted}`}>
-                · Opens {dayPrefix(status.opensDay)}
-                {status.opensAt}
-              </span>
-            </>
-          )}
-        </p>
+          </p>
+        ) : (
+          <div className="leading-tight">
+            <p className={t.text}>{status.open ? "Open" : "Closed"}</p>
+            <p className={`font-body ${t.timeText} ${t.muted}`}>
+              {status.open
+                ? `Closes ${status.closesAt}`
+                : `Opens ${dayPrefix(status.opensDay)}${status.opensAt}`}
+            </p>
+          </div>
+        )}
       </div>
     );
   }
