@@ -5,10 +5,18 @@ import ClinicOpenStatus from "./ClinicOpenStatus";
 import WeeklyHours from "./WeeklyHours";
 import SignatureMark from "./SignatureMark";
 import Magnetic from "./Magnetic";
+import SectionSeam from "./SectionSeam";
 
 export default function Footer() {
   return (
     <footer className="bg-ink-soft text-porcelain/90 pb-[calc(4rem+env(safe-area-inset-bottom))] md:pb-0 relative overflow-hidden">
+      {/* The wave divider below only reads against a light section above
+          (its fill matches the footer, so it's invisible dark-on-dark) —
+          pages like About end on another bg-ink-soft section (FinalCTA)
+          immediately before this one, which otherwise blend into a single
+          undifferentiated dark block. This seam gives that boundary a
+          deliberate line regardless of what's above. */}
+      <SectionSeam tone="dark" />
       {/* Wave divider — curves the page's porcelain background into the
           footer's dark ink, instead of a flat hard edge between them. */}
       <div className="absolute -top-px left-0 right-0 -translate-y-full leading-[0] overflow-hidden">

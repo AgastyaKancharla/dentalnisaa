@@ -91,23 +91,20 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                         </p>
                       )}
                       {doctor.credentials && doctor.credentials.length > 0 && (
-                        // Listed rather than run together into the title line:
-                        // these are the specific, checkable things a patient
-                        // scans for, and a comma-separated string buries them.
-                        // Each cascades in on its own beat once the card is in
-                        // view, instead of the whole list appearing as one block.
+                        // Compact tags, not a bulleted list: at body-text size
+                        // and weight, five credential lines competed with the
+                        // lede/bio for attention below and the card read as
+                        // one undifferentiated block. As small pills they
+                        // scan as reference/metadata — checkable, but clearly
+                        // secondary to the sentence that follows.
                         <RevealGroup className="mt-4" stagger={0.06}>
-                          <ul className="space-y-1.5">
+                          <ul className="flex flex-wrap gap-2">
                             {doctor.credentials.map((credential) => (
                               <li key={credential}>
                                 <Reveal variant="text">
-                                  <div className="group/cred flex items-start gap-2.5 text-sm text-ink/80 leading-snug transition-transform duration-200 hover:translate-x-1">
-                                    <span
-                                      className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-200 group-hover/cred:scale-125"
-                                      aria-hidden
-                                    />
+                                  <span className="inline-flex items-center rounded-full border border-gold/25 bg-gold/10 px-3 py-1 text-xs font-medium text-ink/65 leading-none transition-colors duration-200 hover:border-gold/50 hover:bg-gold/15">
                                     {credential}
-                                  </div>
+                                  </span>
                                 </Reveal>
                               </li>
                             ))}
@@ -115,15 +112,16 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                         </RevealGroup>
                       )}
                       {doctor.bioLede && (
-                        // A short, scannable hook ahead of the fuller bio —
-                        // set apart in size/weight so the paragraph below it
-                        // doesn't read as one undifferentiated block of text.
-                        <p className="mt-4 font-display text-lg leading-snug text-ink">
+                        // The card's one clear focal point: larger, in the
+                        // brand's accent color, and given real breathing room
+                        // above/below so it reads as the headline the
+                        // credential tags and bio paragraph both support.
+                        <p className="mt-5 font-display text-xl leading-snug text-gold-dark">
                           {doctor.bioLede}
                         </p>
                       )}
                       {doctor.bio && (
-                        <p className="mt-2.5 text-ink/70 leading-relaxed text-sm">
+                        <p className="mt-2.5 text-ink/60 leading-relaxed text-sm">
                           {doctor.bio}
                         </p>
                       )}
