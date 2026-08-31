@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import TouchSmoke from "@/components/TouchSmoke";
 import ConditionalChrome from "@/components/ConditionalChrome";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { clinic } from "@/lib/site-data";
@@ -74,7 +75,6 @@ export const viewport: Viewport = {
 
 // JSON-LD structured data — helps Google understand this as a real dental
 // clinic (name, hours, ratings, contact) for local search / GBP alignment.
-// Update address/geo once the client confirms the relocated address.
 function DentistSchema() {
   const schema = {
     "@context": "https://schema.org",
@@ -89,7 +89,10 @@ function DentistSchema() {
       streetAddress: clinic.address.line1 || undefined,
       addressLocality: "Bengaluru",
       addressRegion: "Karnataka",
-      postalCode: "560070",
+      // Derived from line2 ("Bengaluru, Karnataka 560078") rather than
+      // hardcoded a second time — a prior version duplicated the pincode
+      // here and it silently drifted out of sync with lib/site-data.ts.
+      postalCode: clinic.address.line2.match(/\d{6}/)?.[0],
       addressCountry: "IN",
     },
     aggregateRating: {
@@ -149,6 +152,7 @@ export default function RootLayout({
           <StickyCTA />
         </ConditionalChrome>
         <AccessibilityWidget />
+        <TouchSmoke />
         <GoogleAnalytics />
       </body>
     </html>

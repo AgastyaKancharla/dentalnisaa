@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contact" },
 };
 
-// clinic.address.mapsUrl is a maps.app.goo.gl share link — meant for
+// clinic.address.mapsUrl is a maps.google.com "search" URL — meant for
 // click-through navigation (used as an href elsewhere), not for embedding.
-// Google's share-link redirect pages refuse to render inside an iframe, so
-// the embedded map always uses a search-based embed URL instead.
+// Google Maps' own result pages refuse to render inside an iframe, so the
+// embedded map always uses a dedicated `output=embed` URL instead.
 function getMapEmbedSrc() {
   const query = encodeURIComponent(
     `${clinic.name}, ${clinic.address.line1}, ${clinic.address.line2}`

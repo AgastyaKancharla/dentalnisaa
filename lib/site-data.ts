@@ -20,9 +20,11 @@ export const clinic = {
   email: "info.dentalnisaa@gmail.com", // confirmed via onboarding form
   instagram: "https://www.instagram.com/dentalnisaa", // confirmed via onboarding form
   address: {
-    line1: "No. 42, 2nd Main Road, J.H.B.C.S Layout, Subhash Chandra Bose Road, Kadarenahalli, Bendre Nagar",
-    line2: "Bengaluru, Karnataka 560070",
-    mapsUrl: "https://maps.app.goo.gl/jKjAwve7WWSpyM8X8?g_st=aw", // confirmed via onboarding form
+    line1: "29, 2nd Main Road, Subhash Chandra Bose Rd, Kadarenahalli, JHBCS Layout, Bendre Nagar",
+    line2: "Bengaluru, Karnataka 560078",
+    mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      "DentalNisaa Oral Care, 29, 2nd Main Road, Subhash Chandra Bose Rd, Kadarenahalli, JHBCS Layout, Bendre Nagar, Bengaluru, Karnataka 560078"
+    )}`,
   },
   rating: 4.8,
   reviewCount: 195,
