@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import AccessibilityWidget from "@/components/AccessibilityWidget";
+import TouchSmoke from "@/components/TouchSmoke";
 import ConditionalChrome from "@/components/ConditionalChrome";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { clinic } from "@/lib/site-data";
@@ -149,6 +150,7 @@ export default function RootLayout({
           <StickyCTA />
         </ConditionalChrome>
         <AccessibilityWidget />
+        <TouchSmoke />
         <GoogleAnalytics />
       </body>
     </html>
