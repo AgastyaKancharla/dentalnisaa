@@ -123,6 +123,7 @@ const paths: Record<string, JSX.Element> = {
   ),
   "arrow-left": <path d="M19 12H5M11 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />,
   "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />,
+  chevron: <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />,
 };
 
 // Google's real four-color "G" mark, kept separate from the single-stroke

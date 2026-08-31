@@ -76,7 +76,7 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
         onKeyDown={onKeyDown}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
-        className="focus-ring relative h-[500px] sm:h-[460px] select-none"
+        className="focus-ring relative h-[405px] sm:h-[460px] select-none"
       >
         {treatments.map((t, i) => {
           const offset = signedOffset(i);
@@ -107,13 +107,13 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
               {isFront ? (
                 <div className="rounded-2xl border border-ink/10 bg-porcelain shadow-[0_24px_55px_-18px_rgba(18,38,26,0.35)] overflow-hidden">
                   <TreatmentMedia treatment={t} variant="card" className="rounded-t-2xl" />
-                  <div className="p-6">
-                    <p className="text-[11px] font-semibold text-gold-dark uppercase tracking-wide mb-2">
+                  <div className="p-5 sm:p-6">
+                    <p className="text-[11px] font-semibold text-gold-dark uppercase tracking-wide mb-1.5">
                       {t.category}
                     </p>
                     <h3 className="font-display text-xl text-ink leading-snug">{t.name}</h3>
-                    <p className="mt-2 text-sm text-ink/70 leading-relaxed">{t.tagline}</p>
-                    <div className="mt-5 flex items-center justify-between gap-3">
+                    <p className="mt-1.5 text-sm text-ink/70 leading-relaxed">{t.tagline}</p>
+                    <div className="mt-4 flex items-center justify-between gap-3">
                       <Link
                         href={`/treatments/${t.id}`}
                         className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-ink hover:text-gold-dark transition-colors"
@@ -155,7 +155,7 @@ export default function TreatmentDeck({ treatments }: { treatments: Treatment[] 
       </div>
 
       {/* Controls */}
-      <div className="mt-8 flex items-center justify-center gap-6">
+      <div className="mt-5 sm:mt-8 flex items-center justify-center gap-6">
         <button
           type="button"
           onClick={() => go(-1)}

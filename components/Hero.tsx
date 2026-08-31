@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { clinic, reviewPlatforms } from "@/lib/site-data";
-import ClinicOpenStatus from "./ClinicOpenStatus";
 import AnimatedCounter from "./AnimatedCounter";
 import Magnetic from "./Magnetic";
 import Stars from "./Stars";
@@ -63,7 +62,7 @@ export default function Hero() {
             variants={container}
             initial="hidden"
             animate="show"
-            className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pb-14 md:pb-20 max-w-4xl"
+            className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24 pb-24 sm:pb-28 md:pb-32 max-w-4xl"
           >
             <motion.p
               variants={rise}
@@ -107,41 +106,31 @@ export default function Hero() {
                 Call Clinic
               </a>
             </motion.div>
-
-            <motion.div variants={rise} className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2.5">
-              <ClinicOpenStatus tone="dark" />
-              <a
-                href={clinic.address.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="focus-ring inline-flex items-center gap-1.5 text-sm font-semibold text-porcelain/80 hover:text-gold-light transition-colors"
-              >
-                <Icon name="pin" className="w-4 h-4 shrink-0" />
-                Directions
-                <span aria-hidden>→</span>
-              </a>
-            </motion.div>
           </motion.div>
         </div>
       </section>
 
-      {/* The credential shelf: proof, in three cards, lifted up over the
-          seam where the photograph ends. */}
+      {/* The credential shelf: proof, in three cards, elevated on the
+          near-solid ink of the scrim so the shadow reads as genuine lift
+          rather than a seam the cards got pushed against. */}
       <section className="bg-porcelain relative">
         <div className="px-5 sm:px-8 md:px-10 lg:px-16 xl:px-24">
-          <div className="mx-auto max-w-5xl -mt-16 sm:-mt-20 md:-mt-24 relative z-10 grid grid-cols-3 gap-3 sm:gap-5">
+          <div className="mx-auto max-w-5xl -mt-20 sm:-mt-24 md:-mt-28 relative z-10 grid grid-cols-3 gap-4 sm:gap-6">
             {[
               {
+                icon: "sparkle",
                 value: <AnimatedCounter value={clinic.rating} decimals={1} />,
                 label: "Google rating",
                 sub: <Stars rating={clinic.rating} className="w-3.5 h-3.5" filled="text-gold" />,
               },
               {
+                icon: "chat",
                 value: <AnimatedCounter value={totalReviews} grouped />,
                 label: "Patient reviews",
                 sub: <span className="text-[0.65rem] sm:text-xs text-ink/70">{platformNames}</span>,
               },
               {
+                icon: "calendar",
                 value: clinic.foundedYear,
                 label: "Caring since",
                 sub: (
@@ -153,8 +142,11 @@ export default function Hero() {
             ].map((card) => (
               <div
                 key={card.label}
-                className="rounded-2xl bg-porcelain border border-ink/10 shadow-[0_20px_45px_-20px_rgba(18,38,26,0.35)] px-3 sm:px-6 pt-6 sm:pt-9 pb-5 sm:pb-7 text-center"
+                className="rounded-[1.75rem] bg-porcelain border border-ink/8 shadow-[0_24px_60px_-24px_rgba(15,64,44,0.4)] px-3 sm:px-6 pt-6 sm:pt-9 pb-5 sm:pb-7 text-center transition-transform duration-300 hover:-translate-y-1"
               >
+                <div className="mx-auto mb-2.5 sm:mb-3 flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-sage-pale text-sage-deep">
+                  <Icon name={card.icon} className="w-4 h-4 sm:w-5 sm:h-5" />
+                </div>
                 <dd className="font-display text-xl sm:text-3xl md:text-4xl text-ink leading-none tabular-nums">
                   {card.value}
                 </dd>
