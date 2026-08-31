@@ -71,15 +71,29 @@ export default function ClinicTourPreview() {
                 }}
                 className="focus-ring group block w-full text-left border border-ink/10 overflow-hidden"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-mist-soft">
+                <div className="relative aspect-[4/3] overflow-hidden bg-mist-soft">
                   {space.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={space.image}
-                      alt={space.name}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
-                    />
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={space.image}
+                        alt={space.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                      />
+                      {/* Room name as a caption on the photo itself, not a
+                          plain heading below it — the name is what a scanning
+                          visitor should register first, and a gradient scrim
+                          keeps it legible over any photo without needing a
+                          flat color band. */}
+                      <div
+                        aria-hidden
+                        className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"
+                      />
+                      <h3 className="absolute bottom-4 left-4 right-4 font-display text-xl text-porcelain drop-shadow-sm">
+                        {space.name}
+                      </h3>
+                    </>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-ink/30 text-xs">
                       Photo coming soon
@@ -87,7 +101,9 @@ export default function ClinicTourPreview() {
                   )}
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display text-lg text-ink">{space.name}</h3>
+                  {!space.image && (
+                    <h3 className="font-display text-lg text-ink">{space.name}</h3>
+                  )}
                   <p className="mt-1.5 text-sm text-ink/55 leading-relaxed line-clamp-2">
                     {space.description}
                   </p>

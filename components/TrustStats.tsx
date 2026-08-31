@@ -33,17 +33,24 @@ export default function TrustStats() {
           {stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 90} className="bg-porcelain-dim/40">
               <div className="p-8 h-full">
-                <p className="font-display text-3xl md:text-4xl text-ink">
-                  {typeof stat.value === "number" ? (
+                {typeof stat.value === "number" ? (
+                  <p className="font-display text-3xl md:text-4xl text-ink">
                     <AnimatedCounter
                       value={stat.value}
                       suffix={stat.suffix}
                       decimals={stat.value % 1 !== 0 ? 1 : 0}
                     />
-                  ) : (
-                    stat.label
-                  )}
-                </p>
+                  </p>
+                ) : (
+                  // Text labels (e.g. "Multi-generational") sit in the same
+                  // slot as short numeric values like "4.8★" — at that
+                  // size/leading a long word overflowed the grid column
+                  // instead of wrapping. Smaller, normal leading, and
+                  // break-words as a safety net for whatever label comes next.
+                  <p className="font-display text-xl md:text-2xl leading-snug text-ink break-words">
+                    {stat.label}
+                  </p>
+                )}
                 <p className="mt-2 text-xs uppercase tracking-wide text-ink/50">
                   {stat.detail}
                 </p>
