@@ -117,6 +117,13 @@ function DentistSchema() {
   );
 }
 
+// Applies the returning visitor's saved accessibility preferences before the
+// page paints. Without this, AccessibilityWidget's own useEffect only runs
+// post-hydration, so every page briefly loads at the default font size and
+// then visibly jumps to 112.5% a tick later for anyone who'd turned on
+// "Larger text" on a previous visit.
+const a11yFlashPreventionScript = `(function(){try{var r=document.documentElement;if(localStorage.getItem("a11y-large-text")==="1")r.classList.add("a11y-large-text");if(localStorage.getItem("a11y-reduce-motion")==="1")r.classList.add("a11y-reduce-motion");}catch(e){}})();`;
+
 export default function RootLayout({
   children,
 }: {
@@ -126,6 +133,7 @@ export default function RootLayout({
     <html lang="en" className={`${fraunces.variable} ${publicSans.variable} ${parisienne.variable}`}>
       <head>
         <DentistSchema />
+        <script dangerouslySetInnerHTML={{ __html: a11yFlashPreventionScript }} />
       </head>
       <body className="font-body antialiased">
         <a
