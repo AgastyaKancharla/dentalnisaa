@@ -1253,10 +1253,4 @@ export const gallerySpaces: GallerySpace[] = [
       "The first stop for check-in, questions, and scheduling your next visit.",
     image: "/clinic/reception.jpg",
   },
-  {
-    name: "Kids' Corner",
-    description:
-      "A friendlier corner of the clinic for younger patients, built to make first visits feel a little less clinical.",
-    image: null,
-  },
 ];
