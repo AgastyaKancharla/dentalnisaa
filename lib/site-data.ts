@@ -79,6 +79,9 @@ export type Doctor = {
   name: string;
   title: string;
   experience: string;
+  // Short (~8-10 word) hook rendered larger/emphasized above `bio` — a
+  // scannable distillation of the same facts in `bio`, not new claims.
+  bioLede?: string;
   bio: string;
   credentials?: string[];
   quote?: string;
@@ -90,7 +93,8 @@ export const doctors: Doctor[] = [
     name: "Dr. Neha Kulsum",
     title: "Proprietor · Root Canal Specialist & Cosmetic Dentist",
     experience: "12+ years experience",
-    bio: "Dr. Neha specialises in painless root canal treatments, smile designing, cosmetic dentistry, crowns and bridges, restorative procedures, and preventive oral healthcare — always with a strong emphasis on precision, comfort, and patient satisfaction. She believes every smile is unique, and takes the time to understand each patient's individual needs before building a treatment plan that prioritises both long-term oral health and aesthetics. As the clinic's proprietor, she carries forward a legacy that began in 1995 — integrating modern dental technology and evidence-based practice with the same gentle, unhurried approach that's kept generations of the same families coming back.",
+    bioLede: "Every plan starts with what you need — not what's easiest to sell.",
+    bio: "From painless root canals to smile design, crowns, and preventive care, Dr. Neha builds each treatment plan around the patient in front of her. As the clinic's proprietor, she carries the 1995 legacy forward with modern technique and the same gentle, unhurried approach that's kept generations of the same families coming back.",
     quote: "Your smile is our priority, and your trust is our greatest achievement.",
     photo: "/doctor-neha.jpg",
   },
@@ -100,7 +104,9 @@ export const doctors: Doctor[] = [
     experience: "", // ⟦PLACEHOLDER⟧ years in practice — not yet supplied
     // ⟦AWAITING SIGN-OFF⟧ Drafted from the credentials the clinic supplied
     // and nothing else — no years, technique, or manner has been inferred.
-    // Replace with her own wording once she's reviewed it.
+    // Replace with her own wording once she's reviewed it. bioLede is a
+    // restatement of her title/credentials only, same constraint applies.
+    bioLede: "Braces and clear aligners, planned with surgical-level precision.",
     bio: "Dr. Shyama plans and manages orthodontic treatment — braces and clear aligners — including cases that need a combined surgical and orthodontic approach. She holds an MDS in orthodontics alongside a Fellowship in Surgical Orthodontics, graduated as a rank holder from RGUHS, and has been recognised by the Pierre Fauchard Academy for its South Asia division.",
     credentials: [
       "MDS — Orthodontics & Dentofacial Orthopaedics",

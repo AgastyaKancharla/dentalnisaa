@@ -86,23 +86,30 @@ export default function AboutPage() {
               </span>
             </Reveal>
 
-            <Reveal delay={180} className="max-w-xl space-y-4">
-              <p className="text-ink/75 leading-relaxed text-lg">
-                DentalNisaa's legacy started in {clinic.foundedYear} — and
-                it's the same legacy today, not a different clinic that
-                happens to share a name. The same unhurried approach has
-                treated grandparents, then their children, then their
-                children's own kids, all from the same neighbourhood
-                clinic.
-              </p>
-              <p className="text-ink/75 leading-relaxed text-lg">
-                That continuity is carried forward today by Dr. Neha
-                Kulsum, the clinic's proprietor — leading with the same
-                values it was built on: clear explanations, gentle care,
-                and treatment plans built around what a patient actually
-                needs, not what's easiest to sell.
-              </p>
-            </Reveal>
+            <div className="max-w-xl space-y-8">
+              <Reveal delay={180}>
+                <p className="text-ink/75 leading-relaxed text-lg">
+                  DentalNisaa isn't a new clinic that happens to share an
+                  old name — it's the same one. Three generations of the
+                  same Kadarenahalli families have sat in this chair:
+                  grandparents, then their children, now their children's
+                  own kids.
+                </p>
+              </Reveal>
+
+              {/* Set apart from the paragraph above rather than following
+                  it as more running prose — a border-and-indent treatment
+                  reads as a distinct idea (the clinic's values today) worth
+                  pausing on, not another sentence to skim past. */}
+              <Reveal delay={270}>
+                <p className="border-l-2 border-gold pl-6 font-display italic text-xl md:text-2xl leading-snug text-ink">
+                  Led today by Dr. Neha Kulsum, the clinic's proprietor —
+                  with the same values it was built on: clear
+                  explanations, gentle care, and a plan built around what
+                  you need, not what's easiest to sell.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
