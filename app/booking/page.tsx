@@ -30,10 +30,16 @@ export default function BookingPage({
         </p>
 
         <div className="grid lg:grid-cols-[1fr_360px] gap-10 xl:gap-14 items-start">
-          <div className="order-1">
+          {/* min-w-0: grid items default to min-width:auto, so they refuse to
+              shrink below their content's intrinsic width. BookingWidget's
+              day-picker row uses overflow-x-auto to scroll internally, but
+              without min-w-0 here that row's full un-scrolled width forces
+              this whole column open instead — past the viewport on mobile,
+              silently clipped by body's overflow-x:hidden. */}
+          <div className="order-1 min-w-0">
             <BookingWidget initialTreatment={searchParams.treatment} />
           </div>
-          <div className="order-2">
+          <div className="order-2 min-w-0">
             <BookingSidebar />
           </div>
         </div>

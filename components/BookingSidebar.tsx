@@ -24,7 +24,9 @@ export default function BookingSidebar() {
       <div className="rounded-2xl border border-ink/10 bg-white/60 overflow-hidden">
         <div className="aspect-[16/9]">
           <iframe
-            src={`https://www.google.com/maps?q=${encodeURIComponent(clinic.name + ", " + clinic.address.line2)}&output=embed`}
+            src={`https://www.google.com/maps?q=${encodeURIComponent(
+              `${clinic.name}, ${clinic.address.line1}, ${clinic.address.line2}`
+            )}&output=embed`}
             title={`Map to ${clinic.name}`}
             className="w-full h-full border-0"
             loading="lazy"
