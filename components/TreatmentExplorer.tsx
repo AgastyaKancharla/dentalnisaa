@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { treatmentCategories, type Treatment } from "@/lib/site-data";
 import Icon from "./Icon";
 import TreatmentCard from "./TreatmentCard";
@@ -36,10 +37,10 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
           <label htmlFor="treatment-search" className="sr-only">
             Search treatments
           </label>
-          <div className="relative">
+          <div className="group relative">
             <Icon
               name="search"
-              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40"
+              className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-ink/40 transition-colors duration-300 group-focus-within:text-gold-dark"
             />
             <input
               id="treatment-search"
@@ -47,45 +48,63 @@ export default function TreatmentExplorer({ treatments }: { treatments: Treatmen
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search treatments — e.g. implants, braces, whitening"
-              className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 py-3 pl-11 pr-5 text-base text-ink placeholder:text-ink/40"
+              className="focus-ring w-full rounded-full border border-ink/15 bg-white/70 py-3 pl-11 pr-11 text-base text-ink placeholder:text-ink/40 transition-all duration-300 hover:border-ink/25 focus:border-gold/50 focus:shadow-[0_0_0_4px_rgba(209,160,87,0.12)]"
             />
+            <AnimatePresence>
+              {query && (
+                <motion.button
+                  type="button"
+                  initial={{ opacity: 0, scale: 0.7 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.7 }}
+                  transition={{ duration: 0.15 }}
+                  onClick={() => setQuery("")}
+                  aria-label="Clear search"
+                  className="focus-ring absolute right-3.5 top-1/2 -translate-y-1/2 flex h-6 w-6 items-center justify-center rounded-full text-ink/40 hover:bg-ink/5 hover:text-ink transition-colors"
+                >
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" aria-hidden="true">
+                    <path d="M18 6L6 18M6 6l12 12" />
+                  </svg>
+                </motion.button>
+              )}
+            </AnimatePresence>
           </div>
         </Reveal>
 
-        {/* Category filters */}
+        {/* Category filters — the active pill's fill slides between buttons
+            (a shared layoutId) instead of each button independently
+            swapping its own background color. */}
         <Reveal delay={90} className="mb-12">
           <div
             className="flex flex-wrap gap-2.5"
             role="group"
             aria-label="Filter treatments by category"
           >
-            <button
-              type="button"
-              onClick={() => setCategory("All")}
-              aria-pressed={category === "All"}
-              className={`focus-ring rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                category === "All"
-                  ? "bg-ink text-porcelain"
-                  : "border border-ink/15 text-ink/70 hover:border-ink/30 hover:text-ink"
-              }`}
-            >
-              All treatments
-            </button>
-            {categoriesInUse.map((c) => (
-              <button
-                key={c}
-                type="button"
-                onClick={() => setCategory(c)}
-                aria-pressed={category === c}
-                className={`focus-ring rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  category === c
-                    ? "bg-ink text-porcelain"
-                    : "border border-ink/15 text-ink/70 hover:border-ink/30 hover:text-ink"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+            {["All", ...categoriesInUse].map((c) => {
+              const isActive = category === c;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCategory(c)}
+                  aria-pressed={isActive}
+                  className={`focus-ring relative rounded-full px-4 py-2 text-sm font-medium border transition-colors duration-300 ${
+                    isActive
+                      ? "border-transparent text-porcelain"
+                      : "border-ink/15 text-ink/70 hover:border-ink/30 hover:text-ink"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="category-pill"
+                      className="absolute inset-0 rounded-full bg-ink"
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative">{c === "All" ? "All treatments" : c}</span>
+                </button>
+              );
+            })}
           </div>
         </Reveal>
 

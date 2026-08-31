@@ -5,6 +5,8 @@ import TreatmentExplorer from "@/components/TreatmentExplorer";
 import FinalCTA from "@/components/FinalCTA";
 import Reveal from "@/components/Reveal";
 import SignatureMark from "@/components/SignatureMark";
+import AnimatedCounter from "@/components/AnimatedCounter";
+import Icon from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: "Dental Treatments in Kadarenahalli",
@@ -51,28 +53,27 @@ export default function TreatmentsPage() {
             </p>
           </Reveal>
 
-          <Reveal delay={90} className="mt-10 flex items-center gap-8 border-t border-ink/10 pt-6">
-            <div>
-              <p className="font-display text-3xl text-ink">{treatments.length}</p>
-              <p className="text-xs uppercase tracking-wide text-ink/50 mt-1">
-                Treatments offered
-              </p>
-            </div>
-            <div className="h-8 w-px bg-ink/10" aria-hidden />
-            <div>
-              <p className="font-display text-3xl text-ink">{categoriesInUse.length}</p>
-              <p className="text-xs uppercase tracking-wide text-ink/50 mt-1">
-                Care categories
-              </p>
-            </div>
-            <div className="h-8 w-px bg-ink/10" aria-hidden />
-            <div>
-              <p className="font-display text-3xl text-ink">{clinic.rating}★</p>
-              <p className="text-xs uppercase tracking-wide text-ink/50 mt-1">
-                {clinic.reviewCount}+ reviews
-              </p>
-            </div>
-          </Reveal>
+          <div className="mt-10 pt-6 border-t border-ink/10 grid grid-cols-3 gap-3 sm:gap-5 max-w-xl">
+            {[
+              { icon: "tooth", value: treatments.length, decimals: 0, suffix: "", label: "Treatments offered" },
+              { icon: "align", value: categoriesInUse.length, decimals: 0, suffix: "", label: "Care categories" },
+              { icon: "sparkle", value: clinic.rating, decimals: 1, suffix: "★", label: `${clinic.reviewCount}+ reviews` },
+            ].map((stat, i) => (
+              <Reveal key={stat.label} delay={90 + i * 90}>
+                <div className="group rounded-2xl border border-ink/10 bg-white/60 px-3 py-5 sm:px-5 sm:py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-lg">
+                  <div className="mx-auto mb-2.5 flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full bg-gold/10 text-gold-dark transition-transform duration-300 group-hover:scale-110">
+                    <Icon name={stat.icon} className="w-4 h-4 sm:w-5 sm:h-5" />
+                  </div>
+                  <p className="font-display text-2xl sm:text-3xl text-ink tabular-nums">
+                    <AnimatedCounter value={stat.value} suffix={stat.suffix} decimals={stat.decimals} />
+                  </p>
+                  <p className="mt-1.5 text-[0.65rem] sm:text-xs uppercase tracking-wide text-ink/50">
+                    {stat.label}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

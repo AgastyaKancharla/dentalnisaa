@@ -4,7 +4,7 @@ import TreatmentMedia from "./TreatmentMedia";
 
 export default function TreatmentCard({ treatment }: { treatment: Treatment }) {
   return (
-    <div className="group flex flex-col rounded-2xl border border-ink/10 bg-white/60 overflow-hidden hover:border-gold/40 hover:-translate-y-1 transition-all duration-300">
+    <div className="group flex flex-col rounded-2xl border border-ink/10 bg-white/60 overflow-hidden hover:border-gold/40 hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
       <Link
         href={`/treatments/${treatment.id}`}
         className="focus-ring block"
