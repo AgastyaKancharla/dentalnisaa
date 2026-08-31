@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import {
   testimonials,
@@ -51,6 +51,13 @@ export default function Testimonials() {
   const [platform, setPlatform] = useState<"Google" | "Practo" | "Justdial">("Google");
   const [active, setActive] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
+  const scrollRafRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (scrollRafRef.current != null) cancelAnimationFrame(scrollRafRef.current);
+    };
+  }, []);
 
   const activePlatform = reviewPlatforms.find((p) => p.name === platform)!;
   const quotes = platformData[platform];
@@ -69,13 +76,21 @@ export default function Testimonials() {
     setActive(i);
   };
 
+  // Batched to one measurement per animation frame instead of once per
+  // native scroll event — a horizontal swipe can fire dozens of scroll
+  // events, each reading clientWidth and re-rendering, which reads as jank
+  // on lower-end phones.
   const handleScroll = () => {
-    const track = trackRef.current;
-    if (!track || quotes.length === 0) return;
-    const cardWidth = track.children[0]?.clientWidth ?? 1;
-    const gap = 24;
-    const index = Math.round(track.scrollLeft / (cardWidth + gap));
-    setActive(Math.max(0, Math.min(index, quotes.length - 1)));
+    if (scrollRafRef.current != null) return;
+    scrollRafRef.current = requestAnimationFrame(() => {
+      scrollRafRef.current = null;
+      const track = trackRef.current;
+      if (!track || quotes.length === 0) return;
+      const cardWidth = track.children[0]?.clientWidth ?? 1;
+      const gap = 24;
+      const index = Math.round(track.scrollLeft / (cardWidth + gap));
+      setActive(Math.max(0, Math.min(index, quotes.length - 1)));
+    });
   };
 
   return (

@@ -35,7 +35,12 @@ export default function Hero() {
           contrast wherever the headline lands — measured, not eyeballed —
           and it means the composition survives whatever photo replaces
           this one later. */}
-      <section className="relative -mt-20 md:-mt-24 min-h-[100dvh] overflow-hidden bg-ink">
+      {/* svh, not dvh: dvh live-recalculates as the mobile browser's address
+          bar collapses/expands during scroll, which visibly reflows this
+          bottom-anchored, negative-margin-overlapped section on every scroll
+          frame. svh is fixed to the smallest (chrome-visible) viewport, so
+          it never changes mid-scroll. */}
+      <section className="relative -mt-20 md:-mt-24 min-h-[100svh] overflow-hidden bg-ink">
         <Image
           src="/clinic/waiting-lounge.jpg"
           alt="The entrance and waiting lounge at DentalNisaa Oral Care, looking through to the reception desk"
@@ -53,7 +58,7 @@ export default function Hero() {
           }}
         />
 
-        <div className="relative z-10 min-h-[100dvh] flex flex-col justify-end pt-24">
+        <div className="relative z-10 min-h-[100svh] flex flex-col justify-end pt-24">
           <motion.div
             variants={container}
             initial="hidden"

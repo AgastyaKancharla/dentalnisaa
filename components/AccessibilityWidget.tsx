@@ -13,12 +13,11 @@ export default function AccessibilityWidget() {
   const [reduceMotion, setReduceMotion] = useState(false);
 
   useEffect(() => {
-    const storedText = localStorage.getItem("a11y-large-text") === "1";
-    const storedMotion = localStorage.getItem("a11y-reduce-motion") === "1";
-    setLargeText(storedText);
-    setReduceMotion(storedMotion);
-    document.documentElement.classList.toggle("a11y-large-text", storedText);
-    document.documentElement.classList.toggle("a11y-reduce-motion", storedMotion);
+    // The classes themselves are already applied pre-paint by the blocking
+    // script in app/layout.tsx (see a11yFlashPreventionScript) — this just
+    // syncs the toggle UI to match.
+    setLargeText(localStorage.getItem("a11y-large-text") === "1");
+    setReduceMotion(localStorage.getItem("a11y-reduce-motion") === "1");
   }, []);
 
   const toggleLargeText = () => {

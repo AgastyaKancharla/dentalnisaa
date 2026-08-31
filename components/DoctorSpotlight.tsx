@@ -1,6 +1,7 @@
 import { doctors, clinic } from "@/lib/site-data";
 import SectionSeam from "./SectionSeam";
 import Reveal, { RevealGroup } from "./Reveal";
+import Icon from "./Icon";
 
 // A doctor's initial letter, used as a signature monogram when there's no
 // photo yet -- e.g. "Dr. Neha" -> "N". Deliberately not a generic person
@@ -49,64 +50,82 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                   delay={i * 90}
                   className={`${basis} ${offset} max-w-md`}
                 >
-                  <div className="relative w-full aspect-[4/5] rounded-2xl border border-ink/10 overflow-hidden bg-gold/10">
-                    {doctor.photo ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={doctor.photo}
-                        alt={doctor.name}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <>
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 flex items-center justify-center font-display leading-none text-gold-dark/20 select-none"
-                          style={{ fontSize: "min(40vw, 11rem)" }}
-                        >
-                          {monogram(doctor.name)}
-                        </span>
-                        <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-ink/60">
-                          Photo coming soon
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <h3 className="font-display text-3xl mt-6">{doctor.name}</h3>
-                  {(doctor.title || doctor.experience) && (
-                    <p className="mt-1.5 text-sm text-ink/70">
-                      {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
-                    </p>
-                  )}
-                  {doctor.credentials && doctor.credentials.length > 0 && (
-                    // Listed rather than run together into the title line:
-                    // these are the specific, checkable things a patient
-                    // scans for, and a comma-separated string buries them.
-                    <ul className="mt-4 space-y-1.5">
-                      {doctor.credentials.map((credential) => (
-                        <li
-                          key={credential}
-                          className="flex items-start gap-2.5 text-sm text-ink/80 leading-snug"
-                        >
-                          <span
-                            className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-gold shrink-0"
-                            aria-hidden
+                  {/* Plain (non-motion) wrapper for hover interactions: framer-motion
+                      already drives this element's transform for the scroll-in
+                      settle, so hover lift lives one level down where a Tailwind
+                      hover:transform class won't fight it. */}
+                  <div className="group">
+                    <div className="relative w-full aspect-[4/5] rounded-2xl border border-ink/10 overflow-hidden bg-gold/10 transition-colors duration-300 group-hover:border-gold/40">
+                      {doctor.photo ? (
+                        <div className="relative w-full h-full overflow-hidden">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={doctor.photo}
+                            alt={doctor.name}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                           />
-                          {credential}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {doctor.bio && (
-                    <p className="mt-3 text-ink/80 leading-relaxed text-sm">
-                      {doctor.bio}
-                    </p>
-                  )}
-                  {doctor.quote && (
-                    <p className="mt-4 font-display italic text-gold-dark text-xl leading-snug">
-                      "{doctor.quote}"
-                    </p>
-                  )}
+                          <span className="absolute top-4 right-4 w-9 h-9 rounded-full bg-porcelain/90 backdrop-blur flex items-center justify-center border border-gold/30 opacity-0 scale-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+                            <Icon name="tooth" className="w-4 h-4 text-gold-dark" />
+                          </span>
+                        </div>
+                      ) : (
+                        <>
+                          <span
+                            aria-hidden
+                            className="absolute inset-0 flex items-center justify-center font-display leading-none text-gold-dark/20 select-none"
+                            style={{ fontSize: "min(40vw, 11rem)" }}
+                          >
+                            {monogram(doctor.name)}
+                          </span>
+                          <span className="absolute bottom-4 left-4 text-[10px] uppercase tracking-widest text-ink/60">
+                            Photo coming soon
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <div className="transition-transform duration-300 group-hover:-translate-y-1">
+                      <h3 className="font-display text-3xl mt-6">{doctor.name}</h3>
+                      {(doctor.title || doctor.experience) && (
+                        <p className="mt-1.5 text-sm text-ink/70">
+                          {[doctor.title, doctor.experience].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
+                      {doctor.credentials && doctor.credentials.length > 0 && (
+                        // Listed rather than run together into the title line:
+                        // these are the specific, checkable things a patient
+                        // scans for, and a comma-separated string buries them.
+                        // Each cascades in on its own beat once the card is in
+                        // view, instead of the whole list appearing as one block.
+                        <RevealGroup className="mt-4" stagger={0.06}>
+                          <ul className="space-y-1.5">
+                            {doctor.credentials.map((credential) => (
+                              <li key={credential}>
+                                <Reveal variant="text">
+                                  <div className="group/cred flex items-start gap-2.5 text-sm text-ink/80 leading-snug transition-transform duration-200 hover:translate-x-1">
+                                    <span
+                                      className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-gold shrink-0 transition-transform duration-200 group-hover/cred:scale-125"
+                                      aria-hidden
+                                    />
+                                    {credential}
+                                  </div>
+                                </Reveal>
+                              </li>
+                            ))}
+                          </ul>
+                        </RevealGroup>
+                      )}
+                      {doctor.bio && (
+                        <p className="mt-3 text-ink/80 leading-relaxed text-sm">
+                          {doctor.bio}
+                        </p>
+                      )}
+                      {doctor.quote && (
+                        <p className="mt-4 font-display italic text-gold-dark text-xl leading-snug transition-colors duration-300 hover:text-gold">
+                          "{doctor.quote}"
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </Reveal>
               );
             })}
