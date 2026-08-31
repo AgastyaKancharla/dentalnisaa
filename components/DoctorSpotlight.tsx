@@ -114,8 +114,16 @@ export default function DoctorSpotlight({ topDivider = true }: { topDivider?: bo
                           </ul>
                         </RevealGroup>
                       )}
+                      {doctor.bioLede && (
+                        // A short, scannable hook ahead of the fuller bio —
+                        // set apart in size/weight so the paragraph below it
+                        // doesn't read as one undifferentiated block of text.
+                        <p className="mt-4 font-display text-lg leading-snug text-ink">
+                          {doctor.bioLede}
+                        </p>
+                      )}
                       {doctor.bio && (
-                        <p className="mt-3 text-ink/80 leading-relaxed text-sm">
+                        <p className="mt-2.5 text-ink/70 leading-relaxed text-sm">
                           {doctor.bio}
                         </p>
                       )}
