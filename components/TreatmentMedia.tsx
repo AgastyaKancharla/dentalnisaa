@@ -50,6 +50,11 @@ export default function TreatmentMedia({ treatment, variant = "card", className 
             Representative photo
           </span>
         )}
+        {variant === "card" && (
+          <span className="absolute top-3 left-3 w-8 h-8 rounded-full bg-porcelain/90 backdrop-blur flex items-center justify-center border border-gold/30 opacity-0 scale-90 transition-all duration-300 group-hover:opacity-100 group-hover:scale-100">
+            <Icon name={treatment.icon} className="w-3.5 h-3.5 text-gold-dark" />
+          </span>
+        )}
       </div>
     );
   }
