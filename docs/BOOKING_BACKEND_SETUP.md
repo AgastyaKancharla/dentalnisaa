@@ -60,6 +60,18 @@ That's it — every booking submitted on the site will now:
 - Add a row to the "Bookings" tab of the Sheet
 - Send an email to `CLINIC_EMAIL`
 
+The same Web app URL also powers `/api/availability`: the booking widget
+calls it on every page load to grey out slots that already have a row in
+the Sheet, so the calendar reflects real requests instead of a demo
+pattern. No extra setup needed — it's the same deployment.
+
+**If you're updating an existing deployment's code** (not creating one for
+the first time), paste the new `docs/booking-apps-script.gs` over the old
+script, save, then **Deploy → Manage deployments → Edit (pencil icon) →
+Version: New version → Deploy**. Using "New version" on the existing
+deployment keeps the same Web app URL, so `BOOKING_WEBHOOK_URL` in Vercel
+doesn't need to change.
+
 ## 5. (Optional) Add a WhatsApp alert too
 
 This uses [CallMeBot](https://www.callmebot.com/blog/free-api-whatsapp-messages/),
