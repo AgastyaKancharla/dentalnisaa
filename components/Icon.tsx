@@ -121,6 +121,7 @@ const paths: Record<string, JSX.Element> = {
       <path d="M20 20l-4.8-4.8" strokeLinecap="round" />
     </>
   ),
+  check: <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />,
   "arrow-left": <path d="M19 12H5M11 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />,
   "arrow-right": <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />,
   chevron: <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />,
